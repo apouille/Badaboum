@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+5.times do
+	user = User.create!(
+		email: "toto@yopmail.com",
+		password: "test1234",
+	)
+end
+
+name_category = ["Soins bébé", "Chaises hautes & sièges auto", "Poussettes", "Mobilier enfant", "Jeux & Jouets", "Livres & Scolarité", "Sécurité", "Allaitement & Repas", "Vêtements"]
+
+name_category.each do |i|
+  Category.create!(
+    title: i
+  )
+end
