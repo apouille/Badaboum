@@ -1,23 +1,25 @@
-<div class="container">
+
+<div class = "bg-sign" style = "height: 1000px">
+<div class="container ">
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <br><br><br>
       <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signin mt-3" } do |f| %>
-        <h1 class="h3 mb-3 font-weight-normal text-center">Sign up</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center text-white">Sign up</h1>
         <%= devise_error_messages! %>
         <div class="form-group">
-          <%= f.label :email, "Email" %><br />
+          <%= f.label :email, "Email", class: "text-white" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :password %>
+          <%= f.label :password, class: "text-white" %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em class= "text-white small">(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :password_confirmation %><br />
+          <%= f.label :password_confirmation, class: "text-white" %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
         <div class="actions mt-5">
@@ -27,4 +29,5 @@
       <%= render "devise/shared/links" %>
     </div>
   </div>
+</div>
 </div>
