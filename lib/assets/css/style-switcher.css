@@ -1,0 +1,242 @@
+/* Aside buttons */
+a.btn-aside {
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    display: block;
+    height: 50px;
+    width: 50px;
+    float: right;
+    margin: 0 0 20px 0;
+    z-index: 1000;
+    position: relative;
+    top: 30%;
+    left: 60px;
+    border-radius: 100%;
+    opacity: 1;
+    background: #333;
+    color: #f3f3f3;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+}
+
+.style-switcher-slidebar.opened a.btn-aside {
+    left: 0;
+}
+
+a.btn-aside:hover {
+    opacity: 1;
+}
+a.btn-aside:hover {
+    left: 65px;
+    color: #FFF;
+}
+
+.style-switcher-slidebar.opened a.open-panel {
+    background: #333;
+    color: #fff;
+    opacity: 1;
+}
+
+
+.style-switcher-slidebar {
+    width: 440px;
+    height: 100%;
+    position: fixed;
+    left: -440px;
+    top: 0;
+    z-index: 1200;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 1s ease;
+    transition: all 0.5s ease;
+}
+
+@media(max-width: 991px) {
+    .style-switcher-slidebar {
+        display: none;
+    }
+}
+.style-switcher-slidebar.opened {
+    left: 0;
+}
+
+.style-switcher-slidebar .switch-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 380px;
+    height: 100%;
+    overflow-y: hidden;
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+    box-shadow: 0 8px 17px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+.style-switcher-slidebar .switch-panel-inner {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.style-switcher-slidebar .switch-panel-inner::-webkit-scrollbar {
+    width: 5px;
+}
+
+.style-switcher-slidebar .switch-panel-inner::-webkit-scrollbar-track {
+    background-color: #bdc3c7;
+}
+
+.style-switcher-slidebar .switch-panel-inner::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+}
+
+.style-switcher-slidebar .switch-panel-inner::-webkit-scrollbar-thumb:hover {
+    background-color: #7f8c8d;
+}
+
+.style-switcher-slidebar label {
+    margin-bottom: 0;
+}
+
+.style-switcher-slidebar .heading {
+    color:  #333;
+}
+.style-switcher-slidebar h3 {
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0 15px;
+    font-size: 15px;
+    font-weight: 600;
+    border-top: 1px solid #f1f1f1;
+}
+
+.style-switcher-slidebar h3 a {
+    font-size: 13px;
+    color: #333;
+}
+
+.style-switcher-slidebar .panel-section {
+
+}
+
+.style-switcher-slidebar .panel-title {
+    margin: 20px 0 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.style-switcher-slidebar .switch-panel .form-group {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.style-switcher-slidebar .reset-style-switcher {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: none;
+}
+
+.style-switcher-slidebar .reset-style-switcher i {
+    margin-right: 5px;
+}
+
+.style-switcher-slidebar .reset-style-switcher:hover {
+    color: #e74c3c;
+}
+
+.style-switcher-slidebar .color-switch:before,
+.style-switcher-slidebar .color-switch:after {
+    content: '';
+    display: table;
+}
+.style-switcher-slidebar .color-switch:after {
+    clear: both;
+}
+.style-switcher-slidebar .color-switch a {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    float: left;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border-radius: 3px;
+    opacity: 1;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.style-switcher-slidebar .color-switch a:hover,
+.style-switcher-slidebar .color-switch a.active {
+    transform: scale(1.1);
+}
+
+.style-switcher-slidebar .color-switch a.active:after {
+    content: "\f121";
+    font-family: "Ionicons";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF;
+    font-size: 14px;
+}
+.style-switcher-slidebar .color-switch a.spray-gray {
+    background: url('../images/tribus/spray-gray.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.purple-pink {
+    background: url('../images/tribus/purple-pink.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.green-dark {
+    background: url('../images/tribus/green-dark.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.blue-white {
+    background: url('../images/tribus/blue-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.red-white {
+    background: url('../images/tribus/red-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.yellow-white {
+    background: url('../images/tribus/yellow-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.pink-white {
+    background: url('../images/tribus/pink-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.purple-white {
+    background: url('../images/tribus/purple-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.gray-white {
+    background: url('../images/tribus/gray-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.brown-white {
+    background: url('../images/tribus/brown-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.green-white {
+    background: url('../images/tribus/green-white.jpg') no-repeat;
+}
+
+.style-switcher-slidebar .color-switch a.orange-white {
+    background: url('../images/tribus/orange-white.jpg') no-repeat;
+}
+
+
+/* List group */
+
+.style-switcher-slidebar .list-group-item {
+    background-color: #FFF;
+    color: #333;
+}
