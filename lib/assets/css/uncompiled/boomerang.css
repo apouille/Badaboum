@@ -4,10 +4,10 @@ Website URI: https://wrapbootstrap.com/theme/boomerang-multipurpose-bootstrap-th
 Author: Webpixels
 Author URI: https://www.webpixels.io
 */
-/* 
+/*
 
 Copy and paste the variables that you want to modify. The default ones will be overridden.
-Below is a basic example of how to edit Sass variables. 
+Below is a basic example of how to edit Sass variables.
 It is a basic level of customization that will help you modify the primary colors and some other properties
 
 Uncomment the lines you want to edit. Remove the ones you don't need or add new ones from _variables.scss
@@ -6191,8 +6191,8 @@ a > .block {
 
 .btn-base-1 {
   color: #FFF;
-  background-color: #3452ff;
-  border: 1px solid #3452ff;
+  background-color: #45b1b4;
+  border: 1px solid #45b1b4;
 }
 
 .btn-base-1:active,

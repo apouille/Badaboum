@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
 
- *= require boomerang.min
- *= require bootstrap/css/bootstrap.min
+ *= require uncompiled/boomerang
+ *= require bootstrap
  *= require bootstrap/css/bootstrap-grid.min
  *= require bootstrap/css/bootstrap-reboot.min
 
