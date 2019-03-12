@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'kitui', to: 'home#kitui'
 
   resources :products
+  resource :profile, only: [:show, :new, :create, :edit, :update]
 
 
 end
