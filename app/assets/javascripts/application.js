@@ -35,6 +35,7 @@
 //= require scrollpos-styler/scrollpos-styler
 
 
+//= require deso-slide/js/jquery.desoslide.min.js
 //= require adaptive-backgrounds/adaptive-backgrounds
 //= require countdown/js/jquery.countdown.min
 //= require dropzone/dropzone.min
