@@ -126,67 +126,41 @@
         </div>
 
             <div class="navbar-nav ml-lg-auto">
-             
+
                 <%= link_to '<i class="fas fa-heart"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
                 <%= link_to '<i class="fas fa-shopping-bag"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
                    <% if user_signed_in? %>
-                 <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, destroy_user_session_path, method: :delete %> 
+                 <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, destroy_user_session_path, method: :delete %>
                  <%end%>
             </div>
-
-
-
 
             <div class="dropdown dropdown--style-2">
                 <a class="dropdown-toggle has-badge" href="#" data-toggle="dropdown" aria-expanded="false">
                     <% if user_signed_in? %>
                              <%= image_tag "profile.jpg" , class:"dropdown-image rounded-circle" %>
                             <sup class="badge bg-blue">3</sup>
-                            <span class="dropdown-text strong-600">Destiny Erykah</span>
+                            <span class="dropdown-text strong-600">Profil</span>
                     <%else%>
                         <%= image_tag "profile-default.png" , class:"dropdown-image rounded-circle" %>
-                     
                     <%end%>
                 </a>
 
-
-              <% if user_signed_in? %>
-                 
-                   <div class="dropdown-menu">
-                            <h6 class="dropdown-header">Menu utilisateur</h6>
-                        
-
-      
+                    <% if user_signed_in? %>
+                       <div class="dropdown-menu dropdown-menu-right">
+                            <h6 class="dropdown-header">Mon profil</h6>
                             <%= link_to '<span class="float-right badge badge-primary">4</span><i class="far fa-envelope"></i>Messages'.html_safe, root_path, class:"dropdown-item" %>
-
-                             <%= link_to '<i class="fas fa-cogs"></i>Mofifier Email/Mot de passe'.html_safe,  edit_user_registration_path, class:"dropdown-item" %>
-
+                             <%= link_to '<i class="fas fa-cogs"></i>Modifier Email/Mot de passe'.html_safe,  edit_user_registration_path, class:"dropdown-item" %>
                             <%= link_to '<i class="far fa-user"></i> Mon Profil'.html_safe, edit_user_registration_path, class:"dropdown-item" %>
-
-                         
                         </div>
-
-       
-
-             <%else%>
-
-
-
-                    <div class="dropdown-menu">
-                            <h6 class="dropdown-header">User menu</h6>
-
-                            <%= link_to '<span class="float-right badge badge-primary">4</span><i class="ion-ios-email-outline icon-lg text-primary"></i>Connexion'.html_safe, new_user_session_path, class:"dropdown-item" %>
-
-                             <%= link_to '<i class="ion-ios-gear-outline icon-lg text-primary"></i>Inscription'.html_safe, new_user_registration_path, class:"dropdown-item" %>
-
-
-
-                    </div>
-
-             <%end%>
+                    <%else%>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <h6 class="dropdown-header">Mon profil</h6>
+                            <%= link_to '<i class="fas fa-sign-in-alt"></i>Connexion'.html_safe, new_user_session_path, class:"dropdown-item" %>
+                            <%= link_to '<i class="fas fa-user-plus"></i>Inscription'.html_safe, new_user_registration_path, class:"dropdown-item" %>
+                        </div>
+                    <%end%>
 
         </div>
-
     </div>
 </nav>
 
