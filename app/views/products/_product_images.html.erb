@@ -1,0 +1,33 @@
+<!-- page show.html.erb - product images -->
+<!-- Product gallery -->
+<%= image_tag 'shoes.jpg', alt:@product.title, class:'img-fluid img-thumbnail' %>
+
+<div class="gallery-container">
+    <div id="slideshow" class="gallery-top no-padding bg-transparent"></div>
+    <div id="slideshow_thumbs" class="swiper-js-container gallery-thumbs gallery-thumbs--style-1 mt-4">
+        <div class="swiper-container" data-swiper-items="5" data-swiper-space-between="10" data-swiper-xs-items="3" data-swiper-xs-space-between="10" data-swiper-sm-items="4" data-swiper-sm-space-between="10">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#" data-desoslide-index="0">
+                        <%= image_tag 'shoes.jpg', alt:@product.title, class:'img-fluid' %>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" data-desoslide-index="1">
+                        <%= image_tag 'shoes.jpg', alt:@product.title %>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" data-desoslide-index="2">
+                        <%= image_tag 'shoes.jpg', alt:@product.title %>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" data-desoslide-index="3">
+                        <%= image_tag 'shoes.jpg', alt:@product.title %>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- gallery-container -->
