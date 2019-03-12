@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BasicRubyFile</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%= favicon_link_tag 'favicon.ico' %>
+        <%= favicon_link_tag 'logo-elephant.png', rel: 'apple-touch-icon', type: 'image/png' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+        <title>Badaboum</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
-  </head>
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application' %>
 
-  <body>
-  
-              
-                   
-                     <%= render 'layouts/header' %>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
 
-                   
-                     
+    </head>
 
-                      <%= render 'layouts/flash'%>
+    <body>
 
+        <%= render 'layouts/header' %>
 
+        <%= render 'layouts/flash'%>
 
-                      <%= yield %>
-                      <%= render 'layouts/footer'%>
-                    
-  </body>
+        <%= yield %>
+        <%= render 'layouts/footer'%>
+
+    </body>
 </html>
