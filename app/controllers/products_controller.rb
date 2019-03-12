@@ -40,7 +40,6 @@ class ProductsController < ApplicationController
   def update
   end
 
-
   def destroy
   end
 
