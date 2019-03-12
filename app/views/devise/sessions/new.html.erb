@@ -22,7 +22,8 @@
                                         class: "form-control"  %>
                         </div>
                         <div class="form-group">
-                            <%= f.input :remember_me, class: "form-control", as: :boolean if devise_mapping.rememberable? %>
+                            <%= f.check_box :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                            <%= f.label :se_souvenir_de_moi, class: "text-secondary" %>
                         </div>
                         <div class="actions">
                             <%= f.submit "Se connecter", class: "btn btn-lg btn-primary btn-block"  %>
