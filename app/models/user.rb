@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :uploaded_products, foreign_key: 'seller_id', class_name: "Product"
   
+  
+
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
