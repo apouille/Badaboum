@@ -1,0 +1,20 @@
+
+<section class="slice sct-color-1" id="sct_products">
+    <div class="container">
+    	<br><br>
+        <div class="row">
+        	<%= render 'sidebar' %>
+            <div class="col-lg-9 order-lg-2">
+                <div class="row-wrapper">
+                    <div class="filter-grid row cols-xs-space cols-sm-space cols-md-space">
+                    	
+                    	<%= render partial: 'product_grid', locals: { filter_products: @products} %>
+                    </div>
+                </div>
+      	 		 <%= render 'pagination' %>
+            </div>
+		<!-- Ancien emplacement sidebar filter -->
+        </div>
+    </div>
+</section>
+

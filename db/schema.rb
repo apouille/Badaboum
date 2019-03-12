@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_135954) do
+
+ActiveRecord::Schema.define(version: 2019_03_12_160729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +41,16 @@ ActiveRecord::Schema.define(version: 2019_03_12_135954) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "children", force: :cascade do |t|
+    t.string "nickname"
+    t.date "birthday"
+    t.integer "sex"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "profile_id"
+    t.index ["profile_id"], name: "index_children_on_profile_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -85,6 +96,10 @@ ActiveRecord::Schema.define(version: 2019_03_12_135954) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+<<<<<<< HEAD
+=======
+  add_foreign_key "children", "profiles"
+>>>>>>> delivery
   add_foreign_key "products", "categories"
   add_foreign_key "profiles", "users"
 end

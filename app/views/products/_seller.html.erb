@@ -1,0 +1,114 @@
+<!-- page show.html.erb - tabs -->
+<div class="tab-pane active" id="tab_default_1">
+    <div class=" py-2">
+
+        <div class="row">
+            <div class="col-md-5">
+                <!-- Profile picture -->
+                <div class="profile-picture profile-picture--style-2">
+                    <%= image_tag 'profile-default.png', class:"img-center" %>
+                </div>
+                <!-- Profile details -->
+                <div class="profile-details">
+                    <h2 class="heading heading-4 strong-500 profile-name">Elisabeth Alanna</h2>
+                    <h3 class="heading heading-6 strong-400 profile-occupation mt-3">Description</h3>
+                </div>
+                <!-- Profile connect -->
+                <div class="profile-connect mt-4">
+                    <a href="#" class="btn btn-styled btn-block btn-rounded btn-base-2">Send message</a>
+                </div>
+                <!-- Profile stats -->
+                <div class="profile-stats clearfix">
+                    <div class="stats-entry">
+                        <span class="stats-count">180</span>
+                        <span class="stats-label text-uppercase">objets en vente</span>
+                    </div>
+                    <div class="stats-entry">
+                        <span class="stats-count">1.3K</span>
+                        <span class="stats-label text-uppercase">objets vendus</span>
+                    </div>
+                </div>
+                <!-- Profile connected accounts -->
+                <div class="profile-useful-links clearfix">
+                    <div class="useful-links">
+                        <a href="#" class="link link--style-1">
+                            <i class="icon ion-social-instagram-outline"></i>
+                            instagram.com/webpixels_io
+                        </a>
+                        <a href="#" class="link link--style-1">
+                            <i class="icon ion-social-dribbble"></i>
+                            dribbble.com/webpixels
+                        </a>
+
+                        <a href="#" class="link link--style-1">
+                            <i class="icon ion-earth"></i>
+                            webpixels.io
+                        </a>
+                    </div>
+                </div>
+            </div> <!-- col -->
+
+            <div class="col-md-7">
+
+                <div class="text-center my-3">
+                    <h3>Ses produits</h3>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="block product no-border z-depth-2--hover">
+                            <div class="block-image"> <!-- produit déjà dans le panier -->
+                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
+                                <a href="#" class="badge-corner"><span class="fa fa-heart"></span></a>
+                            </div>
+                            <div class="block-body px-0 text-center">
+                                <h3 class="heading heading-6 strong-500 text-capitalize">
+                                    <a href="#">Super chaussures</a>
+                                </h3>
+                                <div class="price-wrapper">
+                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="block product no-border z-depth-2--hover">
+                            <div class="block-image">
+                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
+                            </div>
+                            <div class="block-body px-0 text-center">
+                                <h3 class="heading heading-6 strong-500 text-capitalize">
+                                    <a href="#">Super chaussures</a>
+                                </h3>
+                                <div class="price-wrapper">
+                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="block product no-border z-depth-2--hover">
+                            <div class="block-image">
+                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
+                            </div>
+                            <div class="block-body px-0 text-center">
+                                <h3 class="heading heading-6 strong-500 text-capitalize">
+                                    <a href="#">Super chaussures</a>
+                                </h3>
+                                <div class="price-wrapper">
+                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div> <!-- row -->
+
+    </div>
+</div>
