@@ -1,0 +1,26 @@
+<div class="container">
+    <%= form_tag url_for(action: 'create'), method: "post", multipart: true do %>
+        <div class="form-group">
+            <%= label_tag 'Image :'%>
+            <%= file_field_tag :product_picture  %>
+            <%= text_field_tag 'title', @product.title, class: "form-control mb-1", placeholder: "Le titre" %>
+            <%= text_area_tag 'description', @product.description, class: "form-control mb-1", placeholder: "Description" %>
+            <%= text_field_tag 'price', @product.price, class: "form-control mb-1", placeholder: "Prix" %>
+            <%= text_field_tag 'brand', @product.brand, class: "form-control mb-1", placeholder: "Marque" %>
+            <%= text_field_tag 'color', @product.color, class: "form-control mb-1", placeholder: "Couleur" %>
+            <%= text_field_tag 'size', @product.size, class: "form-control mb-1", placeholder: "Taille" %>
+            <%= select_tag 'category', options_for_select(@categories.collect{|category|[category.title, category.id]}), class: "form-control mb-1" %>
+            <%= submit_tag "Ajouter mon produit", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+    <% if @product.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+            <p>Nous n'avons pas réussi à enregistrer votre produit pour la (ou les) raison(s) suivante(s) :</p>
+            <ul>
+                <% @product.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+</div>
