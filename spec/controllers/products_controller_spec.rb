@@ -23,6 +23,7 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+<<<<<<< HEAD
   describe "GET #new" do
     it "returns http success" do
       get :new
@@ -37,6 +38,8 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+=======
+>>>>>>> 9a1ca906d755cec2a03b6dc61853b2cdbf36bed4
   describe "GET #destroy" do
     it "returns http success" do
       get :destroy
