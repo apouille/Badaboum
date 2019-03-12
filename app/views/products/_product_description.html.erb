@@ -1,0 +1,59 @@
+<!-- page show.html.erb - product description -->
+<div class="px-4">
+    <!-- Product description -->
+    <div class="product-description-wrapper">
+        <!-- Product title -->
+        <h2 class="product-title heading heading-3 strong-400 text-capitalize">
+            <%= @product.title %>
+        </h2>
+
+        <hr>
+
+        <!-- Product description -->
+        <div class="product-short-text mt-4">
+            <h3 class="heading heading-xs strong-500 text-uppercase">
+                Description :
+            </h3>
+            <p>
+                <%= @product.description %>
+            </p>
+        </div>
+
+        <!-- Price tag -->
+        <div class="product-price py-3"><strong><%= @product.price %></strong><small>.00</small> €</div>
+
+        <table class="table table-specs">
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="c-gray-light strong-600">Taille</span>
+                    </td>
+                    <td>
+                        <%= @product.size.present? ? @product.size : "Non renseigné" %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="c-gray-light strong-600">Couleur</span>
+                    </td>
+                    <td>
+                        <%= @product.color.present? ? @product.color : "Non renseigné" %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="c-gray-light strong-600">Marque</span>
+                    </td>
+                    <td>
+                        <%= @product.brand? ? @product.brand : "Non renseigné" %>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+
+            <!-- Add to cart button -->
+            <button type="button" class="btn btn-styled btn-lg btn-block btn-base-1 btn-cart mt-2">
+                Ajouter à ma baby-list
+            </button>
+    </div>
+</div>

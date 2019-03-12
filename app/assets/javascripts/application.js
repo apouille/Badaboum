@@ -15,27 +15,18 @@
 //= require activestorage
 //= require_tree .
 
-
-
 //= require jquery/jquery.min
-
+//= require deso-slide/js/jquery.desoslide.min.js
 //= require popper/popper.min
-
 //= require bootstrap/js/bootstrap.min
-
-
-
 
 //= require slidebar/slidebar
 //= require classie
 //= require boomerang.min
 
-
 //= require bootstrap-notify/bootstrap-growl.min
 //= require scrollpos-styler/scrollpos-styler
 
-
-//= require deso-slide/js/jquery.desoslide.min.js
 //= require adaptive-backgrounds/adaptive-backgrounds
 //= require countdown/js/jquery.countdown.min
 //= require dropzone/dropzone.min
