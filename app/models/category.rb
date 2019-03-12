@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-	belongs_to :product
+	has_many :products
 
 	validates :title, presence:true
 end
