@@ -12820,7 +12820,7 @@ ul.list-border--dotted > li:last-child {
 }
 
 .rating span.star {
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
   font-weight: normal;
   font-style: normal;
   float: left;
