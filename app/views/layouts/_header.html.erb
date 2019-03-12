@@ -1,21 +1,21 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-default">
-    <div class="container navbar-container ">
-    <!-- Brand/Logo -->
-     <%= link_to (image_tag("logo.png", style:"width:200px",  class: "d-none d-lg-inline-block menu_icon")), root_path, class:"navbar-brand mr-1" %>
+    <div class="container navbar-container">
+        <!-- Brand/Logo -->
+        <%= link_to (image_tag("logo.png", style:"width:200px",  class: "d-none d-lg-inline-block menu_icon")), root_path, class:"navbar-brand mr-1" %>
 
-     <%= link_to (image_tag("logo.png", style:"width:200px", class: " d-lg-none menu_icon")), root_path, class:"navbar-brand mr-1" %>
+        <%= link_to (image_tag("logo.png", style:"width:200px", class: " d-lg-none menu_icon")), root_path, class:"navbar-brand mr-1" %>
 
- 			<!-- Navbar Mobile  -->
-            <div class="d-inline-block">
-                <!-- Navbar toggler  -->
-                <button class="navbar-toggler hamburger hamburger-js hamburger--spring" type="button" data-toggle="collapse" data-target="#navbar_main" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                    </span>
-                </button>
-       		</div>
-            <div class="collapse navbar-collapse align-items-center justify-content-end" id="navbar_main">
+        <!-- Navbar Mobile  -->
+        <div class="d-inline-block">
+            <!-- Navbar toggler  -->
+            <button class="navbar-toggler hamburger hamburger-js hamburger--spring" type="button" data-toggle="collapse" data-target="#navbar_main" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse align-items-center justify-content-end" id="navbar_main">
 
             <!-- Navbar search - For small resolutions -->
             <div class="navbar-search-widget b-xs-bottom py-3 d-lg-none d-none">
@@ -23,12 +23,11 @@
                     <div class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Search for...">
                         <span class="input-group-btn">
-                        <button class="btn btn-base-3" type="button">Go!</button>
+                            <button class="btn btn-base-3" type="button">Go!</button>
                         </span>
                     </div>
                 </form>
             </div>
-
 
     <!-- Navbar links -->
     <ul class="navbar-nav">
@@ -45,7 +44,7 @@
                             <div class="list-group-heading heading heading-6 mb-1"><span class="text-primary
 "><i class="fas fa-bath"></i> </span>Soins bébé</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
 
 
@@ -55,7 +54,7 @@
                             <div class="list-group-heading heading heading-6 mb-1"><span class="text-success
 "><i class="fas fa-chair"></i> </span>Chaises hautes & sièges auto</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
 
                   <div class="list-group rounded">
@@ -64,10 +63,10 @@
                             <div class="list-group-heading heading heading-6 mb-1"><span class="text-info
 "><i class="fas fa-baby-carriage"></i> </span>Poussettes</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
 
-          
+
 
                   <div class="list-group rounded">
                     <a href="../../pages-home.html" class="list-group-item list-group-item-action d-flex align-items-center">
@@ -75,7 +74,7 @@
                             <div class="list-group-heading heading heading-6 mb-1"><span class="text-warning
 "><i class="fas fa-dice"></i> </span>Jeux & Jouets</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
 
                   <div class="list-group rounded">
@@ -84,7 +83,7 @@
                             <div class="list-group-heading heading heading-6 mb-1"><span class="text-danger
 "><i class="fas fa-book"></i></span> Livres & Scolarité</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
 
                   <div class="list-group rounded">
@@ -93,7 +92,7 @@
                             <div class="list-group-heading heading heading-6 mb-1"><span class="text-primary
 "><i class="fas fa-hard-hat"></i> </span>Sécurité</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
 
                   <div class="list-group rounded">
@@ -102,7 +101,7 @@
                             <div class="list-group-heading heading heading-6 mb-1"><span class="text-light
 "><i class="fas fa-utensils"></i> </span> Repas</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
                 <div class="list-group rounded">
                     <a href="../../pages-home.html" class="list-group-item list-group-item-action d-flex align-items-center">
@@ -110,7 +109,7 @@
                             <div class="list-group-heading heading heading-6 mb-1">  <span class="text-dark
 "><i class="fas fa-tshirt"></i> </span>Habillement</div>
                         </div>
-                    </a> 
+                    </a>
                 </div>
 
             </div>
@@ -126,10 +125,11 @@
             </a>
         </div>
 
-        <div class="navbar-nav ml-lg-auto">
-            <%= link_to '<i class="fas fa-envelope"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
-            <%= link_to '<i class="fas fa-heart"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
-        </div>
+            <div class="navbar-nav ml-lg-auto">
+                <%= link_to '<i class="fas fa-envelope"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
+                <%= link_to '<i class="fas fa-heart"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
+                <%= link_to '<i class="fas fa-shopping-bag"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
+            </div>
 
 
     <ul class="navbar-nav">
@@ -145,38 +145,38 @@
                     <% end %>
                     <%= link_to root_path, class:"list-group-item list-group-item-action d-flex align-items-center" do %>
 
-                        <div class="list-group-content">
-                            <div class="list-group-heading heading heading-6 mb-1">Mon profil</div>
-                        </div>
-                    <% end %>
-                    <%= link_to destroy_user_session_path, class:"list-group-item list-group-item-action d-flex align-items-center" do %>
+                            <div class="list-group-content">
+                                <div class="list-group-heading heading heading-6 mb-1">Mon profil</div>
+                            </div>
+                            <% end %>
+                            <%= link_to destroy_user_session_path, class:"list-group-item list-group-item-action d-flex align-items-center" do %>
 
-                        <div class="list-group-content">
-                            <div class="list-group-heading heading heading-6 mb-1">Déconnexion</div>
+                            <div class="list-group-content">
+                                <div class="list-group-heading heading heading-6 mb-1">Déconnexion</div>
+                            </div>
+                            <% end %>
                         </div>
-                    <% end %>
-                </div>
-                <% else %>
-                    <div class="list-group rounded">
-                        <%= link_to new_user_session_path, class:"list-group-item list-group-item-action d-flex align-items-center" do %>
+                        <% else %>
+                        <div class="list-group rounded">
+                            <%= link_to new_user_session_path, class:"list-group-item list-group-item-action d-flex align-items-center" do %>
                             <div class="list-group-content">
                                 <div class="list-group-heading heading heading-6 mb-1">Connexion</div>
                             </div>
-                        <% end %>
-                        <%= link_to new_user_registration_path, class:"list-group-item list-group-item-action d-flex align-items-center" do %>
+                            <% end %>
+                            <%= link_to new_user_registration_path, class:"list-group-item list-group-item-action d-flex align-items-center" do %>
 
                             <div class="list-group-content">
                                 <div class="list-group-heading heading heading-6 mb-1">Inscription</div>
                             </div>
+                            <% end %>
+                        </div>
+
                         <% end %>
-                </div>
+                    </div>
+                </li>
 
-                <% end %>
-            </div>
-        </li>
-
-    </ul>
-</div>
+            </ul>
+        </div>
     </div>
- </nav>
+</nav>
 
