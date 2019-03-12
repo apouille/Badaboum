@@ -1,20 +1,37 @@
-<h2>Log in</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class = "bg-sign">
+    <div class= "container">
+        <div class="row d-flex justify-content-center align-items-center", style = "height: 800px">
+            <div class="col-4", style = "min-width: 300px">
+                <div class= "form-control border">
+                    
+                    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin p-2"} ) do |f| %>
+                        <h1 class="h3 mb-3 font-weight-normal text-center text-primary">Se connecter</h1>
+                        <div class="form-group">
+                            <%= f.label :email, "Email", class: "text-primary" %>
+                            <%= f.email_field :email,
+                                        required: false,
+                                        autofocus: true,
+                                        input_html: { autocomplete: "email" }, 
+                                        class: "form-control"  %>
+                        </div>
+                        <div class="form-group">
+                            <%= f.label :mot_de_passe, class: "text-primary" %>
+                            <%= f.password_field :password,
+                                        required: false,
+                                        input_html: { autocomplete: "current-password" }, 
+                                        class: "form-control"  %>
+                        </div>
+                        <div class="form-group">
+                            <%= f.check_box :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                            <%= f.label :se_souvenir_de_moi, class: "text-secondary" %>
+                        </div>
+                        <div class="actions">
+                            <%= f.submit "Se connecter", class: "btn btn-lg btn-primary btn-block"  %>
+                        </div>
+                    <% end %>
+                    <%= render "devise/shared/links" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
