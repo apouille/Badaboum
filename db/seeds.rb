@@ -14,10 +14,10 @@
 	)
 end
 
-name_category = ["Soins bébé", "Chaises hautes & sièges auto", "Poussettes", "Mobilier enfant", "Jeux & Jouets", "Livres & Scolarité", "Sécurité", "Allaitement & Repas", "Vêtements"]
+# name_category = ["Soins bébé", "Chaises hautes & sièges auto", "Poussettes", "Mobilier enfant", "Jeux & Jouets", "Livres & Scolarité", "Sécurité", "Allaitement & Repas", "Vêtements"]
 
-name_category.each do |i|
-  Category.create!(
-    title: i
-  )
-end
+# name_category.each do |i|
+#   Category.create!(
+#     title: i
+#   )
+# end

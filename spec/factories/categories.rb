@@ -1,5 +1,9 @@
+name_category = ["Soins bébé", "Chaises hautes & sièges auto", "Poussettes", "Mobilier enfant", "Jeux & Jouets", "Livres & Scolarité", "Sécurité", "Allaitement & Repas", "Vêtements"]
+
 FactoryBot.define do
   factory :category do
-    title { "MyString" }
+    title { name_category.sample }
+    product { FactoryBot.create(:product)}
+
   end
 end
