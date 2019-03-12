@@ -46,10 +46,13 @@
                 <div class="row">
 
                     <div class="col-md-4">
-                        <div class="block product no-border z-depth-2--hover">
-                            <div class="block-image"> <!-- produit déjà dans le panier -->
-                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
-                                <a href="#" class="badge-corner"><span class="fa fa-heart"></span></a>
+                        <div class="block product no-border z-depth-2--hover rounded">
+                            <div class="block-image">
+                                <div class="view view-first">
+                                    <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
+                                    <!-- produit déjà dans le panier -->
+                                    <a href="#" class="badge-corner"><span class="fa fa-heart"></span></a>
+                                </div>
                             </div>
                             <div class="block-body px-0 text-center">
                                 <h3 class="heading heading-6 strong-500 text-capitalize">
