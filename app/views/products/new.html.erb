@@ -2,7 +2,7 @@
     <%= form_tag url_for(action: 'create'), method: "post", multipart: true do %>
         <div class="form-group">
             <%= label_tag 'Image :'%>
-            <%= file_field_tag :product_picture  %>
+            <%= file_field_tag 'pictures[]', :multiple => true %>
             <%= text_field_tag 'title', @product.title, class: "form-control mb-1", placeholder: "Le titre" %>
             <%= text_area_tag 'description', @product.description, class: "form-control mb-1", placeholder: "Description" %>
             <%= text_field_tag 'price', @product.price, class: "form-control mb-1", placeholder: "Prix" %>
