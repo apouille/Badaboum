@@ -6,12 +6,13 @@
                 <!-- Product gallery -->
                 <div class="gallery-container">
                     <div id="slideshow" class="gallery-top no-padding bg-transparent"></div>
+
                     <div id="slideshow_thumbs" class="swiper-js-container gallery-thumbs gallery-thumbs--style-1 mt-4">
                         <div class="swiper-container" data-swiper-items="5" data-swiper-space-between="10" data-swiper-xs-items="3" data-swiper-xs-space-between="10" data-swiper-sm-items="4" data-swiper-sm-space-between="10">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <a href="../../assets/images/prv/shop/sportswear/img-product-lg-1.jpg" data-desoslide-index="0">
-                                        <img src="../../assets/images/prv/shop/sportswear/img-product-lg-1.jpg" alt="Bird">
+                                    <a href="#" data-desoslide-index="0">
+                                        <%= image_tag 'shoes.jpg', alt:@product.title %>
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
@@ -41,21 +42,10 @@
                     <div class="product-description-wrapper">
                         <!-- Product title -->
                         <h2 class="product-title heading heading-3 strong-400 text-capitalize">
-                            Women's running shoes
+                            <%= @product.title %>
                         </h2>
 
                         <hr>
-
-                        <!-- Rating stars -->
-                        <div class="rating">
-                            <span class="star voted" rel="1"></span>
-                            <span class="star voted" rel="2"></span>
-                            <span class="star voted" rel="3"></span>
-                            <span class="star" rel="4"></span>
-                            <span class="star" rel="5"></span>
-
-                            <span class="rating-count">(2 customer reviews)</span>
-                        </div>
 
                         <!-- Product description -->
                         <div class="product-short-text mt-4">
@@ -63,96 +53,34 @@
                                 Description :
                             </h3>
                             <p>
-                                Pellentesque habitant morbi tristique senectus et netus malesuada fames turpis egestas. Vestibulum tortor quam feugiat vitae ultricies eget tempor.
+                                <%= @product.description %>
                             </p>
                         </div>
 
                         <!-- Price tag -->
                         <div class="product-price py-3"><strong>160</strong><small>.00</small> €</div>
 
-                        <form class="form-horizontal">
                             <!-- Choose size -->
                             <div class="row">
                                 <div class="col-12">
-                                    <label class="text-uppercase strong-600">Size</label>
-
-                                    <ul class="list-inline checkbox-alphanumeric checkbox-alphanumeric--style-1">
-                                        <li>
-                                            <input type="radio" id="size-1" name="size">
-                                            <label for="size-1">37</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="size-2" name="size">
-                                            <label for="size-2">38</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="size-3" name="size">
-                                            <label for="size-3">39</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="size-4" name="size">
-                                            <label for="size-4">40</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="size-5" name="size">
-                                            <label for="size-5">41</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="size-6" name="size">
-                                            <label for="size-6">42</label>
-                                        </li>
-                                    </ul>
+                                    <h3 class="heading heading-xs strong-500 text-uppercase">Size</h3>
+                                    <%= @product.size.present? ? @product.size : "Non renseigné" %>
                                 </div>
                             </div>
 
                             <!-- Choose color -->
                             <div class="row">
                                 <div class="col-12">
-                                    <label class="text-uppercase strong-600">Color</label>
+                                    <h3 class="heading heading-xs strong-500 text-uppercase">Color</h3>
+                                    <%= @product.color.present? ? @product.color : "Non renseigné" %>
 
-                                    <ul class="list-inline checkbox-color">
-                                        <li>
-                                            <input type="radio" id="color-1" name="color" checked="">
-                                            <label style="background: #38393d;" for="color-1" data-toggle="tooltip" data-original-title="Black"></label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="color-2" name="color">
-                                            <label style="background: #bfc0c2;" for="color-2" data-toggle="tooltip" data-original-title="Gray"></label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="color-3" name="color">
-                                            <label style="background: #eabfb9;" for="color-3" data-toggle="tooltip" data-original-title="Rose"></label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="color-4" name="color">
-                                            <label style="background: #000000;" for="color-4" data-toggle="tooltip" data-original-title="Black"></label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="color-5" name="color">
-                                            <label style="background: #dcc4ac;" for="color-5" data-toggle="tooltip" data-original-title="Gold"></label>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
-
-                            <!-- Quantity + Add to cart -->
-                            <label class="text-uppercase strong-600">Quantity</label>
-                            <div class="row">
-                                <div class="col-4">
-                                    <!-- Plus-Minus control -->
-                                    <div class="form-group">
-                                        <input type="number" class="form-control form-control-lg" value="1">
-                                    </div>
-
-                                    <!-- Add to cart button -->
-                                    <button type="button" class="btn btn-styled btn-lg btn-block btn-base-1 btn-cart mt-2">
-                                        Add to cart
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                            <!-- Add to cart button -->
+                            <button type="button" class="btn btn-styled btn-lg btn-block btn-base-1 btn-cart mt-2">
+                                Add to cart
+                            </button>
                     </div>
-
                 </div>
             </div>
         </div>
