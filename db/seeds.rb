@@ -1,7 +1,11 @@
 require "faker"
-
+Child.destroy_all
 Profile.destroy_all
 User.destroy_all
+Product.destroy_all
+Category.destroy_all
+
+
 
 name_category = ["Soins bébé", "Chaises hautes & sièges auto", "Poussettes", "Mobilier enfant", "Jeux & Jouets", "Livres & Scolarité", "Sécurité", "Allaitement & Repas", "Vêtements"]
 
@@ -20,12 +24,15 @@ i = 0
 end
 puts '1 user have been seeded'
 
+
+
 name_category.each do |i|
   Category.create!(
     title: i
   )
 end
 puts '1 category have been seeded'
+
 
 j = 0
 5.times do
@@ -41,8 +48,24 @@ j = 0
 		user: User.all.sample
 	)
 	j += 1
+
+	
 end
+
+
 puts '5 profile have been seeded'
+
+
+10.times do 
+	child = Child.create!(
+		nickname:Faker::Dessert.variety,
+		birthday:Faker::Date.birthday(1, 12),
+		sex: rand(1..2),
+		profile:Profile.all.sample
+		)
+end
+puts '10 children have been seeded'
+
 
 20.times do
 	product = Product.create!(
@@ -52,8 +75,9 @@ puts '5 profile have been seeded'
 		brand: Faker::Beer.brand,
 		color: Faker::Color.color_name,
 		size: rand(1..12),
-		seller: User.all.sample,
-		category: Category.all.sample,
+		seller: User.all.sample, 
+		category: Category.all.sample,	
+
 	)
 end
 puts '20 products have been seeded'
