@@ -6,8 +6,6 @@ class ProductsController < ApplicationController
     @categories = Category.all
   end
 
-
-
   def show
     @product = Product.find(params[:id])
 
@@ -37,10 +35,6 @@ class ProductsController < ApplicationController
     else
       render 'new'
     end
-  end
-
-
-  def new
   end
 
   def update
