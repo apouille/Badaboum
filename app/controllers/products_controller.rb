@@ -22,10 +22,10 @@ class ProductsController < ApplicationController
                        seller_id: current_user.id,
                        category_id: params[:category],
                        )
-    #@product.product_picture.attach(params[:product_picture])
+    @product.pictures.attach(params[:pictures])
 
     if @product.save
-      redirect_to root_path, 
+      redirect_to root_path
       flash[:success] = "Le produit est bien enregistré!"
     else
       render 'new'
@@ -34,4 +34,6 @@ class ProductsController < ApplicationController
 
   def destroy
   end
+
+private
 end
