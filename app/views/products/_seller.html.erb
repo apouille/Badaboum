@@ -1,8 +1,9 @@
 <!-- page show.html.erb - tabs -->
 <div class="tab-pane active" id="tab_default_1">
-    <div class="fluid-paragraph py-2">
+    <div class=" py-2">
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <!-- Profile picture -->
                 <div class="profile-picture profile-picture--style-2">
                     <%= image_tag 'profile-default.png', class:"img-center" %>
@@ -46,6 +47,68 @@
                     </div>
                 </div>
             </div> <!-- col -->
+
+            <div class="col-md-7">
+
+                <div class="text-center my-3">
+                    <h3>Ses produits</h3>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="block product no-border z-depth-2--hover">
+                            <div class="block-image"> <!-- produit déjà dans le panier -->
+                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
+                                <a href="#" class="badge-corner"><span class="fa fa-heart"></span></a>
+                            </div>
+                            <div class="block-body px-0 text-center">
+                                <h3 class="heading heading-6 strong-500 text-capitalize">
+                                    <a href="#">Super chaussures</a>
+                                </h3>
+                                <div class="price-wrapper">
+                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="block product no-border z-depth-2--hover">
+                            <div class="block-image">
+                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
+                            </div>
+                            <div class="block-body px-0 text-center">
+                                <h3 class="heading heading-6 strong-500 text-capitalize">
+                                    <a href="#">Super chaussures</a>
+                                </h3>
+                                <div class="price-wrapper">
+                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="block product no-border z-depth-2--hover">
+                            <div class="block-image">
+                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
+                            </div>
+                            <div class="block-body px-0 text-center">
+                                <h3 class="heading heading-6 strong-500 text-capitalize">
+                                    <a href="#">Super chaussures</a>
+                                </h3>
+                                <div class="price-wrapper">
+                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
         </div> <!-- row -->
+
     </div>
 </div>
