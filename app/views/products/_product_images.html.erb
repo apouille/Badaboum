@@ -1,5 +1,7 @@
 <!-- page show.html.erb - product images -->
 <!-- Product gallery -->
+<%= image_tag 'shoes.jpg', alt:@product.title, class:'img-fluid img-thumbnail' %>
+
 <div class="gallery-container">
     <div id="slideshow" class="gallery-top no-padding bg-transparent"></div>
     <div id="slideshow_thumbs" class="swiper-js-container gallery-thumbs gallery-thumbs--style-1 mt-4">
@@ -7,21 +9,21 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <a href="#" data-desoslide-index="0">
+                        <%= image_tag 'shoes.jpg', alt:@product.title, class:'img-fluid' %>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" data-desoslide-index="1">
                         <%= image_tag 'shoes.jpg', alt:@product.title %>
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="../../assets/images/prv/shop/sportswear/img-product-lg-2.jpg" data-desoslide-index="1">
+                    <a href="#" data-desoslide-index="2">
                         <%= image_tag 'shoes.jpg', alt:@product.title %>
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="../../assets/images/prv/shop/sportswear/img-product-lg-3.jpg" data-desoslide-index="2">
-                        <%= image_tag 'shoes.jpg', alt:@product.title %>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="../../assets/images/prv/shop/sportswear/img-product-lg-4.jpg" data-desoslide-index="3">
+                    <a href="#" data-desoslide-index="3">
                         <%= image_tag 'shoes.jpg', alt:@product.title %>
                     </a>
                 </div>
