@@ -49,11 +49,13 @@
             <div class="col-md-7">
 
                 <div class="text-center my-3">
-                    <h3>Ses 6 derniers produits</h3>
+                    <h3>Ses autres produits</h3>
                 </div>
                 <div class="row">
 
                     <% @seller_products.last(6).each do |product| %>
+
+                    <% unless product == @product %>
 
                         <div class="col-md-4 mb-3">
                             <div class="block product no-border z-depth-2--hover rounded">
@@ -76,6 +78,8 @@
                                 </div>
                             </div>
                         </div>
+
+                    <% end %>
 
                     <% end %>
 
