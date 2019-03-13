@@ -26,5 +26,11 @@
         <%= yield %>
         <%= render 'layouts/footer'%>
 
+        <script>
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+
     </body>
 </html>
