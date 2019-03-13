@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+	has_one_attached :profil_picture
 	belongs_to :user
 	has_many :children
 	geocoded_by :address

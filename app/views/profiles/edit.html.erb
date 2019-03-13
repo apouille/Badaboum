@@ -1,5 +1,5 @@
 <div class="container">
-    <%= form_tag url_for(action: 'update'), method: "patch" do %>
+    <%= form_tag url_for(action: 'update'), method: "patch", multipart: true do %>
         <div class="form-group">
             <%= text_field_tag 'first_name', @profile.first_name, class: "form-control mb-1", placeholder: "Prénom" %>
             <%= text_field_tag 'last_name', @profile.last_name, class: "form-control mb-1", placeholder: "Nom" %>
@@ -8,6 +8,7 @@
             <%= text_field_tag 'city', @profile.city, class: "form-control mb-1", placeholder: " Ville" %>
             <%= text_field_tag 'zip_code', @profile.zip_code, class: "form-control mb-1", placeholder: "Code postal" %>
             <%= text_area_tag 'description', @profile.description, class: "form-control mb-1", placeholder: "Description" %>
+            <%= file_field_tag :profil_picture, class: 'form-control-file mt-1' %>
             <%= submit_tag "Modifier mon profil", class: "btn btn-primary" %>
         </div>
     <% end %>
@@ -21,4 +22,4 @@
             </ul>
         </div>
     <% end %>
-</div>
+

@@ -10,17 +10,27 @@ class ProfilesController < ApplicationController
 	end 
 
 	def update
+		puts "*" * 30
+		puts params 
+		puts "*" * 30
 		@profile = current_user.profile
+	
 		respond_to do |format|
       if @profile.update profile_params
-        format.html { redirect_to edit_profile_path, notice: "Profile updated!" }
+      	if params[:profil_picture].present?
+        	@profile.profil_picture.attach(params[:profil_picture])
+      	end
+        format.html { redirect_to profile_path, notice: "Profil mis à jour!" }
         format.json { render :edit, status: :ok, location: @profile }
+
       else
-        format.html { redirect_to edit_profile_path, flash: { error: "Profile could not be updated!" } }
+        format.html { redirect_to edit_profile_path, flash: { error: "Le profil n'a pas pu être mis à jour!" } }
         format.json { render json: @profile.errors.messages, status: :unprocessable_entity }
       end
     end
-	end
+  end
+
+
 
 	private
 
