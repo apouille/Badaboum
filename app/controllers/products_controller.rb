@@ -39,10 +39,6 @@ class ProductsController < ApplicationController
     end
   end
 
-
-  def new
-  end
-
   def update
   end
 
