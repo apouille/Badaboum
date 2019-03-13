@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @products = Product.last(6)
+    @products = Product.order(created_at: :desc)
   end
 
   def kitui

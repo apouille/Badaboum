@@ -32,7 +32,7 @@
 
    <div class="row cols-md-space cols-sm-space cols-xs-space">
 
-        <% @products.each do |product| %>
+        <% @products.first(6).each do |product| %>
             <div class="col-lg-4 mb-3">
                 <div class="card z-depth-2-top">
                     <div class="card-image">
