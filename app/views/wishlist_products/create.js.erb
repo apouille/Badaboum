@@ -1,6 +1,4 @@
-console.log('hello')
-  var basket = $('.badge-danger')
-  var total_item = '<%=number_of_cart_items%>'
-console.log(basket)
-console.log(total_item)
-  $(basket).text(total_item)
+console.log('produit ajouté')
+
+$('#toggle_wish_<%=@product.id%>').html(' <%= j link_to  '<span style="color: Tomato;"><i class="fas fa-heart"></i></span>'.html_safe, wishlist_product_path(@wishlist_product,:product => @product), method: :delete, :class => "toggle_wish", remote: true %>')
+

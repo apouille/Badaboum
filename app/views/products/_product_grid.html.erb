@@ -33,13 +33,18 @@
                                                     </div>
                                                 </div>
                                                 <% if user_signed_in? %>
-                                                    <div class="col text-right">
-                                                        <%if  product_is_already_wishlist?(product) %>
-                                                                 <%= link_to  '<span style="color: Tomato;"><i class="fas fa-heart"></i></span>'.html_safe, wishlist_product_path(transform_product_to_wishlist_product(product)), method: :delete, :class => "heart", :id => "heart_", remote: true %>
-                                                          <%else%>
-                                                                 <%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => product), method: :post, :class => "add_to_wish", :id => "add_to_wish", remote: true %>
-                                                          <%end%>
-                                                    </div>
+                                                     <%if  product_is_already_wishlist?(product) %>
+                                                           <div class="col text-right" id="toggle_wish_<%=product.id%>">
+                                                               
+                                                             <%= link_to  '<span style="color: Tomato;"><i class="fas fa-heart"></i></span>'.html_safe, wishlist_product_path(transform_product_to_wishlist_product(product),:product => product), method: :delete, :class => "toggle_wish", remote: true %>
+                                                             </div>
+                                                    <%else%>
+                                                        <div class="col text-right" id="toggle_wish_<%=product.id%>">
+
+                                                            <%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => product), method: :post, :class => "toggle_wish", remote: true %>
+                                                                 
+                                                            </div>
+                                                     <%end%>        
                                                 <%else%>
                                                  <%= link_to '<i class="fas fa-heart"></i>'.html_safe, wishlist_products_path, class:"text-primary mr-3" %>
                                                 <%end%>
