@@ -1,6 +1,4 @@
-
-
-  <div class="row">
+<div class="row">
 
   <div class="col-md-4 mb-5 mt-5 d-flex justify-content-end">
 
@@ -9,24 +7,17 @@
 ​
 
     <div class="profile-picture profile-picture--style-2">
-
-        <%if @profile.profil_picture.attached?%>
-          <%= image_tag @profile.profil_picture, alt: 'profil_picture' %>
-      <%else%>
-        <i class="fas fa-portrait fa-7x mx-auto"></i>  
-<%end%> 
+      <%if @profile.profil_picture.attached?%>
+      <%= image_tag @profile.profil_picture, alt: 'profil_picture' %><%end%>
     </div> 
 
-      <img class="img-center" src="/assets/profile-default-f5c989bbbc36d50d0521891a2269fafe977037de0046bfdde6364592ef906526.png">
+​
 
-    </div>
-
-
-<!-- User basics-->
+<!-- User basics-->    
 
     <div class="block-body text-center mt-5 mx-2">
 
-            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Inscris ton nom et prénom" %></h2>
+            <h2 class="heading heading-4 strong-500 profile-name">Mélanie</h2>
 
             <span class="star-rating star-rating-sm">
 
@@ -42,13 +33,14 @@
 
             </span>
 
-            <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @profile.description.present? ? @profile.description : "Une petite description pour mieux te connaître !" %></h3>
+            <h3 class="heading heading-6 strong-400 profile-occupation mt-3">blabalabalaalalalalalaalalal
+</h3>
 
     </div>
 
 ​
 
-<!-- User information-->
+<!-- User information-->    
 
 ​
 
@@ -56,23 +48,18 @@
 
       <i class="fas fa-map-marked-alt fa-2x"></i>
 
-      <h6 class="card-title mt-2"><%= @profile.street.present? ? @profile.street : "Ajoute ton adresse pour faciliter les échanges" %></h6>
-      <h6 class="card-title mt-2"><%= @profile.zip_code.present? ? @profile.zip_code : "" %>
-        <%= @profile.city.present? ? @profile.city : "" %></h6>
+      <h6 class="card-title mt-2">3 rue Villa CUrila</h6>
+      <h6 class="card-title mt-2">75019
+        75019</h6>
 
 
       <i class="fas fa-at fa-2x mt-3"></i>
 
-      <h6 class="card-title mt-2"><%= @profile.user.email%></h6>
+      <h6 class="card-title mt-2">dylan@yopmail.com</h6>
 
       <i class="fas fa-baby fa-3x mt-3"></i>
 
-      <h6 class="card-title mt-2"><%= 
-        if @children.present? 
-          children.each do |child|
-            child.nickname
-        end
-        end %>
+      <h6 class="card-title mt-2">
 
 
 ​
@@ -81,7 +68,7 @@
       <a href="#" class="btn btn-primary">Voir mes messages</a>
 
 
-​      <%= link_to "Editer mes informations",edit_profile_path, class: "btn btn-secondary mt-2"%>
+​      <a class="btn btn-secondary mt-2" href="/profile/edit">Editer mes informations</a>
 
 
     </div>
@@ -109,7 +96,7 @@
 
       </div>
 
-    </div>
+    </h6></div>
 
   </div>
 
@@ -117,7 +104,7 @@
 
 ​
 
-<!-- User Product-->
+<!-- User Product-->    
 
 ​
 
@@ -159,17 +146,17 @@
 
                   <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
 
-                  <p class> 22 Vues</p>
+                  <p class=""> 22 Vues</p>
 
-                  <p class> 10 Baby-list</p>
+                  <p class=""> 10 Baby-list</p>
 
                 </div>
 
               </div>
 
-              <div class="card-footer text-center">
+              <div class="card-footer text-center"> 
 
-​                 <%= link_to "Editer mes informations",edit_product_path([:id]), class: "btn btn-secondary mt-2"%>
+​                 <a class="btn btn-secondary mt-2" href="/products/id/edit">Editer mes informations</a>
 
               </div>
 
@@ -203,15 +190,15 @@
 
                   <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
 
-                  <p class> 22 Vues</p>
+                  <p class=""> 22 Vues</p>
 
-                  <p class> 10 Baby-list</p>
+                  <p class=""> 10 Baby-list</p>
 
                 </div>
 
               </div>
 
-              <div class="card-footer text-center">
+              <div class="card-footer text-center"> 
 
                 <a href="#" class="btn btn-secondary mt-2">Editer le produit</a>
 
@@ -247,15 +234,15 @@
 
                   <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
 
-                  <p class> 22 Vues</p>
+                  <p class=""> 22 Vues</p>
 
-                  <p class> 10 Baby-list</p>
+                  <p class=""> 10 Baby-list</p>
 
                 </div>
 
               </div>
 
-              <div class="card-footer text-center">
+              <div class="card-footer text-center"> 
 
                 <a href="#" class="btn btn-secondary mt-2">Editer le produit</a>
 
@@ -272,4 +259,3 @@
       </div>
 
 </div>
-
