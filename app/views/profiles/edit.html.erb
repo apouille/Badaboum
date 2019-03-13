@@ -1,0 +1,24 @@
+<div class="container">
+    <%= form_tag url_for(action: 'update'), method: "patch" do %>
+        <div class="form-group">
+            <%= text_field_tag 'first_name', @profile.first_name, class: "form-control mb-1", placeholder: "Prénom" %>
+            <%= text_field_tag 'last_name', @profile.last_name, class: "form-control mb-1", placeholder: "Nom" %>
+            <%= text_field_tag 'phone_number', @profile.phone_number, class: "form-control mb-1", placeholder: "Téléphone" %>
+            <%= text_field_tag 'street', @profile.street, class: "form-control mb-1", placeholder: "Rue" %>
+            <%= text_field_tag 'city', @profile.city, class: "form-control mb-1", placeholder: " Ville" %>
+            <%= text_field_tag 'zip_code', @profile.zip_code, class: "form-control mb-1", placeholder: "Code postal" %>
+            <%= text_area_tag 'description', @profile.description, class: "form-control mb-1", placeholder: "Description" %>
+            <%= submit_tag "Modifier mon profil", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+    <% if @profile.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+            <p>Nous n'avons pas réussi à enregistrer votre profil pour la (ou les) raison(s) suivante(s) :</p>
+            <ul>
+                <% @profile.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+</div>
