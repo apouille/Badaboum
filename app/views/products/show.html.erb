@@ -1,0 +1,47 @@
+
+<!-- SHOP GRID WRAPPER -->
+<section class="slice sct-color-2">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <%= render 'product_images' %>
+            </div>
+            <div class="col-lg-7">
+                <%= render 'product_description' %>
+            </div>
+        </div>
+    </div> <!-- container -->
+
+    <span class="space-xs-lg"></span>
+
+    <!-- Tabs - Product description -->
+    <div>
+        <div class="container-fluid">
+            <div class="tabs tabs--style-2">
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-item">
+                        <a href="#tab_default_1" data-toggle="tab" class="nav-link active text-uppercase strong-600">Le vendeur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab_default_2" data-toggle="tab" class="nav-link text-uppercase strong-600">Commentaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab_default_3" data-toggle="tab" class="nav-link text-uppercase strong-600">Specifications</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content pt-0">
+
+                    <%= render 'seller' %>
+
+                    <%= render 'comments' %>
+
+                    <%= render 'description' %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

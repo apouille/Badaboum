@@ -1,0 +1,48 @@
+ 											
+ 			
+ <% filter_products.each do |product|%>
+                                       
+                           <div class="col-lg-4 mb-5">
+                                    <div class="card z-depth-2-top">
+                                        <div class="card-image">
+                                            <div class="view view-first">
+                                               
+                                                    <%= link_to (image_tag("shoes.jpg")), product_path(product) %>
+                                             
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h3 class="heading heading-5 strong-500 mb-0">
+                                                <%=product.title%>
+                                            </h3>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="block-author">
+                                                        <div class="author-image author-image-xs">
+                                                            <%= link_to (image_tag("profile.jpg")), product_path(product) %>
+                                                        </div>
+                                                        <div class="author-info">
+                                                            <div class="author-name">
+                                                                <a href="#" class="strong-600">Elisabeth Alanna</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col text-right">
+                                                 
+                                            <%= link_to  '<i class="fas fa-heart"></i>'.html_safe, root_path %>
+                            
+                                                       
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                            <%end%>
