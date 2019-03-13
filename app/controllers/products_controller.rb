@@ -44,5 +44,4 @@ class ProductsController < ApplicationController
   def destroy
   end
 
-private
 end
