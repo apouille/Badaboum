@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
+    <head>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+    <body>
     <h1>Bienvenue chez nous !</h1>
-    <p>
-      Tu t'es inscrit sur badaboum.com en utilisant l'e-mail suivant : <%= @user.email %>.
-    </p>
-    <p>
-      Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
-    </p>
-    <p> À très vite sur badaboum.com !
-  </body>
+        <p>
+              Tu t'es inscrit sur badaboum.com en utilisant l'e-mail suivant : <%= @user.email %>.
+        </p>
+        <p>
+              Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
+        </p>
+        <p> À très vite sur badaboum.com !</p>
+        <%= image_tag "logo.png", style:"width:200px" %>
+    </body>
 </html>

@@ -1,59 +1,56 @@
-require "faker"
-Child.destroy_all
-Profile.destroy_all
-User.destroy_all
-Product.destroy_all
-Category.destroy_all
+categories = ["Soins bébé", 
+	          "Chaises hautes & sièges auto", 
+	          "Poussettes", "Mobilier enfant", 
+	          "Jeux & Jouets", 
+	          "Livres & Scolarité", 
+	          "Sécurité", 
+	          "Allaitement & Repas", 
+	          "Vêtements"
+	          ]
 
+users = [
+	["bastien.hiel@yopmail.com", "Bastien", "Hiel"],
+	["claudia.partonneau@yopmail.com", "Claudia", "Partonneau"],
+	["maxime.speroni@yopmail.com", "Maxime", "Speroni"],
+	["viviane.depetigny@yopmail.com", "Viviane", "de Pétigny"],
+	["melanie.nguon@yopmail.com", "Mélanie", "Nguon"]
+]
 
-
-name_category = ["Soins bébé", "Chaises hautes & sièges auto", "Poussettes", "Mobilier enfant", "Jeux & Jouets", "Livres & Scolarité", "Sécurité", "Allaitement & Repas", "Vêtements"]
-
-name_email = ["bastien.hiel@yopmail.com", "claudia.partonneau@yopmail.com", "maxime.speroni@yopmail.com", "viviane.depetigny@yopmail.com", "melanie.nguon@yopmail.com"]
-
-first_names = ["Bastien", "Claudia", "Maxime", "Viviane", "Mélanie"]
-last_names = ["Hiel", "Partonneau", "Speroni", "Depetigny", "Nguon"]
-
-i = 0
-1.times do
+users.each do |u|
 	user = User.create!(
-		email: name_email[i],
+		email: u[0],
 		password: "test1234",
 	)
-	i += 1
 end
-puts '1 user have been seeded'
+puts '5 users have been seeded'
 
-
-
-name_category.each do |i|
-  Category.create!(
-    title: i
-  )
-end
-puts '1 category have been seeded'
-
-
-j = 0
-5.times do
-	profile = Profile.create!(
-		first_name: first_names[j],
-		last_name: last_names[j],
+i = 1
+users.each do |u|
+	profile = Profile.find(i)
+	profile.update(
+		first_name: u[1],
+		last_name: u[2],
 		phone_number: "06#{rand(10000000..99999999)}",
 		street: "#{rand(1..100)} Avenue Kléber",
 		city: "Paris",
 		zip_code: "75016",
 		country: "France",
 		description: "Un super être humain qui est tout le temps positif à propos de tout!",
-		user: User.all.sample
+		user_id: i
 	)
-	j += 1
-
-	
+	profile.save
+	i += 1
 end
+puts '5 profiles have been seeded'
 
 
-puts '5 profile have been seeded'
+
+categories.each do |category_title|
+  Category.create!(
+    title: category_title
+  )
+end
+puts 'All categories have been seeded'
 
 
 10.times do 
