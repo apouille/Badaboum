@@ -1,0 +1,4 @@
+console.log('produit supprimé')
+
+$('#toggle_wish_<%=@product.id%>').html('<%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => @product), method: :post, :class => "toggle_wish", remote: true %>')
+
