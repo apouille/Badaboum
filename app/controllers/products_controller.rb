@@ -6,24 +6,42 @@ class ProductsController < ApplicationController
     @categories = Category.all
   end
 
-
-
   def show
     @product = Product.find(params[:id])
 
   end
 
-  def create
+  def new
+  	@product = Product.new
+  	@categories = Category.all
   end
 
+  def create
+  	@categories = Category.all
+  	@product = Product.new(title: params[:title],
+                       description: params[:description],
+                       price: params[:price],
+                       brand: params[:brand],
+                       color: params[:color],
+                       size: params[:size],
+                       seller_id: current_user.id,
+                       category_id: params[:category],
+                       )
+    @product.pictures.attach(params[:pictures])
 
-  def new
+    if @product.save
+      redirect_to root_path
+      flash[:success] = "Le produit est bien enregistré!"
+    else
+      render 'new'
+    end
   end
 
   def update
   end
 
-
   def destroy
   end
+
+private
 end
