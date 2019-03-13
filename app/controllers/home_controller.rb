@@ -4,7 +4,4 @@ class HomeController < ApplicationController
 
   def kitui
   end
-
-  def profile
-  end
 end
