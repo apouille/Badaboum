@@ -30,17 +30,17 @@ users.each do |u|
 		email: u[0],
 		password: "test1234",
 	)
-	profile = Profile.create!(
-		first_name: u[1],
-		last_name: u[2],
-		phone_number: "06#{rand(10000000..99999999)}",
-		street: "#{rand(1..100)} Avenue Kléber",
-		city: "Paris",
-		zip_code: "75016",
-		country: "France",
-		description: "Un super être humain qui est tout le temps positif à propos de tout!",
-		user: user
-	)
+	# profile = Profile.create!(
+	# 	first_name: u[1],
+	# 	last_name: u[2],
+	# 	phone_number: "06#{rand(10000000..99999999)}",
+	# 	street: "#{rand(1..100)} Avenue Kléber",
+	# 	city: "Paris",
+	# 	zip_code: "75016",
+	# 	country: "France",
+	# 	description: "Un super être humain qui est tout le temps positif à propos de tout!",
+	# 	user: user
+	# )
 end
 puts '5 users with profiles have been seeded'
 

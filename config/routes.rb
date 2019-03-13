@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'products/index'
-  get 'products/show'
-  get 'products/create'
-  get 'products/new'
-  get 'products/update'
-  get 'products/destroy'
   devise_for :users
 
 
@@ -14,6 +8,7 @@ Rails.application.routes.draw do
   get 'kitui', to: 'home#kitui'
 
   resources :products
+  resource :profile, only: [:show, :edit, :update]
 
 
 end
