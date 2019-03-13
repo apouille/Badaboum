@@ -4,9 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 
-
+gem "aws-sdk-s3", require: false
 gem 'jquery-rails'
-
 gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

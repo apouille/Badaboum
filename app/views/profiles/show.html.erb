@@ -17,7 +17,8 @@
 
     <div class="block-body text-center mt-5 mx-2">
 
-            <h2 class="heading heading-4 strong-500 profile-name">Mélanie</h2>
+            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Tu n'as pas rempli ton prénom coquin!" %><%= @profile.last_name.present? ? @profile.last_name : "Tu n'as pas rempli ton
+            nom petit coquin!" %></h2>
 
             <span class="star-rating star-rating-sm">
 
@@ -33,7 +34,7 @@
 
             </span>
 
-            <h3 class="heading heading-6 strong-400 profile-occupation mt-3">blabalabalaalalalalalaalalal
+            <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @profile.description.present? ? @profile.description : "N'hésite pas à ajouter une description" %>
 </h3>
 
     </div>
@@ -48,18 +49,21 @@
 
       <i class="fas fa-map-marked-alt fa-2x"></i>
 
-      <h6 class="card-title mt-2">3 rue Villa CUrila</h6>
-      <h6 class="card-title mt-2">75019
-        75019</h6>
+      <h6 class="card-title mt-2"><%= @profile.street.present? ? @profile.street : "Ajoute ton adresse pour faciliter les échanges" %></h6>
+      <h6 class="card-title mt-2">
+        <%= @profile.zip_code %><%= @profile.city %></h6>
 
 
       <i class="fas fa-at fa-2x mt-3"></i>
 
-      <h6 class="card-title mt-2">dylan@yopmail.com</h6>
+      <h6 class="card-title mt-2"><%= @profile.user.email %></h6>
 
       <i class="fas fa-baby fa-3x mt-3"></i>
-
-      <h6 class="card-title mt-2">
+      <% unless @children.nil? %>
+        <% @children.each do |child| %>
+          <h6 class="card-title mt-2"><%= child.nickname %></h6>
+        <% end %>
+      <% end %>
 
 
 ​
@@ -67,9 +71,7 @@
 
       <a href="#" class="btn btn-primary">Voir mes messages</a>
 
-
-​      <a class="btn btn-secondary mt-2" href="/profile/edit">Editer mes informations</a>
-
+      <%= link_to "Editer mes informations", edit_profile_path, class: "btn btn-secondary mt-2" %>
 
     </div>
 ​
@@ -156,7 +158,7 @@
 
               <div class="card-footer text-center"> 
 
-​                 <a class="btn btn-secondary mt-2" href="/products/id/edit">Editer mes informations</a>
+                <a href="#" class="btn btn-secondary mt-2">Editer le produit</a>
 
               </div>
 

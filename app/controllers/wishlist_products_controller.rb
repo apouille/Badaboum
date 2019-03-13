@@ -4,7 +4,8 @@ class WishlistProductsController < ApplicationController
 
   def index
     @wishlist_products = WishlistProduct.where(user: current_user).all
-    puts @wishlist_products
+    @profile = current_user.profile
+    @children = Child.where(profile_id: @profile.id)
   end
 
   def show
