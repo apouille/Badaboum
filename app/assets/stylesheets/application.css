@@ -25,6 +25,7 @@
 *= require hamburgers/hamburgers.min
 *= require animate/animate.min
 *= require fancybox/css/jquery.fancybox.min
+*= require deso-slide/css/jquery.desoslide.min
 
 
  */
