@@ -1,12 +1,3 @@
-require "faker"
-Child.destroy_all
-Profile.destroy_all
-User.destroy_all
-Product.destroy_all
-Category.destroy_all
-
-
-
 categories = ["Soins bébé", 
 	          "Chaises hautes & sièges auto", 
 	          "Poussettes", "Mobilier enfant", 
@@ -30,19 +21,27 @@ users.each do |u|
 		email: u[0],
 		password: "test1234",
 	)
-	# profile = Profile.create!(
-	# 	first_name: u[1],
-	# 	last_name: u[2],
-	# 	phone_number: "06#{rand(10000000..99999999)}",
-	# 	street: "#{rand(1..100)} Avenue Kléber",
-	# 	city: "Paris",
-	# 	zip_code: "75016",
-	# 	country: "France",
-	# 	description: "Un super être humain qui est tout le temps positif à propos de tout!",
-	# 	user: user
-	# )
 end
-puts '5 users with profiles have been seeded'
+puts '5 users have been seeded'
+
+i = 1
+users.each do |u|
+	profile = Profile.find(i)
+	profile.update(
+		first_name: u[1],
+		last_name: u[2],
+		phone_number: "06#{rand(10000000..99999999)}",
+		street: "#{rand(1..100)} Avenue Kléber",
+		city: "Paris",
+		zip_code: "75016",
+		country: "France",
+		description: "Un super être humain qui est tout le temps positif à propos de tout!",
+		user_id: i
+	)
+	profile.save
+	i += 1
+end
+puts '5 profiles have been seeded'
 
 
 
