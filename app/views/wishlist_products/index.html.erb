@@ -1,29 +1,24 @@
 <section class="slice sct-color-1" id="sct_products">
     <div class="container">
-
-
-		<% if user_has_a_wishlist? %>
-
-    	<h2> Mes articles préférés </h2>
-    	<br><br>
         <div class="row">
-            <div class="col-lg-12 order-lg-2">
+        	<%= render 'wishlist_profile' %>
+
+            <div class="col-lg-9 order-lg-2">
+				<% if user_has_a_wishlist? %>
+    						<h2> Mes articles préférés </h2>
+    						<br><br>
+    			<%else%>
+					        <h3>Vous n'avez aucun produit dans votre Babylist </h3>
+					        <h5>Pour ajouter des produits, cliquez simplement sur le petit coeur situé en bas de chaque article </h5>
+			    <%end%>
                 <div class="row-wrapper">
                     <div class="filter-grid row cols-xs-space cols-sm-space cols-md-space">
-                    	
-                    	<%= render partial: 'wishlist_grid', locals: { filter_products: @wishlist_products} %>
+                    
+                    		<%= render partial: 'wishlist_grid', locals: { filter_products: @wishlist_products} %>
+					
                     </div>
                 </div>
-      	 
             </div>
-		<!-- Ancien emplacement sidebar filter -->
-        </div>
-
-        <%else%>
-        <h3>Vous n'avez pas encore ajouté de produits dans votre Babylist </h3>
-
-        <h5>Pour ajouter des produits, cliquez simplement sur le petit coeur situé en bas de chaque article </h5>
-
-        <%end%>
+        </div> 
     </div>
 </section>

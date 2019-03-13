@@ -1,0 +1,63 @@
+ <div class="card col-lg-3 order-lg-1">
+
+      <div class="profile-picture profile-picture--style-2">
+        <%if @profile.profil_picture.attached?%>
+        <%= image_tag @profile.profil_picture, alt: 'profil_picture' %>
+        <%end%>
+      </div> 
+
+<!-- User basics-->    
+
+	    <div class="block-body text-center mt-5 mx-2">
+	            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Tu n'as pas rempli ton prénom coquin!" %><%= @profile.last_name.present? ? @profile.last_name : "Tu n'as pas rempli ton
+	            nom petit coquin!" %></h2>
+
+	            <span class="star-rating star-rating-sm">
+	              <i class="fa fa-star"></i>
+	              <i class="fa fa-star"></i>
+	              <i class="fa fa-star"></i>
+	              <i class="fa fa-star-o"></i>
+	              <i class="fa fa-star-o"></i>
+	            </span>
+
+	            <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @profile.description.present? ? @profile.description : "N'hésite pas à ajouter une description" %>
+	            </h3>
+	    </div>
+
+<!-- User information-->    
+
+
+    <div class="block-body mt-5 text-center">
+	      <i class="fas fa-map-marked-alt fa-2x"></i>
+	      <h6 class="card-title mt-2"><%= @profile.street.present? ? @profile.street : "Ajoute ton adresse pour faciliter les échanges" %></h6>
+	      <h6 class="card-title mt-2"><%= @profile.zip_code %><%= @profile.city %></h6>
+	      <i class="fas fa-at fa-2x mt-3"></i>
+	      <h6 class="card-title mt-2"><%= @profile.user.email %></h6>
+	      <i class="fas fa-baby fa-3x mt-3"></i>
+	      <% unless @children.nil? %>
+	        <% @children.each do |child| %>
+	          <h6 class="card-title mt-2"><%= child.nickname %></h6>
+	        <% end %>
+	      <% end %>
+	</div>
+
+<!-- User button-->   ​
+    <div class="block-body text-center mt-5 mb-5">
+        <a href="#" class="btn btn-primary">Voir mes messages</a>
+        <%= link_to "Editer mes informations", edit_profile_path, class: "btn btn-secondary mt-2" %>
+    </div>
+​
+	<div class="profile-stats clearfix">
+            <div class="stats-entry">
+                  <span class="stats-count">5</span>
+                  <span class="stats-label text-uppercase">objets en vente</span>
+            </div>
+
+            <div class="stats-entry">
+                <span class="stats-count">10</span>
+                <span class="stats-label text-uppercase">objets vendus</span>
+            </div>
+    </div>
+</div>
+
+
