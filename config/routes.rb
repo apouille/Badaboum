@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
+
+
   devise_for :users
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -9,7 +12,13 @@ Rails.application.routes.draw do
   get 'profile', to: 'home#profile'
 
   resources :products
+
+  
+  resources :wishlist_products
+  
+
   resource :profile, only: [:show, :edit, :update]
+
 
 
 end
