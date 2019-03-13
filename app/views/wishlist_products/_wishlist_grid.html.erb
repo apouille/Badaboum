@@ -1,0 +1,44 @@
+ 											
+<% filter_products.each do |wp_product|%>            
+                           <div class="col-lg-3 mb-5">
+                                    <div class="card z-depth-2-top">
+                                        <div class="card-image">
+                                            <div class="view view-first">
+                                               <%= link_to (image_tag("shoes.jpg")), product_path(wp_product.product) %>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h3 class="heading heading-5 strong-500 mb-0">
+                                                <%=wp_product.product.title%>
+                                            </h3>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="block-author">
+                                                        <div class="author-image author-image-xs">
+                                                            <%= link_to (image_tag("profile.jpg")), product_path(wp_product.product) %>
+                                                        </div>
+                                                        <div class="author-info">
+                                                            <div class="author-name">
+                                                                <a href="#" class="strong-600">Elisabeth Alanna</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col text-right">
+                                                <%if  product_is_already_wishlist?(wp_product.product) %>
+                                                  <%= link_to  '<span style="color: Tomato;"><i class="fas fa-heart"></i></span>'.html_safe, wishlist_product_path(wp_product), method: :delete, :class => "heart", :id => "heart_", remote: true %>
+                                                  <%else%>
+
+                                                   <%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => wp_product.product), method: :post, :class => "heart", :id => "heart_", remote: true %>
+                                                  <%end%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                           </div>
+<%end%>

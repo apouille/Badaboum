@@ -127,7 +127,7 @@
 
             <div class="navbar-nav ml-lg-auto">
 
-                <%= link_to '<i class="fas fa-heart"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
+                <%= link_to '<i class="fas fa-heart"></i>'.html_safe, wishlist_products_path, class:"text-primary mr-3" %>
                 <%= link_to '<i class="fas fa-shopping-bag"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
                    <% if user_signed_in? %>
                  <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, destroy_user_session_path, method: :delete %>
