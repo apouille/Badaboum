@@ -1,5 +1,10 @@
 console.log('produit supprimé')
-
+$('.heart-count').html('<%=number_of_wished_products %>')
+$('#toggle_wish_<%=@product.id%>').attr("data-original-title", "Ajouter à ma babylist")
 $('#toggle_wish_<%=@product.id%>').html('<%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => @product), method: :post, :class => "toggle_wish", remote: true %>')
 
-$('#toggle_wish_<%=@product.id%>').attr("data-original-title", "Ajouter à ma babylist")
+
+if (document.location.pathname == '/wishlist_products')
+{
+  $('#card_product_<%=@product.id%>').fadeOut()
+} 

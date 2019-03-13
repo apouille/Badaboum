@@ -18,4 +18,11 @@ module WishlistProductsHelper
 			return true
 		end
 	end
+
+	def number_of_wished_products
+		wishlist_products = WishlistProduct.where(user: current_user).all
+		unless wishlist_products.size ==  0
+			return wishlist_products.length
+		end
+	end
 end
