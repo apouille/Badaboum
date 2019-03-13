@@ -7,7 +7,7 @@
                                         <div class="card-image">
                                             <div class="view view-first">
                                                
-                                                    <%= link_to (image_tag("shoes.jpg")), root_path %>
+                                                    <%= link_to (image_tag("shoes.jpg")), product_path(product) %>
                                              
                                             </div>
                                         </div>
@@ -23,7 +23,7 @@
                                                 <div class="col">
                                                     <div class="block-author">
                                                         <div class="author-image author-image-xs">
-                                                            <%= link_to (image_tag("profile.jpg")), root_path %>
+                                                            <%= link_to (image_tag("profile.jpg")), product_path(product) %>
                                                         </div>
                                                         <div class="author-info">
                                                             <div class="author-name">
@@ -33,11 +33,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col text-right">
-                                                    <ul class="inline-links inline-links--style-2">
-                                                        <li>
-                                                            10 min read
-                                                        </li>
-                                                    </ul>
+                                                 
+                                            <%= link_to  '<i class="fas fa-heart"></i>'.html_safe, root_path %>
+                            
+                                                       
                                                 </div>
                                             </div>
                                         </div>
