@@ -127,18 +127,22 @@
 
             <div class="navbar-nav ml-lg-auto">
 
-                <%= link_to '<i class="fas fa-heart"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
-                <%= link_to '<i class="fas fa-shopping-bag"></i>'.html_safe, root_path, class:"text-primary mr-3" %>
-                   <% if user_signed_in? %>
-                 <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, destroy_user_session_path, method: :delete %>
-                 <%end%>
+                <% if user_signed_in? %>
+                    <div data-toggle="tooltip" data-placement="bottom" title="Ma baby-list">
+                        <%= link_to '<i class="fas fa-heart"></i>'.html_safe, root_path, class:"text-danger mx-2" %>
+                    </div>
+                    <div data-toggle="tooltip" data-placement="bottom" title="Se déconnecter">
+                        <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, destroy_user_session_path, method: :delete, class:"text-warning mx-2" %>
+                    </div>
+                <%end%>
+
             </div>
 
             <div class="dropdown dropdown--style-2">
                 <a class="dropdown-toggle has-badge" href="#" data-toggle="dropdown" aria-expanded="false">
                     <% if user_signed_in? %>
                              <%= image_tag "profile.jpg" , class:"dropdown-image rounded-circle" %>
-                            <sup class="badge bg-blue">3</sup>
+                            <sup class="badge bg-primary text-white">3</sup>
                             <span class="dropdown-text strong-600">Profil</span>
                     <%else%>
                         <%= image_tag "profile-default.png" , class:"dropdown-image rounded-circle" %>
