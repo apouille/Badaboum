@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
+
 	def show
 		@profile = current_user.profile
+		@children = Child.find_by(profile_id: @profile.id)
 	end 
 
 	def edit

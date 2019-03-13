@@ -19,7 +19,7 @@
 
     <div class="block-body text-center mt-5 mx-2">
 
-            <h2 class="heading heading-4 strong-500 profile-name">Elisabeth Alannablabla</h2>
+            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Inscris ton nom et prénom" %></h2>
 
             <span class="star-rating star-rating-sm">
 
@@ -35,7 +35,7 @@
 
             </span>
 
-            <h3 class="heading heading-6 strong-400 profile-occupation mt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</h3>
+            <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @profile.description.present? ? @profile.description : "Une petite description pour mieux te connaître !" %></h3>
 
     </div>
 
@@ -49,30 +49,34 @@
 
       <i class="fas fa-map-marked-alt fa-2x"></i>
 
-      <h6 class="card-title mt-2">Adresse</h6>
+      <h6 class="card-title mt-2"><%= @profile.street.present? ? @profile.street : "Ajoute ton adresse pour faciliter les échanges" %></h6>
+      <h6 class="card-title mt-2"><%= @profile.zip_code.present? ? @profile.zip_code : "" %>
+        <%= @profile.city.present? ? @profile.city : "" %></h6>
 
-      <i class="fas fa-at fa-2x"></i>
 
-      <h6 class="card-title mt-2">Email</h6>
+      <i class="fas fa-at fa-2x mt-3"></i>
 
-      <i class="fas fa-baby fa-3x"></i>
+      <h6 class="card-title mt-2"><%= @profile.user.email%></h6>
 
-      <h6 class="card-title mt-2">Nombre d'enfants</h6>
+      <i class="fas fa-baby fa-3x mt-3"></i>
 
-    </div>
+      <h6 class="card-title mt-2"><%= 
+        if @children.present? 
+          children.each do |child|
+            child.nickname
+        end
+        end %>
+
 
 ​
-
     <div class="block-body text-center mt-5 mb-5">
 
       <a href="#" class="btn btn-primary">Voir mes messages</a>
 
-      <a href="#" class="btn btn-secondary mt-2">Editer mes informations</a>
 
-​
+​      <%= link_to "Editer mes informations",edit_profile_path, class: "btn btn-secondary mt-2"%>
 
     </div>
-
 ​
 
     <div class="profile-stats clearfix">
@@ -101,7 +105,7 @@
 
   </div>
 
-​
+​</div>
 
 ​
 
@@ -157,7 +161,7 @@
 
               <div class="card-footer text-center"> 
 
-                <a href="#" class="btn btn-secondary mt-2">Editer le produit</a>
+​                 <%= link_to "Editer mes informations",edit_product_path([:id]), class: "btn btn-secondary mt-2"%>
 
               </div>
 
@@ -260,5 +264,4 @@
       </div>
 
 </div>
-
 
