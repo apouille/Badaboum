@@ -21,7 +21,7 @@ class WishlistProductsController < ApplicationController
        format.html {redirect_back fallback_location: products_path}
        format.js 
      end
-   
+   end
 
   end
 
