@@ -34,7 +34,7 @@
                     <!-- Profile stats -->
                     <div class="profile-stats clearfix">
                         <div class="stats-entry">
-                            <span class="stats-count">5</span>
+                            <span class="stats-count"><%= @seller_products.length %></span>
                             <span class="stats-label text-uppercase">objets en vente</span>
                         </div>
                         <div class="stats-entry">
@@ -49,61 +49,35 @@
             <div class="col-md-7">
 
                 <div class="text-center my-3">
-                    <h3>Ses produits</h3>
+                    <h3>Ses 6 derniers produits</h3>
                 </div>
                 <div class="row">
 
-                    <div class="col-md-4">
-                        <div class="block product no-border z-depth-2--hover rounded">
-                            <div class="block-image">
-                                <div class="view view-first">
-                                    <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
-                                    <!-- produit déjà dans le panier -->
-                                    <a href="#" class="badge-corner"><span class="fa fa-heart"></span></a>
-                                </div>
-                            </div>
-                            <div class="block-body px-0 text-center">
-                                <h3 class="heading heading-6 strong-500 text-capitalize">
-                                    <a href="#">Super chaussures</a>
-                                </h3>
-                                <div class="price-wrapper">
-                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <% @seller_products.last(6).each do |product| %>
 
-                    <div class="col-md-4">
-                        <div class="block product no-border z-depth-2--hover">
-                            <div class="block-image">
-                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
-                            </div>
-                            <div class="block-body px-0 text-center">
-                                <h3 class="heading heading-6 strong-500 text-capitalize">
-                                    <a href="#">Super chaussures</a>
-                                </h3>
-                                <div class="price-wrapper">
-                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                        <div class="col-md-4 mb-3">
+                            <div class="block product no-border z-depth-2--hover rounded">
+                                <div class="block-image">
+                                    <div class="view view-first">
+                                        <% if product.pictures.attached? %>
+                                          <%= link_to (image_tag product.pictures.first, alt: 'Photo du produit'), product_path(product.id) %>
+                                        <% else %>
+                                           <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <div class="block-body px-0 text-center">
+                                    <h3 class="heading heading-6 strong-500 text-capitalize">
+                                        <%= link_to product.title, product_path(product.id)  %>
+                                    </h3>
+                                    <div class="price-wrapper">
+                                        <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-4">
-                        <div class="block product no-border z-depth-2--hover">
-                            <div class="block-image">
-                                <a href="#"><%= link_to (image_tag("shoes.jpg")), root_path %></a>
-                            </div>
-                            <div class="block-body px-0 text-center">
-                                <h3 class="heading heading-6 strong-500 text-capitalize">
-                                    <a href="#">Super chaussures</a>
-                                </h3>
-                                <div class="price-wrapper">
-                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <% end %>
 
                 </div>
             </div>
