@@ -1,4 +1,4 @@
- 											
+
  			
  <% filter_products.each do |product|%>
                                        
@@ -37,7 +37,7 @@
                                                         <%if  product_is_already_wishlist?(product) %>
                                                                  <%= link_to  '<span style="color: Tomato;"><i class="fas fa-heart"></i></span>'.html_safe, wishlist_product_path(transform_product_to_wishlist_product(product)), method: :delete, :class => "heart", :id => "heart_", remote: true %>
                                                           <%else%>
-                                                                 <%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => product), method: :post, :class => "heart", :id => "heart_", remote: true %>
+                                                                 <%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => product), method: :post, :class => "add_to_wish", :id => "add_to_wish", remote: true %>
                                                           <%end%>
                                                     </div>
                                                 <%else%>

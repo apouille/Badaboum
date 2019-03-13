@@ -14,6 +14,13 @@ class WishlistProductsController < ApplicationController
     @product = Product.find(params[:product])
     @wishlist_product = WishlistProduct.create(user: current_user, product: @product)
 
+
+   if @wishlist_product.save
+     respond_to do |format|
+       flash[:notice] = "produit ajouté à votre babylist" 
+       format.html {redirect_back fallback_location: products_path}
+       format.js 
+     end
    
 
   end
