@@ -2870,8 +2870,9 @@ body {
 }
 
 p:not(.lead) {
-  font-size: 0.875rem;
-  line-height: 1.4rem;
+  /*font-size: 0.875rem;*/
+  font-size: 1rem;
+  line-height: auto;
 }
 
 .excerpt,
