@@ -6,8 +6,6 @@ class ProductsController < ApplicationController
     @categories = Category.all
   end
 
-
-
   def show
     @product = Product.find(params[:id])
 
@@ -39,12 +37,4 @@ class ProductsController < ApplicationController
     end
   end
 
-  def update
-  end
-
-
-  def destroy
-  end
-
-private
 end
