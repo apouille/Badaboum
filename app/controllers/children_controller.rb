@@ -6,11 +6,17 @@ class ChildrenController < ApplicationController
 
 	def create
 		
+		if params[:sex] == "Fille"
+			sex = 1
+		else params[:sex] == "Garçon"
+			sex = 2
+		end
+
 		@profile = current_user.profile
 		@child = Child.new(nickname: params[:nickname],
-                  sex: params[:sex],
+                  sex: sex,
                   birthday: params[:birthday],
-                  profile: profile,
+                  profile: current_user.profile,
                   )
 		if @child.save
       		redirect_to root_path

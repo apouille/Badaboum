@@ -4,9 +4,9 @@
         <h6 class="text-secondary">Prénom/Surnom *</h6>
         <%= text_field_tag 'nickname', @child.nickname, class: "form-control mb-3"%>
         <h6 class="text-secondary">Sexe *</h6>
-        <%= text_field_tag 'sex', @child.sex, class: "form-control mb-3"%>
+        <%= select_tag 'sex', raw("<option>Fille</option><option>Garçon</option>"),class: "form-control mb-3" %>
         <h6 class="text-secondary">Naissance *</h6>
-         <%= datetime_field_tag 'birthday', @child.birthday, class: "form-control" %>
+         <%= date_field_tag 'birthday', @child.birthday, class: "form-control" %>
         <small class="text-primary">* Champs obligatoires</small></br>
         <%= submit_tag "Ajouter un enfant", class: "btn btn-primary mt-3 mb-3" %>
     </div>
