@@ -11,11 +11,11 @@
         <%= submit_tag "Ajouter un enfant", class: "btn btn-primary mt-3 mb-3" %>
     </div>
 <% end %>
-<% if @profile.errors.any? %>
+<% if @child.errors.any? %>
     <div class="alert alert-danger" role="alert">
         <p>Nous n'avons pas réussi à enregistrer votre profil pour la (ou les) raison(s) suivante(s) :</p>
         <ul>
-            <% @profile.errors.full_messages.each do |message| %>
+            <% @child.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
         </ul>

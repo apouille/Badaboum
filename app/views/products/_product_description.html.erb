@@ -29,7 +29,7 @@
                         <span class="c-gray-light strong-600">Taille</span>
                     </td>
                     <td>
-                        <%= @product.size.present? ? @product.size : "Non renseigné" %>
+                        <%= @product.size.present? ? @product.size.title : "Non renseigné" %>
                     </td>
                 </tr>
                 <tr>
