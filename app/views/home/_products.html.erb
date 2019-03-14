@@ -29,255 +29,63 @@
 
                             <span class="space-xs-lg"></span>
 
+
    <div class="row cols-md-space cols-sm-space cols-xs-space">
-                                <div class="col-lg-4">
-                                    <div class="card z-depth-2-top">
-                                        <div class="card-image">
-                                            <div class="view view-first">
-                                                 <%= link_to (image_tag("shoes.jpg")), root_path %>
-                                            </div>
-                                        </div>
 
-                                        <div class="card-body">
-                                            <h3 class="heading heading-5 strong-500 mb-0">
-                                                <a href="#">Learn how to build your own website with Boomerang</a>
-                                            </h3>
-                                        </div>
+        <% @products.first(6).each do |product| %>
+            <div class="col-lg-4 mb-3">
+                <div class="card z-depth-2-top">
+                    <div class="card-image">
+                        <div class="view view-first">
+                             <% if product.pictures.attached? %>
+                               <%= link_to (image_tag product.pictures.first, alt: 'Photo du produit'), product_path(product.id) %>
+                             <% else %>
+                                <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
+                             <% end %>
+                        </div>
+                    </div>
 
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="block-author">
-                                                        <div class="author-image author-image-xs">
-                                                           <%= link_to (image_tag("profile.jpg")), root_path %>
-                                                        </div>
-                                                        <div class="author-info">
-                                                            <div class="author-name">
-                                                                <a href="#" class="strong-600">Bertram Ozzie</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col text-right">
-                                                    <ul class="inline-links inline-links--style-2">
-                                                        <li>
-                                                            5 min read
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div class="card-body">
+                        <h3 class="heading heading-5 strong-500 mb-0">
+                            <%= link_to product.title, product_path(product.id)  %>
+                        </h3>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                <div class="block-author">
+                                    <div class="author-image author-image-xs">
+                                        <% if product.seller.profile.profil_picture.attached? %>
+                                          <%= image_tag product.seller.profile.profil_picture, alt: 'Photo du vendeur' %>
+                                        <% else %>
+                                           <%= image_tag "profile-default.png" %>
+                                        <% end %>
+
                                     </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="card z-depth-2-top">
-                                        <div class="card-image">
-                                            <div class="view view-first">
-                                               
-                                                    <%= link_to (image_tag("shoes.jpg")), root_path %>
-                                             
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body">
-                                            <h3 class="heading heading-5 strong-500 mb-0">
-                                                <a href="#">15 Lessons about design you need to learn to succeed</a>
-                                            </h3>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="block-author">
-                                                        <div class="author-image author-image-xs">
-                                                            <%= link_to (image_tag("profile.jpg")), root_path %>
-                                                        </div>
-                                                        <div class="author-info">
-                                                            <div class="author-name">
-                                                                <a href="#" class="strong-600">Elisabeth Alanna</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col text-right">
-                                                    <ul class="inline-links inline-links--style-2">
-                                                        <li>
-                                                            10 min read
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="card z-depth-2-top">
-                                        <div class="card-image">
-                                            <div class="view view-first">
-                                              
-                                                    <%= link_to (image_tag("shoes.jpg")), root_path %>
-                                               
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body">
-                                            <h3 class="heading heading-5 strong-500 mb-0">
-                                                <a href="#">Never changing design will eventually destroy you</a>
-                                            </h3>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="block-author">
-                                                        <div class="author-image author-image-xs">
-                                                          <%= link_to (image_tag("profile.jpg")), root_path %>
-                                                        </div>
-                                                        <div class="author-info">
-                                                            <div class="author-name">
-                                                                <a href="#" class="strong-600">Destiny Erykah</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col text-right">
-                                                    <ul class="inline-links inline-links--style-2">
-                                                        <li>
-                                                            15 min read
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                    <div class="author-info">
+                                        <div class="author-name">
+                                            <%= product.seller.profile.first_name.present? ? product.seller.profile.first_name : " " %>&nbsp;
+                                            <%= product.seller.profile.last_name.present? ? product.seller.profile.last_name : " " %>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-<br><br>
-                               <div class="row cols-md-space cols-sm-space cols-xs-space">
-                                <div class="col-lg-4">
-                                    <div class="card z-depth-2-top">
-                                        <div class="card-image">
-                                            <div class="view view-first">
-                                                 <%= link_to (image_tag("shoes.jpg")), root_path %>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body">
-                                            <h3 class="heading heading-5 strong-500 mb-0">
-                                                <a href="#">Learn how to build your own website with Boomerang</a>
-                                            </h3>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="block-author">
-                                                        <div class="author-image author-image-xs">
-                                                           <%= link_to (image_tag("profile.jpg")), root_path %>
-                                                        </div>
-                                                        <div class="author-info">
-                                                            <div class="author-name">
-                                                                <a href="#" class="strong-600">Bertram Ozzie</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col text-right">
-                                                    <ul class="inline-links inline-links--style-2">
-                                                        <li>
-                                                            5 min read
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="card z-depth-2-top">
-                                        <div class="card-image">
-                                            <div class="view view-first">
-                                               
-                                                    <%= link_to (image_tag("shoes.jpg")), root_path %>
-                                             
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body">
-                                            <h3 class="heading heading-5 strong-500 mb-0">
-                                                <a href="#">15 Lessons about design you need to learn to succeed</a>
-                                            </h3>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="block-author">
-                                                        <div class="author-image author-image-xs">
-                                                            <%= link_to (image_tag("profile.jpg")), root_path %>
-                                                        </div>
-                                                        <div class="author-info">
-                                                            <div class="author-name">
-                                                                <a href="#" class="strong-600">Elisabeth Alanna</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col text-right">
-                                                    <ul class="inline-links inline-links--style-2">
-                                                        <li>
-                                                            10 min read
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="card z-depth-2-top">
-                                        <div class="card-image">
-                                            <div class="view view-first">
-                                              
-                                                    <%= link_to (image_tag("shoes.jpg")), root_path %>
-                                               
-                                            </div>
-                                        </div>
-
-                                        <div class="card-body">
-                                            <h3 class="heading heading-5 strong-500 mb-0">
-                                                <a href="#">Never changing design will eventually destroy you</a>
-                                            </h3>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="block-author">
-                                                        <div class="author-image author-image-xs">
-                                                          <%= link_to (image_tag("profile.jpg")), root_path %>
-                                                        </div>
-                                                        <div class="author-info">
-                                                            <div class="author-name">
-                                                                <a href="#" class="strong-600">Destiny Erykah</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col text-right">
-                                                    <ul class="inline-links inline-links--style-2">
-                                                        <li>
-                                                            15 min read
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-<br><br>
-
+                            <div class="col text-right">
+                                <ul class="inline-links inline-links--style-2">
+                                    <li>
+                                        <%= product.price %> €
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </section>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+
+    </div> <!-- fin row -->
+
+
+    </div>
+</section>
