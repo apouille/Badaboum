@@ -90,7 +90,6 @@ puts '10 children have been seeded'
 		description: Faker::ChuckNorris.fact,
 		brand: Faker::Beer.brand,
 		color: Faker::Color.color_name,
-		size: rand(1..12),
 		seller: User.all.sample, 
 		category: Category.all.sample,
 		size: Size.all.sample,	
