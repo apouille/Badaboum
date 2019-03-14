@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :uploaded_products, foreign_key: 'seller_id', class_name: "Product"
   
-  
+  has_many :comments
+ 
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
