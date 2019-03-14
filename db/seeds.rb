@@ -9,7 +9,7 @@ categories = ["Soins bébé",
 	          "Autres"
 	          ]
 
-sizes = ["Prématuré", 
+sizes = ["Femmes enceinte", "Prématuré", 
 	          "Nouveau né", 
 	          "Jusqu'à 1 mois", "0 - 3 mois", 
 	          "3 - 6 mois", 
@@ -18,7 +18,7 @@ sizes = ["Prématuré",
 	          "12 - 18 mois", 
 	          "18 - 24 mois",
 	          "24 - 36 mois",
-	          "4 ans", "5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "11 ans", "12 ans",
+	          "4 ans", "5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "11 ans", "12 ans", "Autres"
 	          ]
 users = [
 	["bastien.hiel@yopmail.com", "Bastien", "Hiel"],
