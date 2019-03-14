@@ -83,17 +83,16 @@ end
 puts '10 children have been seeded'
 
 
-20.times do
+150.times do
 	product = Product.create!(
 		title: Faker::Vehicle.manufacture,
 		price: rand(19..99),
 		description: Faker::ChuckNorris.fact,
 		brand: Faker::Beer.brand,
 		color: Faker::Color.color_name,
-		size: rand(1..12),
 		seller: User.all.sample, 
 		category: Category.all.sample,
 		size: Size.all.sample,	
 	)
 end
-puts '20 products have been seeded'
+puts '150 products have been seeded'

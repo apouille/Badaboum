@@ -3,8 +3,20 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @products=Product.page(params[:page]).per(9)
+    puts "*" * 30
+    puts params 
+    puts "*" * 30
+    @products = Product.where(nil) # creates an anonymous scope
+    @products = @products.category(params[:category_id]) if params[:category_id].present?
+    @products = @products.taille(params[:size_id]) if params[:size_id].present?
+    if @products.empty?
+      flash[notice] = "Aucun produit ne correspond à vos critères"
+      @products = Product.all.page(params[:page]).per(9)
+    else 
+      @products = @products.page(params[:page]).per(9)
+    end
     @categories = Category.all
+    @sizes = Size.all
   end
 
   def show
