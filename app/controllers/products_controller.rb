@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 
+before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
     @products=Product.all
@@ -10,6 +11,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @seller_profile = @product.seller.profile
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
+    @comment = Comment.new
+    @profile = current_user.profile
   end
 
   def new
@@ -73,6 +76,13 @@ class ProductsController < ApplicationController
 
     flash[:notice] = "Vous avez supprimé un article avec succès"
     redirect_to profile_path
+  end
+
+  def from_category
+    @selected = Product.where(:category_id => params[:cat_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
 end

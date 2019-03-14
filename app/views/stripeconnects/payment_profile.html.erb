@@ -1,0 +1,21 @@
+
+
+<div class = "bg-sign">
+    <div class= "container">
+        <div class="row d-flex justify-content-center align-items-center", style = "height: 800px">
+            <div class="col-4", style = "text-align:center; padding:40px; background-color:#FFFFFF; min-width: 600px">
+                <% if current_user.stripe_uid.present? %>
+	    <h1><%= @balance.pending.first["amount"].to_f/100 %></h1> 
+	<% else %>
+
+	<h5>Avant d'ajouter un produit, merci d'indiquer vos coordonnées bancaires afin que nous puissions vous reverser les produits de vos ventes</h5>
+	       <a class="btn btn-primary text-uppercase" href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write">Configurer mon compte vendeur sur stripe
+	       </a>
+	<% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

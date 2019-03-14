@@ -120,9 +120,20 @@
 
 
         <div class="pl-4 d-none d-lg-inline-block">
-            <a href="https://goo.gl/9BbH7R" class="btn btn-styled btn-sm btn-primary btn-outline text-uppercase btn-circle" target="_blank">
-                Proposer un produit
-            </a>
+           
+
+        <% if user_signed_in? & %>
+
+      
+            <% if current_user.stripe_uid.present? %>
+                <%= link_to 'Proposer un produit',  new_product_path, class:'btn btn-styled btn-sm btn-primary btn-outline text-uppercase btn-circle' %>
+            <%else%>
+                 <%= link_to 'Proposer un produit',  payment_profile_path, class:'btn btn-styled btn-sm btn-primary btn-outline text-uppercase btn-circle' %>
+             <%end%>
+        <%else%>
+             <%= link_to 'Proposer un produit',  new_product_path, class:'btn btn-styled btn-sm btn-primary btn-outline text-uppercase btn-circle' %>
+        <%end%>
+
         </div>
 
             <div class="navbar-nav ml-lg-auto dropdown dropdown--style-2">

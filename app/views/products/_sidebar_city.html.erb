@@ -1,3 +1,15 @@
+<div class="dropdown">
+    <button class="btn btn-styled btn-base-1 btn-circle dropdown-toggle z-depth-2-top" type="button" id="projectFiltersButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Catégorie
+    </button>
+    <div class="dropdown-menu" aria-labelledby="projectFiltersButton" x-placement="bottom-start" style="position: absolute; transform: translate3d(385px, 47px, 0px); top: 0px; left: 0px; will-change: transform;">
+    		<% @categories.each do |cat| %>
+    			<%= link_to cat.title, fetch_products_path(:cat_id => cat.id), :remote => true, class:"dropdown-item" %>
+    		<% end %>
+
+    </div>
+</div>
+
 	 <!-- Moteur de recherche par ville -->
     	<div class="sidebar-object b-xs-bottom pb-4 mb-4">
 	       	 <h2 class="sidebar-object-title">
