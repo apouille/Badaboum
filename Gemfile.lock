@@ -341,6 +341,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari
   listen (>= 3.0.5, < 3.2)
   nyan-cat-formatter
   pg (>= 0.18, < 2.0)
