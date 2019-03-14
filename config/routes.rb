@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resource :profile, only: [:show, :edit, :update]
   resource :children
 
+  get "/fetch_products" => 'products#from_category', as: 'fetch_products'
 end
