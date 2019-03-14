@@ -13,6 +13,7 @@ def stripe_callback
             @access_token = @resp.token
             current_user.update!(stripe_uid: @resp.params["stripe_user_id"]) if @resp
             flash[:notice] = "Your account has been successfully created and is ready to process payments!"
+            redirect_to new_product_path
    end
   
 
