@@ -5,10 +5,12 @@ class ProfilesController < ApplicationController
 	def show
 		@profile = current_user.profile
 		@children = Child.where(profile_id: @profile.id)
-	end 
+    @products = current_user.uploaded_products
+  end
 
 	def edit
 		@profile = current_user.profile
+		@child = Child.new
 	end 
 
 	def update

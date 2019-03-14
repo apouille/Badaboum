@@ -5,9 +5,21 @@ categories = ["Soins bébé",
 	          "Livres & Scolarité", 
 	          "Sécurité", 
 	          "Allaitement & Repas", 
-	          "Vêtements"
+	          "Vêtements",
+	          "Autres"
 	          ]
 
+sizes = ["Prématuré", 
+	          "Nouveau né", 
+	          "Jusqu'à 1 mois", "0 - 3 mois", 
+	          "3 - 6 mois", 
+	          "6 - 9 mois", 
+	          "9 - 12 mois", 
+	          "12 - 18 mois", 
+	          "18 - 24 mois",
+	          "24 - 36 mois",
+	          "4 ans", "5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "11 ans", "12 ans",
+	          ]
 users = [
 	["bastien.hiel@yopmail.com", "Bastien", "Hiel"],
 	["claudia.partonneau@yopmail.com", "Claudia", "Partonneau"],
@@ -52,6 +64,13 @@ categories.each do |category_title|
 end
 puts 'All categories have been seeded'
 
+sizes.each do |size_title|
+  Size.create!(
+    title: size_title
+  )
+end
+puts 'All sizes have been seeded'
+
 
 10.times do 
 	child = Child.create!(
@@ -73,8 +92,8 @@ puts '10 children have been seeded'
 		color: Faker::Color.color_name,
 		size: rand(1..12),
 		seller: User.all.sample, 
-		category: Category.all.sample,	
-
+		category: Category.all.sample,
+		size: Size.all.sample,	
 	)
 end
 puts '20 products have been seeded'

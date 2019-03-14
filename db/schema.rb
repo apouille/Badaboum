@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_122927) do
+ActiveRecord::Schema.define(version: 2019_03_14_111115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,13 +58,14 @@ ActiveRecord::Schema.define(version: 2019_03_13_122927) do
     t.text "description"
     t.string "brand"
     t.string "color"
-    t.integer "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "seller_id"
     t.bigint "category_id"
+    t.bigint "size_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"
+    t.index ["size_id"], name: "index_products_on_size_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -82,6 +83,12 @@ ActiveRecord::Schema.define(version: 2019_03_13_122927) do
     t.float "latitude"
     t.float "longitude"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -108,6 +115,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_122927) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "children", "profiles"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "sizes"
   add_foreign_key "profiles", "users"
   add_foreign_key "wishlist_products", "products"
   add_foreign_key "wishlist_products", "users"

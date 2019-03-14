@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
 	belongs_to :seller, class_name:'User'
 	belongs_to :category
+	belongs_to :size
+
 	has_many_attached :pictures
 
   validates :title, :description, :price, presence: { message: "Merci de remplir tous les champs obligatoires!" };
