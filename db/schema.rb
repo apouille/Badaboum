@@ -52,9 +52,12 @@ ActiveRecord::Schema.define(version: 2019_03_14_145643) do
     t.index ["profile_id"], name: "index_children_on_profile_id"
   end
 
-
   create_table "comments", force: :cascade do |t|
     t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "product_id"
     t.index ["product_id"], name: "index_comments_on_product_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
