@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
 
+  get 'orders/new'
+  get 'orders/edit'
   devise_for :users
 
 
@@ -14,7 +16,8 @@ Rails.application.routes.draw do
 
   
   resources :wishlist_products
-  
+  resources :orders
+  resources :charges
 
   resource :profile, only: [:show, :edit, :update] 
 

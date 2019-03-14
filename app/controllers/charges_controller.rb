@@ -4,7 +4,7 @@ before_action :authenticate_user!
 
 	
    	def create
-		
+		@order = Order.create(user_id: current_user.id, product_id: Product.find(1).id, status: 1)
 		@amount = 1000
 		@profile_current_user = current_user.profile
 
@@ -15,6 +15,11 @@ before_action :authenticate_user!
 		    source: params[:stripeToken],
 		  })
 
+			puts '$'*50
+			puts customer
+
+			puts '£'*50
+			puts customer.id
 
 		  charge = Stripe::Charge.create({
 		    customer: customer.id,
@@ -23,13 +28,14 @@ before_action :authenticate_user!
 		    currency: 'eur',
 		    application_fee: percentage
 			  },
-			stripe_account: Product.all.first.seller.stripe_uid
+			stripe_account: User.find(3).stripe_uid
 		  )
 
 
-	  @cart.update(stripe_customer_id: charge[:customer], status: 1)
+	  @order.update(stripe_customer_id: charge[:customer], status: 1)
+
 	  flash[:notice] = "Your order is complete"
-	  redirect_to profile_path(@profile_current_user.id)
+	  redirect_to root_path
 
 		rescue Stripe::CardError => e
 		  flash[:error] = e.message
@@ -50,15 +56,3 @@ end
 
 
 
-
-
-Stripe::Charge.create(
-            {
-                :amount => ticket.price * 100,
-                :description => ticket.description,
-                :currency => 'usd',
-                :source => "tok_visa",
-                :application_fee => percentage,
-            },
-            :stripe_account => ticket.user.stripe_uid
-        )
