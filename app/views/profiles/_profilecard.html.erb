@@ -1,0 +1,39 @@
+
+
+      <div class="profile-picture profile-picture--style-2">
+        <%if @profile.profil_picture.attached?%>
+        <%= image_tag @profile.profil_picture, alt: 'profil_picture' %>
+        <%end%>
+      </div> 
+
+<!-- User basics-->    
+
+    <%= render 'profiles/profilebasics' %>
+
+
+<!-- User information-->    
+
+
+    <%= render 'profiles/profileinformation' %>
+
+
+<!-- User button-->   ​
+    <div class="block-body text-center mt-5 mb-5">
+        <a href="#" class="btn btn-primary">Voir mes messages</a>
+        <%= link_to "Editer mes informations", edit_profile_path, class: "btn btn-secondary mt-2" %>
+    </div>
+
+<!-- User statistics-->   ​ 
+​
+	<div class="profile-stats clearfix">
+            <div class="stats-entry">
+                  <span class="stats-count">5</span>
+                  <span class="stats-label text-uppercase">objets en vente</span>
+            </div>
+
+            <div class="stats-entry">
+                <span class="stats-count">10</span>
+                <span class="stats-label text-uppercase">objets vendus</span>
+            </div>
+    </div>
+
