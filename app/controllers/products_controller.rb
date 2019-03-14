@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
 
   def index
-    @products=Product.all
+    @products=Product.page(params[:page]).per(9)
     @categories = Category.all
   end
 
@@ -43,6 +43,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+
+    flash[:notice] = "Vous avez supprimé un article avec succès"
+    redirect_to profile_path
   end
 
 end

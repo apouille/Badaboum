@@ -6,139 +6,50 @@
         </div>
 
 ​
-
         <div class="row">
+        <% unless @products.nil? %>
+          <% @products.each do |item| %>
 
-          <div class="col-md-4 mt-3">
+            <div class="col-md-4 mt-3">
 
-            <div class="block product no-border z-depth-2--hover">
+              <div class="block product no-border z-depth-2--hover">
 
-              <div class="block-image"> <!-- produit déjà dans le panier -->
+                <div class="block-image"> 
 
-                <a href="#"></a><a href="/"><img src="/assets/shoes-f88c02feb787aa8d0311d1b4319756e549fe2bf62fd8a9d620cfd59bb17a8da1.jpg"></a>
+                  <%= link_to (image_tag("shoes.jpg")), product_path(item) %>
+                </div>
 
-                <a href="#" class="badge-corner"><span class="fa fa-trash-alt"></span></a>
+                <div class="block-body px-0 text-center">
 
-              </div>
+                  <h3 class="heading heading-6 strong-500 text-capitalize">
 
-              <div class="block-body px-0 text-center">
+                    <%= item.title %>
 
-                <h3 class="heading heading-6 strong-500 text-capitalize">
+                  </h3>
 
-                  <a href="#">Chaussures Super Héro</a>
+                  <div class="price-wrapper">
 
-                </h3>
+                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= item.price %></span> €</span>
 
-                <div class="price-wrapper">
+                    <p class=""> 22 Vues</p>
 
-                  <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
+                    <p class=""> 10 Baby-list</p>
 
-                  <p class=""> 22 Vues</p>
-
-                  <p class=""> 10 Baby-list</p>
+                  </div>
 
                 </div>
 
-              </div>
+                <div class="card-footer text-center"> 
 
-              <div class="card-footer text-center"> 
+                <%= link_to "Editer le produit", edit_product_path([:id]), class: "btn btn-secondary mt-2"%>
 
-                <a href="#" class="btn btn-secondary mt-2">Editer le produit</a>
-
-              </div>
-
-            </div>
-
-          </div>
-
-​
-
-          <div class="col-md-4 mt-3">
-
-            <div class="block product no-border z-depth-2--hover">
-
-              <div class="block-image"> <!-- produit déjà dans le panier -->
-
-                <a href="#"></a><a href="/"><img src="/assets/shoes-f88c02feb787aa8d0311d1b4319756e549fe2bf62fd8a9d620cfd59bb17a8da1.jpg"></a>
-
-                <a href="#" class="badge-corner"><span class="fa fa-trash-alt"></span></a>
-
-              </div>
-
-              <div class="block-body px-0 text-center">
-
-                <h3 class="heading heading-6 strong-500 text-capitalize">
-
-                  <a href="#">Chaussures Super Héro</a>
-
-                </h3>
-
-                <div class="price-wrapper">
-
-                  <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
-
-                  <p class=""> 22 Vues</p>
-
-                  <p class=""> 10 Baby-list</p>
+                <%= link_to "Supprimer le produit",product_path(item.id), class: "btn btn-danger mt-2", data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'}, method: "delete" %>
 
                 </div>
-
-              </div>
-
-              <div class="card-footer text-center"> 
-
-                <a href="#" class="btn btn-secondary mt-2">Editer le produit</a>
-
               </div>
 
             </div>
+         <% end %>
+        <% end %>
 
-          </div>
-
-​
-
-          <div class="col-md-4 mt-3">
-
-            <div class="block product no-border z-depth-2--hover">
-
-              <div class="block-image"> <!-- produit déjà dans le panier -->
-
-                <a href="#"></a><a href="/"><img src="/assets/shoes-f88c02feb787aa8d0311d1b4319756e549fe2bf62fd8a9d620cfd59bb17a8da1.jpg"></a>
-
-                <a href="#" class="badge-corner"><span class="fa fa-trash-alt"></span></a>
-
-              </div>
-
-              <div class="block-body px-0 text-center">
-
-                <h3 class="heading heading-6 strong-500 text-capitalize">
-
-                  <a href="#">Chaussures Super Héro</a>
-
-                </h3>
-
-                <div class="price-wrapper">
-
-                  <span class="price heading-6 c-gray-light strong-400"><span class="price-value">500</span> €</span>
-
-                  <p class=""> 22 Vues</p>
-
-                  <p class=""> 10 Baby-list</p>
-
-                </div>
-
-              </div>
-
-              <div class="card-footer text-center"> 
-
-                <a href="#" class="btn btn-secondary mt-2">Editer le produit</a>
-
-              </div>
-
-            </div>
-
-          </div>
-
-​
-
-        </div>
+      </div>
