@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
 
+before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @products=Product.all
+    @products=Product.page(params[:page]).per(9)
     @categories = Category.all
   end
 

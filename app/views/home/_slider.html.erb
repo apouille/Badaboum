@@ -17,11 +17,9 @@
                                         Intégrez la communauté des Badaboumers et commencez à échanger vos produits de puériculture.
                                     </p>
 
-                                    <a href="/products" class="btn btn-styled btn-xl btn-base-1 btn-circle mt-5 animated" data-animation-in="fadeInUpBig" data-animation-delay="1000">
+                                    <a href="#search_products" class="btn btn-styled btn-xl btn-base-1 btn-circle mt-5 animated js-scrollTo"data-animation-in="fadeInUpBig" data-animation-delay="1000">
                                         Je découvre
                                     </a>
-
-
                                 </div>
                             </div>
                         </div>
@@ -31,3 +29,14 @@
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() { //défilement animé scroll homepage
+        $('.js-scrollTo').on('click', function() { // Au clic sur un élément
+            var page = $(this).attr('href'); // Page cible
+            var speed = 750; // Durée de l'animation (en ms)
+            $('html, body').animate( { scrollTop: $(page).offset().top }, speed ); // Go
+            return false;
+        });
+    });
+</script>

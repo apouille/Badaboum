@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
-
+gem 'stripe'
+gem 'oauth2'
 
 gem "aws-sdk-s3", require: false
 gem 'jquery-rails'
@@ -77,3 +78,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'table_print'
 gem 'geocoder'
+gem 'kaminari'
