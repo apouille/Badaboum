@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
 
 	def edit
 		@profile = current_user.profile
+		@child = Child.new
 	end 
 
 	def update
