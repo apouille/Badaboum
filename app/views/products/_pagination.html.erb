@@ -1,26 +1,6 @@
         <!-- Pagination -->
                                     <div class="pagination-wrapper d-flex justify-content-end py-4">
-                                        <ul class="pagination pagination--style-3">
-                                            <li class="page-item disabled">
-                                                <a href="#" class="page-link">«</a>
-                                            </li>
-                                            <li class="page-item active">
-                                                <a href="#" class="page-link" aria-label="Previous">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a href="#" class="page-link">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a href="#" class="page-link">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a href="#" class="page-link">4</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a href="#" class="page-link">5</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a href="#" class="page-link">»</a>
-                                            </li>
-                                        </ul>
+                                        <%= paginate @products %>
                                     </div>
+
+                                    
