@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 
+before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
     @products=Product.page(params[:page]).per(9)
@@ -10,6 +11,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @seller_profile = @product.seller.profile
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
+    @comment = Comment.new
+    @profile = current_user.profile
   end
 
   def new
