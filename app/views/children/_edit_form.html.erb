@@ -1,0 +1,23 @@
+<%= form_tag url_for(action: 'create', controller: 'children'), method: "post", multipart: true do %>
+    <div class="form-group">
+        <h5 class="text-primary">Ajouter un enfant</h5>
+        <h6 class="text-secondary">Prénom/Surnom *</h6>
+        <%= text_field_tag 'nickname', @child.nickname, class: "form-control mb-3"%>
+        <h6 class="text-secondary">Sexe *</h6>
+        <%= text_field_tag 'sex', @child.sex, class: "form-control mb-3"%>
+        <h6 class="text-secondary">Naissance *</h6>
+         <%= datetime_field_tag 'birthday', @child.birthday, class: "form-control" %>
+        <small class="text-primary">* Champs obligatoires</small></br>
+        <%= submit_tag "Ajouter un enfant", class: "btn btn-primary mt-3 mb-3" %>
+    </div>
+<% end %>
+<% if @profile.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+        <p>Nous n'avons pas réussi à enregistrer votre profil pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+            <% @profile.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

@@ -9,12 +9,10 @@ class ProfilesController < ApplicationController
 
 	def edit
 		@profile = current_user.profile
+		@child = Child.new
 	end 
 
 	def update
-		puts "*" * 30
-		puts params 
-		puts "*" * 30
 		@profile = current_user.profile
 	
 		respond_to do |format|

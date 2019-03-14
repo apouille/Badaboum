@@ -1,25 +1,24 @@
-<div class="container">
-    <%= form_tag url_for(action: 'update'), method: "patch", multipart: true do %>
-        <div class="form-group">
-            <%= text_field_tag 'first_name', @profile.first_name, class: "form-control mb-1", placeholder: "Prénom" %>
-            <%= text_field_tag 'last_name', @profile.last_name, class: "form-control mb-1", placeholder: "Nom" %>
-            <%= text_field_tag 'phone_number', @profile.phone_number, class: "form-control mb-1", placeholder: "Téléphone" %>
-            <%= text_field_tag 'street', @profile.street, class: "form-control mb-1", placeholder: "Rue" %>
-            <%= text_field_tag 'city', @profile.city, class: "form-control mb-1", placeholder: " Ville" %>
-            <%= text_field_tag 'zip_code', @profile.zip_code, class: "form-control mb-1", placeholder: "Code postal" %>
-            <%= text_area_tag 'description', @profile.description, class: "form-control mb-1", placeholder: "Description" %>
-            <%= file_field_tag :profil_picture, class: 'form-control-file mt-1' %>
-            <%= submit_tag "Modifier mon profil", class: "btn btn-primary" %>
-        </div>
-    <% end %>
-    <% if @profile.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-            <p>Nous n'avons pas réussi à enregistrer votre profil pour la (ou les) raison(s) suivante(s) :</p>
-            <ul>
-                <% @profile.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
+<div>
+    <div class="container-fluid">
+        <div class="tabs tabs--style-2">
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a href="#tab_default_1" data-toggle="tab" class="nav-link active text-uppercase strong-1000">Mes informations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tab_default_2" data-toggle="tab" class="nav-link text-uppercase strong-1000">Mes enfants</a>
+                </li>
             </ul>
+
+            <div class="tab-content pt-0">
+
+                <%= render 'edit_profile_set_up' %>
+
+                <%= render 'children/form_set_up.html.erb' %>
+
+            </div>
         </div>
-    <% end %>
+    </div>
+</div>
+
 
