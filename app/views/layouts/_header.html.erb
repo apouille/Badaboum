@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-default">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-default shadow p-3 mb-5 bg-white">
     <div class="container navbar-container">
         <!-- Brand/Logo -->
         <%= link_to (image_tag("logo.png", style:"width:200px",  class: "d-none d-lg-inline-block menu_icon")), root_path, class:"navbar-brand mr-1" %>
@@ -136,14 +136,14 @@
                     <div data-toggle="tooltip" data-placement="bottom" title="Accéder à ma Babylist">
                     <%= link_to  wishlist_products_path, class:'has-badge' do %>
                         <%= image_tag "heart.svg" , style:"width: 35px;", class:"dropdown-image rounded-circle" %>
-                               
-                                
+
+
                                 <sup class="heart-count badge bg-primary text-white"><%= number_of_wished_products %></sup>
-                         
-                        <%end%> 
+
+                        <%end%>
                     </div>
 
-               
+
                 <%end%>
 
             </div>
@@ -163,7 +163,7 @@
                             <h6 class="dropdown-header">Mon profil</h6>
                             <%= link_to '<span class="float-right badge badge-primary">4</span><i class="far fa-envelope"></i>Messages'.html_safe, root_path, class:"dropdown-item" %>
                              <%= link_to '<i class="fas fa-cogs"></i>Modifier Email/Mot de passe'.html_safe,  edit_user_registration_path, class:"dropdown-item" %>
-                            <%= link_to '<i class="far fa-user"></i> Mon Profil'.html_safe, edit_user_registration_path, class:"dropdown-item" %>
+                            <%= link_to '<i class="far fa-user"></i> Mon Profil'.html_safe, profile_path, class:"dropdown-item" %>
                         </div>
                     <%else%>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -175,7 +175,7 @@
 
                  </div>
 
-          
+
     </div>
 </nav>
 

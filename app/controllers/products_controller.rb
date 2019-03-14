@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
- 
+
   def index
     @products=Product.all
     @categories = Category.all
@@ -8,7 +8,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-
+    @seller_profile = @product.seller.profile
+    @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
   end
 
   def new
