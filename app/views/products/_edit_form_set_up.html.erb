@@ -5,7 +5,9 @@
 	            <%= render 'edit_form' %>
 	        </div>
 	        <div class="col-6">
-	            <%= image_tag("form.jpg", width: "500") %>
+	                    <div id= 'picture_list'>
+            <%= render partial:"picture_list", locals: { product: @product}%>
+        </div>
 	        </div>
 	    </div>
     </div>

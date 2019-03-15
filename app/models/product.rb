@@ -11,13 +11,6 @@ class Product < ApplicationRecord
   validates :description, length: { minimum: 20, message: "La description doit faire au minimum 20 caractères" };
   validates :price, numericality: { greater_than: 1,  message: "Le prix doit être supérieur à 1€" };
 
-  def product_picture_thumbnails
-    thumbnails = []
-    self.pictures. each do |pic|
-      pic.variant(resize: '500x500')
-      thumbnails << pic
-    end
-    return thumbnails
-  end
+  scope :cat, -> (category) { where category_id: category }
 
   end

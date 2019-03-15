@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :charges
   resource :profile, only: [:show, :edit, :update]
   resource :children
+  resources :pictures, only: [:destroy]
 
   get "/fetch_products" => 'products#from_category', as: 'fetch_products'
   get'payment_profile', to: 'stripeconnects#payment_profile'
