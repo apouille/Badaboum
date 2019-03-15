@@ -3,7 +3,10 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @products=Product.page(params[:page]).per(9)
+    @products = Product.where(nil)
+    @products = @products.cat(params[:category]) if params[:category].present?
+    @products = @products.page(params[:page]).per(9)
+    
     @categories = Category.all
   end
 
