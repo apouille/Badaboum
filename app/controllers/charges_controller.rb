@@ -6,23 +6,18 @@ class ChargesController < ApplicationController
   
   def create
 
-		puts '$'*50
-  	puts 'hellooooooo'
-  	@order = Order.find(params[:id])
-  	puts '$'*50
-  	puts @order.id
+	
+  	@order = Order.where(user_id: current_user.id, status: 1).last
+ 
 
-  	@amount = @order.product.price
-  	puts '$'*50
-  	puts @amount
+  	@amount = @order.product.price*100
+
 
   	@amount_for_seller=(@amount*0.95).to_i
-  	puts '$'*50
-  	puts @amount_for_seller
+  
 
   	@seller_uid = @order.product.seller.stripe_uid
-  	puts '$'*50
-  	puts 	@seller_uid
+ 
 
 
     customer = Stripe::Customer.create(
@@ -30,8 +25,7 @@ class ChargesController < ApplicationController
       source: params[:stripeToken],
     )
 
-    puts '$'*50
-  	puts customer.id
+ 
 
 
   

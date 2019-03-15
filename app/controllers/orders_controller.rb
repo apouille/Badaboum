@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def update 
-  end
+	end
 
   def show
 	@order = Order.find(params[:id])
