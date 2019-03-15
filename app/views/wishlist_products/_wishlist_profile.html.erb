@@ -2,11 +2,11 @@
 
       <div class="profile-picture profile-picture--style-2">
         <%if @profile.profil_picture.attached?%>
-        <%= image_tag @profile.profil_picture, alt: 'profil_picture' %>
+        <%= image_tag @profile.profil_picture_thumbnail, alt: 'profil_picture' %>
         <%end%>
-      </div> 
+      </div>
 
-<!-- User basics-->    
+<!-- User basics-->
 
 	    <div class="block-body text-center mt-5 mx-2">
 	            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Tu n'as pas rempli ton prénom coquin!" %><%= @profile.last_name.present? ? @profile.last_name : "Tu n'as pas rempli ton
@@ -24,7 +24,7 @@
 	            </h3>
 	    </div>
 
-<!-- User information-->    
+<!-- User information-->
 
 
     <div class="block-body mt-5 text-center">

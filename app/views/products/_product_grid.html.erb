@@ -28,7 +28,7 @@
                                                     <div class="block-author">
                                                         <div class="author-image author-image-xs">
                                                             <% if product.seller.profile.profil_picture.attached? %>
-                                                              <%= image_tag product.seller.profile.profil_picture, alt: 'Photo du vendeur' %>
+                                                              <%= image_tag product.seller.profile.profil_picture_thumbnail, alt: 'Photo du vendeur' %>
                                                             <% else %>
                                                                <%= image_tag "profile-default.png" %>
                                                             <% end %>
