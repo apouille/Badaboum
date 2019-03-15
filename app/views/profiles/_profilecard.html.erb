@@ -2,7 +2,7 @@
 
       <div class="profile-picture profile-picture--style-2">
         <%if @profile.profil_picture.attached?%>
-            <%= image_tag @profile.thumbnail, alt: 'profil_picture' %>
+            <%= image_tag @profile.profil_picture_thumbnail, alt: 'profil_picture' %>
         <% else %>
             <%= image_tag "profile-default.png" %>
         <%end%>

@@ -14,7 +14,7 @@ class Profile < ApplicationRecord
 		[street, city, country].compact.join(", ")
 	end
 
-	def thumbnail
+	def profil_picture_thumbnail
 		return self.profil_picture.variant(resize: '200x200')
 	end
 
