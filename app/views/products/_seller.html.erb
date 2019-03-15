@@ -9,7 +9,7 @@
                     <div class="profile-picture profile-picture--style-2">
 
                         <% if @product.seller.profile.profil_picture.attached? %>
-                          <%= image_tag @product.seller.profile.profil_picture, alt: 'Photo du vendeur' %>
+                          <%= image_tag @product.seller.profile.profil_picture_thumbnail, alt: 'Photo du vendeur' %>
                         <% else %>
                            <%= image_tag("profile-default.png") %>
                         <% end %>
@@ -62,7 +62,7 @@
                                 <div class="block-image">
                                     <div class="view view-first">
                                         <% if product.pictures.attached? %>
-                                          <%= link_to (image_tag product.pictures.first, alt: 'Photo du produit'), product_path(product.id) %>
+                                          <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
                                         <% else %>
                                            <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
                                         <% end %>

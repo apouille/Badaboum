@@ -1,3 +1,4 @@
+<div class="tab-pane active" id="tab_default_1">
 
         <div class="my-3">
 
@@ -5,10 +6,10 @@
 
         </div>
 
-​
+
         <div class="row">
         <% unless @products.nil? %>
-          <% @products.each do |item| %>
+          <% @products.each do |product| %>
 
             <div class="col-md-4 mt-3">
 
@@ -16,22 +17,27 @@
 
                 <div class="block-image"> 
 
-                  <%= link_to (image_tag("shoes.jpg")), product_path(item) %>
+                    <% if product.pictures.attached? %>
+                          <%= link_to (image_tag product.pictures.first, alt: 'Photo du produit'), product_path(product.id) %>
+                    <% else %>
+                          <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
+                    <% end %>
+
                 </div>
 
                 <div class="block-body px-0 text-center">
 
                   <h3 class="heading heading-6 strong-500 text-capitalize">
 
-                    <%= item.title %>
+                    <%= product.title %>
 
                   </h3>
 
                   <div class="price-wrapper">
 
-                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= item.price %></span> €</span>
+                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
 
-                    <p class=""> 22 Vues</p>
+                    <p class=""> 11 Vues </p>
 
                     <p class=""> 10 Baby-list</p>
 
@@ -41,9 +47,9 @@
 
                 <div class="card-footer text-center"> 
 
-                <%= link_to "Editer le produit", edit_product_path(item.id), class: "btn btn-secondary mt-2"%>
+                <%= link_to "Editer le produit", edit_product_path(product.id), class: "btn btn-secondary mt-2"%>
 
-                <%= link_to "Supprimer le produit",product_path(item.id), class: "btn btn-danger mt-2", data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'}, method: "delete" %>
+                <%= link_to "Supprimer le produit",product_path(product.id), class: "btn btn-danger mt-2", data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'}, method: "delete" %>
 
                 </div>
               </div>
@@ -53,3 +59,4 @@
         <% end %>
 
       </div>
+</div>

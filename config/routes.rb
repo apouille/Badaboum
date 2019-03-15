@@ -6,13 +6,14 @@ Rails.application.routes.draw do
 
   resources :products do
   	resources :comments
+    resources :pictures, only: [:create, :destroy]
   end
   resources :wishlist_products
   resources :orders
   resources :charges
   resource :profile, only: [:show, :edit, :update]
   resource :children
-  resources :pictures, only: [:destroy]
+  
 
   get "/fetch_products" => 'products#from_category', as: 'fetch_products'
   get'payment_profile', to: 'stripeconnects#payment_profile'

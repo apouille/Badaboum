@@ -57,9 +57,6 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @sizes = Size.all
     @product = Product.find(params[:id])
 
-    if (params[:pictures]) != nil
-      @product.pictures.attach(params[:pictures])
-    end
     if @product.update(title: params[:title],
                        description: params[:description],
                        price: params[:price],
@@ -82,6 +79,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     flash[:notice] = "Vous avez supprimé un article avec succès"
     redirect_to profile_path
   end
+
 
   def from_category
     @selected = Product.where(:category_id => params[:cat_id])

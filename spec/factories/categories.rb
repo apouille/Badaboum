@@ -1,7 +1,6 @@
-name_category = ["Soins bébé", "Chaises hautes & sièges auto", "Poussettes", "Mobilier enfant", "Jeux & Jouets", "Livres & Scolarité", "Sécurité", "Allaitement & Repas", "Vêtements"]
-
 FactoryBot.define do
   factory :category do
-    title { name_category.sample }
+    title { Faker::Alphanumeric.alphanumeric 10 }
+    icon { Faker::Alphanumeric.alphanumeric 10 }
   end
 end

@@ -1,8 +1,17 @@
+<div class="container-fluid border-left pl-5"> 
+<h5 class="text-primary">Vos images</h5>
+<h6 class="text-secondary">Ajouter une / des nouvelle(s) images</h6>
+    <%= form_tag product_pictures_path(@product.id), multipart: true  do %>
+    	<%= file_field_tag 'pictures[]', :multiple => true,  class: "form-control mb-3"%>
+    	<%= submit_tag "Ajouter" %>
+    <% end %>
+<h6 class="text-secondary">Supprimer une / des image(s)</h6>
 <% if product.pictures.attached? %>
     <div>
         <% product.pictures.each do |picture| %>
             <%= image_tag picture, alt:product.title, class:"img-fluid", style:"height: 200px" %>
-            <%= link_to 'Supprimer', picture_path(picture.id), :method => :delete, :remote => true, :class => 'destroy', data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'} %>
+            <%= link_to 'Supprimer', product_picture_path(picture.id), :method => :delete, :remote => true, :class => 'destroy', data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'} %>
         <% end %>
     </div>
-<% end %>      
+<% end %>  
+</div>    
