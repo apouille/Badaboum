@@ -53,8 +53,9 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
-    if (params[:product_picture]) != nil
-      @product.pictures.attach(params[:product_picture])
+
+    if (params[:pictures]) != nil
+      @product.pictures.attach(params[:pictures])
     end
     if @product.update(title: params[:title],
                        description: params[:description],
@@ -84,13 +85,6 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     respond_to do |format|
       format.js
     end
-  end
-
-  def delete_image_attachment
-    @product = Produc.find(params[:id])
-    @pic = ActiveStorage::Blob.find_signed(params[:id])
-    @pic.purge_later
-    redirect_back(fallback_location: edit_product_path(@product.id))
   end
 
 end

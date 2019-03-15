@@ -1,0 +1,8 @@
+<% if product.pictures.attached? %>
+    <div>
+        <% product.pictures.each do |picture| %>
+            <%= image_tag picture, alt:product.title, class:"img-fluid", style:"height: 200px" %>
+            <%= link_to 'Supprimer', picture_path(picture.id), :method => :delete, :remote => true, :class => 'destroy', data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'} %>
+        <% end %>
+    </div>
+<% end %>      
