@@ -41,7 +41,7 @@
 
                 <div class="list-group rounded">
                     <% categories.each do |category| %>
-                        <%= link_to products_path, class: "list-group-item list-group-item-action d-flex align-items-center" do %>
+                        <%= link_to products_path(category: category.id), class: "list-group-item list-group-item-action d-flex align-items-center" do %>
                             <div class="list-group-content">
                                 <div class="list-group-heading heading heading-6 mb-1"><span class="text-primary
     "><i class="<%= category.icon%>"></i> </span><%= category.title%></div>
