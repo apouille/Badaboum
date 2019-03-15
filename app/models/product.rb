@@ -10,4 +10,6 @@ class Product < ApplicationRecord
   validates :title, :description, :price, presence: { message: "Merci de remplir tous les champs obligatoires!" };
   validates :description, length: { minimum: 20, message: "La description doit faire au minimum 20 caractères" };
   validates :price, numericality: { greater_than: 1,  message: "Le prix doit être supérieur à 1€" };
+
+  scope :cat, -> (category) { where category_id: category }
   end
