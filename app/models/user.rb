@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :uploaded_products, foreign_key: 'seller_id', class_name: "Product"
   
   has_many :comments
+  has_many :orders
  
 
   def welcome_send

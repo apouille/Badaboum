@@ -6,6 +6,7 @@ class Product < ApplicationRecord
 	has_many_attached :pictures
 
 	has_many :comments, dependent: :destroy
+	has_one :order
 
   validates :title, :description, :price, presence: { message: "Merci de remplir tous les champs obligatoires!" };
   validates :description, length: { minimum: 20, message: "La description doit faire au minimum 20 caractères" };
