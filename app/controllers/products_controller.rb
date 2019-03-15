@@ -53,6 +53,9 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
+    if (params[:product_picture]) != nil
+      @product.pictures.attach(params[:product_picture])
+    end
     if @product.update(title: params[:title],
                        description: params[:description],
                        price: params[:price],
@@ -60,6 +63,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
                        color: params[:color],
                        size_id: params[:size],
                        category_id: params[:category])
+      
       redirect_to root_path
       flash[:success] = "L'article #{@product.title} à bien été mis-à-jour"
     else
@@ -80,6 +84,13 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     respond_to do |format|
       format.js
     end
+  end
+
+  def delete_image_attachment
+    @product = Produc.find(params[:id])
+    @pic = ActiveStorage::Blob.find_signed(params[:id])
+    @pic.purge_later
+    redirect_back(fallback_location: edit_product_path(@product.id))
   end
 
 end
