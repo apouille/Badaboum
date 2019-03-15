@@ -25,7 +25,14 @@ RSpec.describe Child, type: :model do
 	  end
 
 	  describe "#birthday" do
-	    it { expect(@child).to validate_presence_of(:birthday).with_message("Merci de remplir tous les champs du formulaire!") }
+	  	it { expect(@child).to validate_presence_of(:birthday).with_message("Merci de remplir tous les champs du formulaire!") }
+	  end
+
+	  describe "#birthday_cannot_be_in_the_futur" do
+	    it { is_expected.to allow_value("03/05/1991").for(:birthday) }
+	    it { is_expected.to allow_value("01/12/1976").for(:birthday) }
+	    it { is_expected.to_not allow_value("01/12/2055").for(:birthday) }
+	    it { is_expected.to_not allow_value("03/05/2040").for(:birthday) }
 	  end	   
 	end
 
