@@ -1,0 +1,45 @@
+
+                                    <!-- Customer info -->
+                               
+<h3 class="heading heading-3 strong-400 mb-4">Mes coordonnées pour le vendeur</h3>
+
+	<div class="card">
+    	<div class="card-body">
+
+		<%= form_tag({controller: "profiles", action: "update"}, method: "patch") do %>
+			    <div class="form-group">
+			        <h5 class="text-primary">Informations personnelles</h5>
+			        <h6 class="text-secondary">Prénom *</h6>
+			        <%= text_field_tag 'first_name', @profile.first_name, class: "form-control mb-3"%>
+			        <h6 class="text-secondary">Nom *</h6>
+			        <%= text_field_tag 'last_name', @profile.last_name, class: "form-control mb-3"%>
+			        <h6 class="text-secondary">Numéro de téléphone</h6>
+			        <%= text_field_tag 'phone_number', @profile.phone_number, class: "form-control mb-3" %>
+			        <h5 class="text-primary">Adresse</h5>
+			        <h6 class="text-secondary">Rue *</h6>
+			        <%= text_field_tag 'street', @profile.street, class: "form-control mb-3"%>
+			        <h6 class="text-secondary">Ville *</h6>
+			        <%= text_field_tag 'city', @profile.city, class: "form-control mb-3"%>
+			        <h6 class="text-secondary">Code Postal *</h6>
+			        <%= text_field_tag 'zip_code', @profile.zip_code, class: "form-control mb-3"%>
+
+			    
+			        <small class="text-primary">* Champs obligatoires</small></br>
+			        <%= submit_tag "Mettre à jour mon profil", class: "btn btn-primary mt-3 mb-3" %>
+			    </div>
+			<% end %>
+			<% if @profile.errors.any? %>
+			    <div class="alert alert-danger" role="alert">
+			        <p>Nous n'avons pas réussi à enregistrer votre profil pour la (ou les) raison(s) suivante(s) :</p>
+			        <ul>
+			            <% @profile.errors.full_messages.each do |message| %>
+			                <li><%= message %></li>
+			            <% end %>
+			        </ul>
+			    </div>
+			<% end %>
+		</div>
+	</div>
+
+
+

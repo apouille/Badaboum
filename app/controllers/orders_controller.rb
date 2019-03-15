@@ -20,6 +20,10 @@ class OrdersController < ApplicationController
 
   def show
 	@order = Order.find(params[:id])
+	@product =@order.product
+	@profile = current_user.profile
+	@seller_profile = @product.seller.profile
+    @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
   end
 
 end
