@@ -86,7 +86,7 @@ end
 puts '10 children have been seeded'
 
 
-20.times do
+150.times do
 	product = Product.create!(
 		title: Faker::Vehicle.manufacture,
 		price: rand(19..99),
@@ -98,4 +98,4 @@ puts '10 children have been seeded'
 		size: Size.all.sample,	
 	)
 end
-puts '20 products have been seeded'
+puts '150 products have been seeded'
