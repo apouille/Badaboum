@@ -83,6 +83,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     redirect_to profile_path
   end
 
+
   def from_category
     @selected = Product.where(:category_id => params[:cat_id])
     respond_to do |format|
