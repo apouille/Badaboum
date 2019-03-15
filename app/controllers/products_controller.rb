@@ -16,13 +16,13 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   end
 
   def new
-  	@product = Product.new
-  	@categories = Category.all
+    @product = Product.new
+    @categories = Category.all
   end
 
   def create
-  	@categories = Category.all
-  	@product = Product.new(title: params[:title],
+    @categories = Category.all
+    @product = Product.new(title: params[:title],
                        description: params[:description],
                        price: params[:price],
                        brand: params[:brand],
