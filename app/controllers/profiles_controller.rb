@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 		@profile = current_user.profile
 		@children = Child.where(profile_id: @profile.id)
     @products = current_user.uploaded_products
+    @products = Product.order(created_at: :desc)
   end
 
 	def edit
