@@ -1,3 +1,4 @@
+<div class="tab-pane active" id="tab_default_1">
 
         <div class="my-3">
 
@@ -17,7 +18,7 @@
                 <div class="block-image"> 
 
                     <% if item.pictures.attached? %>
-                          <%= link_to (image_tag product.pictures, alt: 'Photo du produit'), product_path(product.id) %>
+                          <%= link_to (image_tag item.pictures, alt: 'Photo du produit'), product_path(item.id) %>
                     <% else %>
                           <%= link_to (image_tag("shoes.jpg")), product_path(item.id) %>
                     <% end %>
@@ -36,7 +37,7 @@
 
                     <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= item.price %></span> €</span>
 
-                    <p class=""> 22 Vues</p>
+                    <p class=""> 11 Vues </p>
 
                     <p class=""> 10 Baby-list</p>
 
@@ -58,3 +59,4 @@
         <% end %>
 
       </div>
+</div>
