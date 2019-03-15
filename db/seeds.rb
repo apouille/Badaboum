@@ -1,13 +1,15 @@
-categories = ["Soins bébé", 
-	          "Chaises hautes & sièges auto", 
-	          "Poussettes", "Mobilier enfant", 
-	          "Jeux & Jouets", 
-	          "Livres & Scolarité", 
-	          "Sécurité", 
-	          "Allaitement & Repas", 
-	          "Vêtements",
-	          "Autres"
-	          ]
+categories = [
+	["Soins bébé", "fas fa-bath"],
+	["Chaises hautes & sièges auto", "fas fa-chair"],
+	["Poussettes", "fas fa-baby-carriage"],
+	["Mobilier enfant", "fas fa-campground"],
+	["Jeux & Jouets", "fas fa-dice"],
+	["Livres & Scolarité", "fas fa-book"],
+	["Sécurité", "fas fa-hard-hat"],
+	["Allaitement & Repas", "fas fa-utensils"],
+	["Vêtements", "fas fa-tshirt"],
+	["Autres", "fas fa-ellipsis-h"]  
+]
 
 sizes = ["Prématuré", 
 	          "Nouveau né", 
@@ -57,9 +59,10 @@ puts '5 profiles have been seeded'
 
 
 
-categories.each do |category_title|
+categories.each do |category|
   Category.create!(
-    title: category_title
+    title: category[0],
+    icon: category[1]
   )
 end
 puts 'All categories have been seeded'
