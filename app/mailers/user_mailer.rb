@@ -6,5 +6,5 @@ class UserMailer < ApplicationMailer
 		@url  = 'http://badaboum-demo.herokuapp.com/login' 
 		mail(to: @user.email, subject: 'Inscription Badaboum.com') 
 	end
-	
+
 end
