@@ -1,22 +1,44 @@
 class ChargesController < ApplicationController
   before_action :authenticate_user!
-
+	
+	def new
+	end
+  
   def create
-  	@order = Order.create(user_id: current_user.id, product_id: Product.find(1).id, status: 1)
-  	@amount = 1000
-    @profile_current_user = current_user.profile
+
+		puts '$'*50
+  	puts 'hellooooooo'
+  	@order = Order.find(params[:id])
+  	puts '$'*50
+  	puts @order.id
+
+  	@amount = @order.product.price
+  	puts '$'*50
+  	puts @amount
+
+  	@amount_for_seller=(@amount*0.95).to_i
+  	puts '$'*50
+  	puts @amount_for_seller
+
+  	@seller_uid = @order.product.seller.stripe_uid
+  	puts '$'*50
+  	puts 	@seller_uid
+
 
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],
       source: params[:stripeToken],
     )
 
+    puts '$'*50
+  	puts customer.id
+
 
   
- 	charge = Stripe::Charge.create({ customer: 'cus_EhcNu4Vmx8HZW9', amount: '20000', description: 'Rails Stripe customer', currency: 'eur', transfer_data: {amount: 17000, destination: "acct_1EEDVbJ3MKDJIzxo"}
+ 	charge = Stripe::Charge.create({ customer: customer.id, amount: @amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {amount: @amount_for_seller, destination: @seller_uid}
 })
 
-      @order.update(stripe_customer_id: charge[:customer], status: 1)
+      @order.update(stripe_customer_id: charge[:customer], status: 2)
       flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'
       redirect_to root_path
 
