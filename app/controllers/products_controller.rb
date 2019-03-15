@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @products=Product.all
+    @products=Product.page(params[:page]).per(9)
     @categories = Category.all
   end
 
@@ -44,9 +44,6 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   end
 
   def edit
-    puts "*"*100
-    puts params
-    puts "*"*100
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
