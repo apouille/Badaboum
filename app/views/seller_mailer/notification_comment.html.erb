@@ -4,18 +4,20 @@
         <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
     </head>
     <body>
-    <h1> Hello à toi!</h1>
+    <h1> Hello <%= @seller.profile.first_name %>!</h1>
         <p>
               Tu viens de recevoir un commmentaire sur ton article en ligne.
         </p>
+
+        <p>
+             Voici le commentaire de ton utilisateur : <%= @comment.content %>.
+        </p>
+
         <p>
               Pour accéder au commentaire de ton interlocuteur, connecte-toi via : <%= @url %>.
         </p>
 
-        <p>
-             Voici le commentaire de ton utilisateur : <% @comment.content %>.
-        </p>
-
         <p> À très vite sur badaboum.com !</p>
+
     </body>
 </html>

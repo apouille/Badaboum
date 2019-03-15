@@ -11,7 +11,7 @@ after_action :notification_comment, only: [:create]
 		@user = current_user
 
 		if @comment.save
-			flash[:notice] = "Votre commentaire a été ajouté avec succès"
+			flash[:notice] = "Votre commentaire a été ajouté avec succès ! Votre interlocuteur a été notifié de votre commentaire."
 	 		redirect_to product_path(params[:product_id])
 	    else
 	      render :root_path
@@ -19,9 +19,6 @@ after_action :notification_comment, only: [:create]
 	end
 
 	def notification_comment
-		puts "*"*30
-		puts params
-		puts "*"*30
 		@product = Product.find(params[:product_id])
 		SellerMailer.notification_comment(current_user, @product).deliver_now
 	end
