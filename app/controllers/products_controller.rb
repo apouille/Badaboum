@@ -57,9 +57,6 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @sizes = Size.all
     @product = Product.find(params[:id])
 
-    if (params[:pictures]) != nil
-      @product.pictures.attach(params[:pictures])
-    end
     if @product.update(title: params[:title],
                        description: params[:description],
                        price: params[:price],
