@@ -4,9 +4,10 @@
             <div class="swiper-wrapper pb-5">
 
                 <% if @product.pictures.attached? %>
-                    <% @product.product_picture_thumbnails.each do |pic| %>
+
+                    <% @product.pictures.each do |pic| %>
                         <div class="swiper-slide">
-                            <%= image_tag pic, alt:@product.title, class:"img-fluid" %>
+                            <%= image_tag pic.variant(resize:'500x500'), alt:@product.title, class:"img-fluid" %>
                         </div>
                     <% end %>
                 <% else %>
