@@ -13,14 +13,19 @@ class ChargesController < ApplicationController
       source: params[:stripeToken],
     )
 
-    puts '$' * 50
-    puts customer
 
-    puts '£' * 50
-    puts customer.id
     begin
-      charge = Stripe::Charge.create({ customer: 'cus_EhcNu4Vmx8HZW9', 
-      	amount: '1337', description: 'Rails Stripe customer', currency: 'eur', application_fee_amount: 2, on_behalf_of: "acct_1EEDVbJ3MKDJIzxo"})
+  #    charge = Stripe::Charge.create({ customer: 'cus_EhcNu4Vmx8HZW9', 
+   #   	amount: '1337', description: 'Rails Stripe customer', currency: 'eur', 
+   #   	application_fee_amount: 2, on_behalf_of: "acct_1EEDVbJ3MKDJIzxo"})
+ #	charge = Stripe::Charge.create({ customer: 'cus_EhcNu4Vmx8HZW9', amount: '20000', description: 'Rails Stripe customer', currency: 'eur', on_behalf_of: "acct_1EEDVbJ3MKDJIzxo"})
+	charge = Stripe::Charge.create({ customer: 'cus_EhcNu4Vmx8HZW9', amount: '20000', 
+		description: 'Rails Stripe customer', currency: 'eur', transfer_data: {
+	amount: 17000,
+    destination: "acct_1EEDVbJ3MKDJIzxo",
+  },
+})
+
       @order.update(stripe_customer_id: charge[:customer], status: 1)
       puts charge
       flash[:notice] = 'Your order is complete'
