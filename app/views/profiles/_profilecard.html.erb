@@ -1,17 +1,19 @@
 
 
       <div class="profile-picture profile-picture--style-2">
-        <%if @profile.profil_picture.attached?%>
-        <%= image_tag @profile.profil_picture, alt: 'profil_picture' %>
-        <%end%>
-      </div> 
+        <% if @profile.profil_picture.attached?%>
+            <%= image_tag @profile.profil_picture_thumbnail, alt: 'profil_picture' %>
+        <% else %>
+            <%= image_tag "profile-default.png" %>
+        <% end %>
+      </div>
 
-<!-- User basics-->    
+<!-- User basics-->
 
     <%= render 'profiles/profilebasics' %>
 
 
-<!-- User information-->    
+<!-- User information-->
 
 
     <%= render 'profiles/profileinformation' %>
@@ -23,7 +25,7 @@
         <%= link_to "Editer mes informations", edit_profile_path, class: "btn btn-secondary mt-2" %>
     </div>
 
-<!-- User statistics-->   ​ 
+<!-- User statistics-->   ​
 ​
 	<div class="profile-stats clearfix">
             <div class="stats-entry">

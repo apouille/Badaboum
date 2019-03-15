@@ -10,12 +10,12 @@ class Profile < ApplicationRecord
 
 	validates :phone_number,:allow_blank => true, format: { with: /\A(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})\z/, message: "Entrez un numéro français, s'il vous plait !" }, :on => :update
 
-	
-
 	def address
 		[street, city, country].compact.join(", ")
 	end
 
-
+	def profil_picture_thumbnail
+		return self.profil_picture.variant(resize: '200x200')
+	end
 
 end
