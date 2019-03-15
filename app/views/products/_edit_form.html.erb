@@ -1,0 +1,36 @@
+<%= form_tag url_for(action: 'update'), method: "patch", multipart: true do %>
+    <div class="form-group">
+        <h5 class="text-primary">1. Quel est votre produit ?</h5>
+        <h6 class="text-secondary">Titre *</h6>
+        <%= text_field_tag 'title', @product.title, class: "form-control mb-3"%>
+        <h6 class="text-secondary">Description *</h6>
+        <%= text_area_tag 'description', @product.description, class: "form-control mb-3" %>
+        <h5 class="text-primary">2. Quel est votre prix ? *</h5>
+        <small class="text-secondary font-italic">En euro</small></br>
+        <%= text_field_tag 'price', @product.price, class: "form-control mb-3"%>
+        <h5 class="text-primary">3. Indiquez quelques caractéristiques...</h5>
+        <h6 class="text-secondary">Marque</h6>
+        <%= text_field_tag 'brand', @product.brand, class: "form-control mb-3"%>
+        <h6 class="text-secondary">Couleur</h6>
+        <%= text_field_tag 'color', @product.color, class: "form-control mb-3"%>
+        <h6 class="text-secondary">Taille *</h6>
+        <%= select_tag 'size', options_for_select(@sizes.collect{|size|[size.title, size.id]}), class: "form-control mb-3" %>
+        <h5 class="text-primary">3. Choisissez une catégorie</h5>
+        <%= select_tag 'category', options_for_select(@categories.collect{|category|[category.title, category.id]}), class: "form-control mb-3" %>
+        <h5 class="text-primary">4. Ajouter ou changer des images *</h5>
+        <%= file_field_tag 'pictures[]', :multiple => true,  class: "form-control mb-3"%> 
+        <small class="text-primary">* Champs obligatoires</small></br>
+        
+        <%= submit_tag "Mettre-à-jour mon article", class: "btn btn-primary mt-3 mb-3" %>
+    </div>
+<% end %>
+<% if @product.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+        <p>Nous n'avons pas réussi à enregistrer votre article pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+            <% @product.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

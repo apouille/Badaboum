@@ -3,7 +3,10 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @products=Product.page(params[:page]).per(9)
+    @products = Product.where(nil)
+    @products = @products.cat(params[:category]) if params[:category].present?
+    @products = @products.page(params[:page]).per(9)
+    
     @categories = Category.all
   end
 
@@ -17,17 +20,19 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def new
     @product = Product.new
+    @sizes = Size.all
     @categories = Category.all
   end
 
   def create
     @categories = Category.all
+    @sizes = Size.all
     @product = Product.new(title: params[:title],
                        description: params[:description],
                        price: params[:price],
                        brand: params[:brand],
                        color: params[:color],
-                       size: params[:size],
+                       size_id: params[:size],
                        seller_id: current_user.id,
                        category_id: params[:category],
                        )
@@ -35,14 +40,39 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
 
     if @product.save
       redirect_to root_path
-      flash[:success] = "Le produit est bien enregistré!"
+      flash[:success] = "L'article #{@product.title} est bien enregistré!"
     else
       render 'new'
     end
   end
 
-  def update
+  def edit
+    @categories = Category.all
+    @sizes = Size.all
     @product = Product.find(params[:id])
+  end
+
+  def update
+    @categories = Category.all
+    @sizes = Size.all
+    @product = Product.find(params[:id])
+
+    if (params[:pictures]) != nil
+      @product.pictures.attach(params[:pictures])
+    end
+    if @product.update(title: params[:title],
+                       description: params[:description],
+                       price: params[:price],
+                       brand: params[:brand],
+                       color: params[:color],
+                       size_id: params[:size],
+                       category_id: params[:category])
+      
+      redirect_to root_path
+      flash[:success] = "L'article #{@product.title} à bien été mis-à-jour"
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -51,6 +81,14 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
 
     flash[:notice] = "Vous avez supprimé un article avec succès"
     redirect_to profile_path
+  end
+
+
+  def from_category
+    @selected = Product.where(:category_id => params[:cat_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
 end

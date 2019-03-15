@@ -1,13 +1,15 @@
-categories = ["Soins bébé", 
-	          "Chaises hautes & sièges auto", 
-	          "Poussettes", "Mobilier enfant", 
-	          "Jeux & Jouets", 
-	          "Livres & Scolarité", 
-	          "Sécurité", 
-	          "Allaitement & Repas", 
-	          "Vêtements",
-	          "Autres"
-	          ]
+categories = [
+	["Soins bébé", "fas fa-bath"],
+	["Chaises hautes & sièges auto", "fas fa-chair"],
+	["Poussettes", "fas fa-baby-carriage"],
+	["Mobilier enfant", "fas fa-campground"],
+	["Jeux & Jouets", "fas fa-dice"],
+	["Livres & Scolarité", "fas fa-book"],
+	["Sécurité", "fas fa-hard-hat"],
+	["Allaitement & Repas", "fas fa-utensils"],
+	["Vêtements", "fas fa-tshirt"],
+	["Autres", "fas fa-ellipsis-h"]  
+]
 
 sizes = ["Prématuré", 
 	          "Nouveau né", 
@@ -18,7 +20,7 @@ sizes = ["Prématuré",
 	          "12 - 18 mois", 
 	          "18 - 24 mois",
 	          "24 - 36 mois",
-	          "4 ans", "5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "11 ans", "12 ans",
+	          "4 ans", "5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "11 ans", "12 ans", "Femmes enceintes", "Autres"
 	          ]
 users = [
 	["bastien.hiel@yopmail.com", "Bastien", "Hiel"],
@@ -57,9 +59,10 @@ puts '5 profiles have been seeded'
 
 
 
-categories.each do |category_title|
+categories.each do |category|
   Category.create!(
-    title: category_title
+    title: category[0],
+    icon: category[1]
   )
 end
 puts 'All categories have been seeded'
@@ -90,7 +93,6 @@ puts '10 children have been seeded'
 		description: Faker::ChuckNorris.fact,
 		brand: Faker::Beer.brand,
 		color: Faker::Color.color_name,
-		size: rand(1..12),
 		seller: User.all.sample, 
 		category: Category.all.sample,
 		size: Size.all.sample,	
