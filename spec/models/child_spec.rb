@@ -22,6 +22,7 @@ RSpec.describe Child, type: :model do
 
 	  describe "#sex" do
 	    it { expect(@child).to validate_presence_of(:sex).with_message("Merci de remplir tous les champs du formulaire!") }
+	    it { should define_enum_for(:sex).with_values(girl:1, boy:2) }
 	  end
 
 	  describe "#birthday" do
