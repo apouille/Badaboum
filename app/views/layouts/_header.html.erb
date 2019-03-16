@@ -1,5 +1,4 @@
-<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-default shadow p-3 mb-5 bg-white"> -->
-<nav class="navbar navbar-expand-lg navbar-light bg-default shadow p-3 mb-5 bg-white">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-default shadow p-3 mb-5 bg-white">
     <div class="container navbar-container">
         <!-- Brand/Logo -->
         <%= link_to (image_tag("logo.png", style:"width:200px",  class: "d-none d-lg-inline-block menu_icon")), root_path, class:"navbar-brand mr-1" %>
@@ -35,7 +34,6 @@
             <!-- proposer un produit -->
             <li class="nav-item">
                 <% if user_signed_in? & %>
-
                     <% if current_user.stripe_uid.present? %>
                         <%= link_to 'Proposer un produit',  new_product_path, class:'nav-link' %>
                     <%else%>
@@ -53,7 +51,7 @@
             <!-- baby-list -->
             <% if user_signed_in? %>
                 <li class="nav-item">
-                    <div data-toggle="tooltip" data-placement="bottom" title="Accéder à ma Babylist">
+                    <div data-toggle="tooltip" data-placement="left" title="Accéder à ma Babylist">
                         <%= link_to  wishlist_products_path, class:'has-badge nav-link nav-link-icon no-margin-right' do %>
                             <i class="fas fa-heart"></i>
                             <sup class="heart-count badge bg-primary text-white"><%= number_of_wished_products %></sup>
@@ -66,16 +64,16 @@
             <li class="nav-item dropdown">
 
                 <!-- avatar -->
-                <div data-toggle="tooltip" data-placement="bottom" title="Mon profil">
-                    <a id="navbar_1_dropdown_3" class="nav-link nav-link-icon has-badge" href="#" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                    <a id="navbar_1_dropdown_3" class="nav-link nav-link-icon has-badge" href="#" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" >
                         <% if user_signed_in? %>
+                            <div data-toggle="tooltip" data-placement="left" title="Mon profil">
                                  <%= image_tag "profile.jpg" , class:"dropdown-image rounded-circle img-fluid", width:'18px' %>
                                 <sup class="badge bg-primary text-white">3</sup>
+                            </div>
                         <%else%>
                             <i class="fas fa-user"></i> Se connecter / S'inscrire
                         <%end%>
                     </a>
-                </div>
 
                 <!-- menu déroulant -->
                 <div class="dropdown-menu dropdown-menu-right">
@@ -103,7 +101,7 @@
             <!-- déconnexion -->
             <% if user_signed_in? %>
                 <li class="nav-item">
-                    <div data-toggle="tooltip" data-placement="bottom" title="Se déconnecter">
+                    <div data-toggle="tooltip" data-placement="left" title="Se déconnecter">
                         <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, destroy_user_session_path, method: :delete, class:"nav-link nav-link-icon" %>
                     </div>
                 </li>
