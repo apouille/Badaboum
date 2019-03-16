@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
 
-	before(:each) do 
+  before(:each) do 
     @comment = FactoryBot.create(:comment)    
   end
 
