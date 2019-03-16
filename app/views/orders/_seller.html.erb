@@ -1,42 +1,43 @@
-<div class="col-md-4">
-<h3 class="heading heading-3 strong-400 mx-5 mb-4">Mon vendeur</h3>
-                <div class="block block--style-3 mx-5">
+<div class="card col-lg-3 mt-5">
+    <h3 class="heading heading-3 strong-400 mx-5 mb-4 text-center">Mon vendeur</h3>
 
-                    <div class="profile-picture profile-picture--style-2">
+        <div class="profile-picture profile-picture--style-2">
+            <% if @product.seller.profile.profil_picture.attached? %>
+                <%= image_tag @product.seller.profile.profil_picture, alt: 'Photo du vendeur' %>
+            <% else %>
+                <%= image_tag("profile-default.png") %>
+            <% end %>
+        </div>
 
-                        <% if @product.seller.profile.profil_picture.attached? %>
-                          <%= image_tag @product.seller.profile.profil_picture, alt: 'Photo du vendeur' %>
-                        <% else %>
-                           <%= image_tag("profile-default.png") %>
-                        <% end %>
-                    </div>
+        <div class="block-body text-center">
+            <h2 class="heading heading-4 strong-500 profile-name">
+                <%= @seller_profile.first_name.present? ? @seller_profile.first_name : " " %>
+                <%= @seller_profile.last_name.present? ? @seller_profile.last_name : " " %>
+            </h2>
+            
+            <span class="star-rating star-rating-sm">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+            </span>
+            
+            <p class="heading heading-6 strong-400  profile-occupation mt-3"><%= @seller_profile.description.present? ? @seller_profile.description : "Description non renseignée" %></p>
 
-                    <div class="block-body text-center">
-                        <h2 class="heading heading-4 strong-500 profile-name">
-                            <%= @seller_profile.first_name.present? ? @seller_profile.first_name : " " %>
-                            <%= @seller_profile.last_name.present? ? @seller_profile.last_name : " " %>
-                        </h2>
-                        <span class="star-rating star-rating-sm">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </span>
-                           <p class="heading heading-6 strong-400  profile-occupation mt-3"><%= @seller_profile.description.present? ? @seller_profile.description : "Description non renseignée" %></p>
-
-                        <a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 mt-2">Envoyer un message</a>
-                    </div>
+            <a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 my-5">Envoyer un message</a>
+        </div>
                     <!-- Profile stats -->
-                    <div class="profile-stats clearfix">
-                        <div class="stats-entry">
-                            <span class="stats-count"><%= @seller_products.length %></span>
-                            <span class="stats-label text-uppercase">objets en vente</span>
-                        </div>
-                        <div class="stats-entry">
-                            <span class="stats-count">10</span>
-                            <span class="stats-label text-uppercase">objets vendus</span>
-                        </div>
-                    </div>
-                </div>
-</div> <!-- col -->
+                    
+        <div class="profile-stats clearfix">
+            <div class="stats-entry">
+                <span class="stats-count"><%= @seller_products.length %></span>
+                <span class="stats-label text-uppercase">objets en vente</span>
+            </div>
+        
+        <div class="stats-entry">
+            <span class="stats-count">10</span>
+            <span class="stats-label text-uppercase">objets vendus</span>
+        </div>
+        </div>
+</div>

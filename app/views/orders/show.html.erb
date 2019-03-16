@@ -1,25 +1,60 @@
 
-<br><br>  
-<div class="row">
-	
-	<%= render 'seller' %>
+<div class="container">
+
+    <div class="row">
+
+	   <%= render 'seller' %>
 
 
-<div class="col-lg-7">
-	<%= render 'order_preview' %>
-	<br>
-	<%= render 'edit_profile' %>
-	<br>
-	<%= render 'payment_method' %>
-	<br>
-	<%= render 'stripe_payment' %>
-	<br>
+        <div class="col-lg-9">
+
+            <div class="tabs tabs--style-1 tabs--centered mt-5" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav d-flex justify-content-center nav-pills nav-pills--rounded" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#tabThree-1" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active text-center text-uppercase strong-500">
+                            <div class="nav-pill">
+                                <span class="nav-pill-circle">1</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation" class="">
+                        <a href="#tabThree-2" aria-controls="home" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-500">
+                            <div class="nav-pill">
+                                <span class="nav-pill-circle">2</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" role="presentation" class="">
+                        <a href="#tabThree-3" aria-controls="home" role="tab" data-toggle="tab" class="nav-link text-center text-uppercase strong-500">
+                            <div class="nav-pill">
+                                <span class="nav-pill-circle">3</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+
+            <div class="tab-content no-border">
+
+            	<%= render 'order_preview' %>
+
+            	<%= render 'edit_profile' %>
+
+            	<%= render 'payment_method' %>
+
+            	<%= render 'stripe_payment' %>
+
+            </div>
+
+            </div>
+
+        </div>                                            
+
+    </div>
 </div>
-
-                                                
-
-</div>
-	
 
 
 
