@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :size do
-    title { "MyString" }
+    title { Faker::Alphanumeric.alphanumeric 10 }
   end
 end
