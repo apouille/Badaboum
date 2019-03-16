@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :product do
-  	title { Faker::Lorem.words }
+    title { Faker::Lorem.words }
     price { rand(1..1000) }
     description { Faker::Lorem.paragraph(2) }
     brand { Faker::Company.name }
