@@ -22,11 +22,11 @@ class ProfilesController < ApplicationController
       	if params[:profil_picture].present?
           @profile.profil_picture.attach(params[:profil_picture])
       	end
-        format.html { redirect_to profile_path, notice: "Profil mis à jour!" }
+        format.html { redirect_back fallback_location: profile_path, notice: "Profil mis à jour!" }
         format.json { render :edit, status: :ok, location: @profile }
 
       else
-        format.html { redirect_to edit_profile_path, flash: { error: "Le profil n'a pas pu être mis à jour!" } }
+        format.html { redirect_back fallback_location: edit_profile_path, flash: { error: "Le profil n'a pas pu être mis à jour!" } }
         format.json { render json: @profile.errors.messages, status: :unprocessable_entity }
       end
     end
