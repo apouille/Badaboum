@@ -21,7 +21,9 @@
                         </div>
                     <%end%>
                 <%else%>
-                    <%= link_to '<i class="fas fa-heart"></i>'.html_safe, wishlist_products_path, class:"text-primary mr-3" %>
+                    <div class="col text-right"data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Se connecter pour accéder la baby-list" >
+                        <%= link_to '<i class="fas fa-heart"></i>'.html_safe, wishlist_products_path, class:"text-primary mr-3" %>
+                    </div>
                 <%end%>
 
             </div>
