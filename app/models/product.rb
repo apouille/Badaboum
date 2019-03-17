@@ -2,6 +2,7 @@ class Product < ApplicationRecord
 	belongs_to :seller, class_name:'User'
 	belongs_to :category
 	belongs_to :size
+	enum status: { in_stock:1, selled:2 }
 
 	has_many_attached :pictures
 

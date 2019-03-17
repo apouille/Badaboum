@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-	before(:each) do 
+  before(:each) do 
     @user = FactoryBot.create(:user)    
   end
 
@@ -13,6 +13,5 @@ RSpec.describe User, type: :model do
     it "is valid with valid attributes" do
       expect(@user).to be_a(User)
     end
-  end
-  
+  end  
 end

@@ -5,4 +5,7 @@ class HomeController < ApplicationController
 
   def kitui
   end
+
+  def team
+  end
 end

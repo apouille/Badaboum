@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Child, type: :model do
 
-	before(:each) do 
+  before(:each) do 
     @child = FactoryBot.create(:child)    
   end
 
@@ -11,21 +11,22 @@ RSpec.describe Child, type: :model do
   end
 
 
-	context "validation" do
-	 	it "is valid with valid attributes" do
+  context "validation" do
+	  it "is valid with valid attributes" do
 	    expect(@child).to be_a(Child)
 	  end
 
-		describe "#nickname" do
+	  describe "#nickname" do
 	    it { expect(@child).to validate_presence_of(:nickname).with_message("Merci de remplir tous les champs du formulaire!") }
 	  end
 
 	  describe "#sex" do
 	    it { expect(@child).to validate_presence_of(:sex).with_message("Merci de remplir tous les champs du formulaire!") }
+	    it { should define_enum_for(:sex).with_values(girl:1, boy:2) }
 	  end
 
 	  describe "#birthday" do
-	  	it { expect(@child).to validate_presence_of(:birthday).with_message("Merci de remplir tous les champs du formulaire!") }
+	    it { expect(@child).to validate_presence_of(:birthday).with_message("Merci de remplir tous les champs du formulaire!") }
 	  end
 
 	  describe "#birthday_cannot_be_in_the_futur" do

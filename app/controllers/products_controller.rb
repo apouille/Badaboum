@@ -35,6 +35,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
                        size_id: params[:size],
                        seller_id: current_user.id,
                        category_id: params[:category],
+                       status: 1
                        )
     @product.pictures.attach(params[:pictures])
 
