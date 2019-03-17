@@ -16,6 +16,14 @@ RSpec.describe Product, type: :model do
       expect(@product).to be_a(Product)
     end
 
+    describe "Upload picture" do    
+      it "saves the image" do
+        file = fixture_file_upload(Rails.root.join('public', 'apple-touch-icon.png'), 'image/png')
+        @product.pictures.attach(file)
+        expect(@product.pictures).to be_attached
+      end
+    end 
+
     describe "#title" do
       it { expect(@product).to validate_presence_of(:title).with_message("Merci de remplir tous les champs obligatoires!") }
     end
@@ -36,5 +44,30 @@ RSpec.describe Product, type: :model do
     it { expect(@product).to belong_to(:seller).class_name('User') }
     it { expect(@product).to belong_to(:category) }
     it { expect(@product).to belong_to(:size) }
+    it { expect(@product).to have_many(:comments).dependent(:destroy) }
+    it { expect(@product).to have_one(:order) }
+  end
+
+
+  context "scopes" do
+    describe "cat" do
+
+      before(:each) do 
+        @stroller_cat = FactoryBot.create(:category)
+        @book_cat = FactoryBot.create(:category)
+        @stroller = FactoryBot.create(:product, category: @stroller_cat)
+        @book = FactoryBot.create(:product, category: @book_cat)
+        @products = Product.cat(@stroller_cat)  
+      end
+
+      it "should only return products with the stroller category" do
+        expect(@products).to include(@stroller)
+      end
+
+      it "should not return products with another category" do
+        expect(@products).to_not include(@book)
+      end
+
+    end
   end
 end
