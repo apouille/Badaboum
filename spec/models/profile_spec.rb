@@ -32,9 +32,10 @@ RSpec.describe Profile, type: :model do
 
     describe "#zip_code" do
       it { expect(@profile).to validate_presence_of(:zip_code).with_message("Merci de remplir tous les champs obligatoires!") }
-      it { is_expected.to allow_value("2a004").for(:zip_code) }
-      it { is_expected.to allow_value("2A004").for(:zip_code) }
-      it { is_expected.to allow_value("95600").for(:zip_code) }
+      it { is_expected.to allow_value("2a004").for(:zip_code).on(:update) }
+      it { is_expected.to allow_value("2A004").for(:zip_code).on(:update) }
+      it { is_expected.to allow_value("95600").for(:zip_code).on(:update) }
+      it { is_expected.to_not allow_value("100000").for(:zip_code).on(:update).with_message("Le code postal est invalide") }
     end
 
     describe "#country" do
