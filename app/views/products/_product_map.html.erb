@@ -1,0 +1,26 @@
+
+<div id="mapid"></div>
+
+
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+<script>
+
+var mymap = L.map('mapid').setView([48.8660375, 2.289695], 13);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+
+//var marker = L.marker([51.5, -0.09]).addTo(mymap);
+var marker = L.marker([48.8660375, 2.289695]).addTo(mymap); 
+
+
+
+</script>
+
+
+
+
+
+
