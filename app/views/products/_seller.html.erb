@@ -34,11 +34,11 @@
                     <!-- Profile stats -->
                     <div class="profile-stats clearfix">
                         <div class="stats-entry">
-                            <span class="stats-count"><%= @seller_profile.uploaded_products.where("status = 1").count%></span>
+                            <span class="stats-count"><%= @seller_products.where("status = 1").count%></span>
                             <span class="stats-label text-uppercase">objets en vente</span>
                         </div>
                         <div class="stats-entry">
-                            <span class="stats-count"><%= @seller_profile.uploaded_products.where("status = 2").count%></span>
+                            <span class="stats-count"><%= @seller_products.where("status = 2").count%></span>
                             <span class="stats-label text-uppercase">objets vendus</span>
                         </div>
                     </div>

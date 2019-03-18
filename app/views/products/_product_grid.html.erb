@@ -16,10 +16,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="card-body">
+                                        <div class="card-body d-flex">
                                             <h3 class="heading heading-5 strong-500 mb-0">
                                                 <%= link_to product.title, product_path(product.id) %>
                                             </h3>
+                                            <div class="ml-auto">
+                                                <%= product.price %> €
+                                            </div>
                                         </div>
 
                                         <div class="card-footer">
