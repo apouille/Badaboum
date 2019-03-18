@@ -1,62 +1,49 @@
 <div class="tab-pane active" id="tab_default_1">
 
-        <div class="my-3">
+    <div class="my-3 text-center">
+      <h3>Mes articles en vente</h3>
+    </div>
 
-          <h3>Mes articles en vente</h3>
-
-        </div>
-
-
-        <div class="row">
+    <div class="row">
         <% unless @products.nil? %>
-          <% @products.each do |product| %>
 
-            <div class="col-md-4 mt-3">
+            <% @products.each do |product| %>
 
-              <div class="block product no-border z-depth-2--hover">
+            <div class="col-lg-4 mb-5">
+                <div class="card z-depth-2-top">
+                    <div class="card-image">
+                        <div class="view view-first">
+                            <% if product.pictures.attached? %>
+                                  <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
+                            <% else %>
+                                  <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
+                            <% end %>
+                        </div>
+                        <div class="block-body px-0 text-center">
+                            <h3 class="heading heading-5 strong-500 mb-0">
+                                <%= link_to product.title, product_path(product.id) %>
+                            </h3>
+                            <div class="price-wrapper">
+                                <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
+                                    <p class=""> 11 Vues <br>
+                                    10 Baby-list</p>
+                          </div>
+                        </div>
 
-                <div class="block-image"> 
+                        <div class="card-footer text-center">
 
-                    <% if product.pictures.attached? %>
-                          <%= link_to (image_tag product.pictures.first, alt: 'Photo du produit'), product_path(product.id) %>
-                    <% else %>
-                          <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
-                    <% end %>
+                            <%= link_to "Editer le produit", edit_product_path(product.id), class: "btn btn-secondary mt-2  btn-shadow btn-circle"%>
 
-                </div>
+                            <%= link_to "Supprimer le produit",product_path(product.id), class: "btn btn-sm btn-danger mt-2  btn-shadow btn-circle", data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'}, method: "delete" %>
 
-                <div class="block-body px-0 text-center">
-
-                  <h3 class="heading heading-6 strong-500 text-capitalize">
-
-                    <%= product.title %>
-
-                  </h3>
-
-                  <div class="price-wrapper">
-
-                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
-
-                    <p class=""> 11 Vues </p>
-
-                    <p class=""> 10 Baby-list</p>
-
-                  </div>
-
-                </div>
-
-                <div class="card-footer text-center"> 
-
-                <%= link_to "Editer le produit", edit_product_path(product.id), class: "btn btn-secondary mt-2"%>
-
-                <%= link_to "Supprimer le produit",product_path(product.id), class: "btn btn-danger mt-2", data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'}, method: "delete" %>
+                        </div>
+                    </div>
 
                 </div>
-              </div>
-
             </div>
-         <% end %>
+            <% end %>
         <% end %>
-
-      </div>
+    </div>
 </div>
+
+

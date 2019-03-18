@@ -15,11 +15,11 @@
         <h6 class="text-secondary">Code Postal *</h6>
         <%= text_field_tag 'zip_code', @profile.zip_code, class: "form-control mb-3"%>
         <h5 class="text-primary">Photo de profil</h5>
-        <%= file_field_tag :profil_picture, class: 'form-control mb-3' %>        
+        <%= file_field_tag :profil_picture, class: 'form-control mb-3' %>
         <h5 class="text-primary">Présentez vous !</h5>
         <%= text_area_tag 'description', @profile.description, class: "form-control", placeholder: "Description" %>
         <small class="text-primary">* Champs obligatoires</small></br>
-        <%= submit_tag "Mettre à jour mon profil", class: "btn btn-primary mt-3 mb-3" %>
+        <%= submit_tag "Mettre à jour mon profil", class: "btn btn-primary mt-3 mb-3 btn-shadow btn-circle" %>
     </div>
 <% end %>
 <% if @profile.errors.any? %>
