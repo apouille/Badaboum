@@ -1,0 +1,36 @@
+<div class="container mt-5">
+	<h3> <i class="far fa-id-card"></i> Index des utilisateurs </h3>
+	<br><br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">ID</th>
+      <th scope="col">Nom </th>
+      <th scope="col">Prénom </th>
+      <th scope="col">Email </th>
+      <th class="d-flex justify-content-center", scope="col">Détail</th>
+    </tr>
+  </thead>
+  <tbody>
+ <% @users.each do |user| %>
+    <tr>
+      <td class="profile-picture user_icon", style="width:80px">
+        <% if user.profile.profil_picture.attached?%>
+            <%= image_tag @profile.profil_picture_thumbnail, alt: 'profil_picture' %>
+        <% else %>
+            <%= image_tag "profile-default.png" %>
+        <% end %>
+      </td>
+      <td ></td>
+      <td ><%= user.id %></td>
+      <td><%= user.profile.present? ? user.profile.last_name : "N#A" %> </td>
+      <td><%= user.profile.present? ? user.profile.first_name : "N#A" %> </td>
+      <td><%= user.email %> </td>
+      <td class="d-flex justify-content-center"><%=link_to '<i class="fas fa-user-circle fa-3x" style="color:gray"></i>'.html_safe, admin_user_path(user.id), class:"mt-3" %></td>
+    </tr>
+<%end%>
+  </tbody>
+</table>
+</div>
