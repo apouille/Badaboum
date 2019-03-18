@@ -38,6 +38,7 @@ users.each do |u|
 end
 puts '5 users have been seeded'
 
+
 i = 1
 users.each do |u|
 	profile = Profile.find(i)
@@ -96,7 +97,7 @@ puts '10 children have been seeded'
 		seller: User.all.sample, 
 		category: Category.all.sample,
 		size: Size.all.sample,	
-		status: 1
+		state: 1
 	)
 end
 puts '20 products have been seeded'
