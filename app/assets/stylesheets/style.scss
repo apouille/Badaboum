@@ -12,3 +12,9 @@ a.anchor {
 .no-margin-right i {
   margin-right:0 !important;
 }
+
+.tabs--style-2 .nav-tabs .disable-hover .nav-link:hover {
+  border-bottom: none;
+  background: transparent !important;
+  color: #6c757d;
+}
