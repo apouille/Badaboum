@@ -1,7 +1,6 @@
 categories = [
 	["Soins bébé", "fas fa-bath"],
-	["Chaises hautes & sièges auto", "fas fa-chair"],
-	["Poussettes", "fas fa-baby-carriage"],
+	["Transports", "fas fa-baby-carriage"],
 	["Mobilier enfant", "fas fa-campground"],
 	["Jeux & Jouets", "fas fa-dice"],
 	["Livres & Scolarité", "fas fa-book"],
@@ -24,7 +23,7 @@ sizes = ["Prématuré",
 	          ]
 users = [
 	["bastien.hiel@yopmail.com", "Bastien", "Hiel"],
-	["claudia.partonneau@yopmail.com", "Claudia", "Partonneau"],
+	["claudia.partonnau@yopmail.com", "Claudia", "Partonnau"],
 	["maxime.speroni@yopmail.com", "Maxime", "Speroni"],
 	["viviane.depetigny@yopmail.com", "Viviane", "de Pétigny"],
 	["melanie.nguon@yopmail.com", "Mélanie", "Nguon"]
