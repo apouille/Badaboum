@@ -24,7 +24,7 @@ sizes = ["Prématuré",
 users = [
 	["bastien.hiel@yopmail.com", "Bastien", "Hiel"],
 	["claudia.partonnau@yopmail.com", "Claudia", "Partonnau"],
-	["maxime.speroni@yopmail.com", "Maxime", "Speroni"],
+	["maxime.speroni@yopmail.com", "Maxime", "Speroni","acct_1EEvb4EZvBvGXd8M"],
 	["viviane.depetigny@yopmail.com", "Viviane", "de Pétigny"],
 	["melanie.nguon@yopmail.com", "Mélanie", "Nguon"]
 ]
@@ -33,6 +33,7 @@ users.each do |u|
 	user = User.create!(
 		email: u[0],
 		password: "test1234",
+		stripe_uid: u[3]
 	)
 end
 puts '5 users have been seeded'
@@ -50,7 +51,7 @@ users.each do |u|
 		country: "France",
 		description: "Un super être humain qui est tout le temps positif à propos de tout!",
 		user_id: i
-	)
+		)
 	profile.save
 	i += 1
 end
@@ -99,3 +100,5 @@ puts '10 children have been seeded'
 	)
 end
 puts '20 products have been seeded'
+
+
