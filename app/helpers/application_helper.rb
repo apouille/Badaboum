@@ -8,4 +8,23 @@ module ApplicationHelper
     when 'alert' then "alert-warning"
   end
 end
+
+def ip_address
+   @current_ip_address = request.ip     # return your ip address
+end
+
+def geoloc_user
+	@results = Geocoder.search(current_ip_address)
+end
+
+def location
+@location =adrrequest.location     # return a Geocoder::Result which corresponds to your location
+end
+
+
+def find_city
+ @user_city = request.location.try(:city) # return the city corresponding to your ip location
+end
+
+
 end
