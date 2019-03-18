@@ -8,31 +8,21 @@ class ChargesController < ApplicationController
 
 	
   	@order = Order.where(user_id: current_user.id, status: 1).last
- 
-
+  	@product =@order.product
   	@amount = @order.product.price*100
-
-
   	@amount_for_seller=(@amount*0.95).to_i
-  
-
   	@seller_uid = @order.product.seller.stripe_uid
- 
-
 
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],
       source: params[:stripeToken],
     )
-
- 
-
-
-  
- 	charge = Stripe::Charge.create({ customer: customer.id, amount: @amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {amount: @amount_for_seller, destination: @seller_uid}
+ 		charge = Stripe::Charge.create({ customer: customer.id, amount: @amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {amount: @amount_for_seller, destination: @seller_uid}
 })
 
       @order.update(stripe_customer_id: charge[:customer], status: 2)
+      @product.update(status: 2)
+      puts @product
       flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'
       redirect_to root_path
 

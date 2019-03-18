@@ -1,7 +1,8 @@
 
-        <div role="tabpanel" class="tab-pane" id="tabThree-3">
-            <div class="tab-body">
+  <div role="tabpanel" class="tab-pane" id="tabThree-3">
+      <div class="tab-body">
 <form class="form-default mt-4" data-toggle="validator" role="form">
+
 	<h3 class="heading heading-3 strong-400 mb-4">Méthode de paiement</h3>
     <div class="card">
         <div class="card-body">
@@ -31,14 +32,34 @@
 				           <- Retourner à la boutique
 				        </a>
 				    </div>
-				    
-					
+				    <div class="col-6">
+					    <%= form_tag charges_path do %>
+						<article>
+						  <% if flash[:error].present? %>
+						    <div id="error_explanation">
+						      <p><%= flash[:error] %></p>
+						    </div>
+						  <% end %>
+						  <label class="amount">
+						  
+						  <p class="c-gray-light mt-2 pl-4">Total :  <%=@product.price%> €</p>
+						  </label>
+						</article>
+
+						<script src="https://checkout.stripe.com/checkout.js"  class="stripe-button"
+						        data-key="<%= Rails.configuration.stripe[:stripe_publishable_key] %>"
+						        data-description="Acheter ce produit"
+						        data-amount="<%= @product.price*100 %>"
+						        data-locale="auto">
+						</script>
+						<% end %>
+			 		</div>		
 			        
 			       
            	 </div>  
         </div>
 	</div>   
-</form>
+
 
 <div class="card">
         <div class="card-body">

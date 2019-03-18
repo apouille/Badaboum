@@ -3,5 +3,4 @@ console.log('produit ajouté')
 $('.heart-count').html('<%=number_of_wished_products %>')
 $('#toggle_wish_<%=@product.id%>').html(' <%= j link_to  '<span style="color: Tomato;"><i class="fas fa-heart"></i></span>'.html_safe, wishlist_product_path(@wishlist_product,:product => @product), method: :delete, :class => "toggle_wish", remote: true %>')
 
-$('#toggle_wish_<%=@product.id%>').attr("data-original-title", "Retirer de ma babylist");
-
+$('#toggle_wish_<%=@product.id%>').tooltip('hide').attr('data-original-title', "Retirer de ma babylist").tooltip('fixTitle').tooltip('show');
