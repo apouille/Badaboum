@@ -1,0 +1,38 @@
+<div class="tab-pane active mt-5" id="tab_default_1">
+	<div class="row">
+		<% if @user.uploaded_products.where("state = 1").count == 0  %>
+			<h5> Pas de produits actuellement en vente </h5>
+		<% else %>
+			<% @user.uploaded_products.where("state = 1").each do |product| %>
+				<div class="col-lg-4 mb-5">
+		            <div class="card z-depth-2-top">
+		                <div class="card-image">
+		                    <div class="view view-first">
+			                    <% if product.pictures.attached? %>
+			                      <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
+			                    <% else %>
+			                       <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
+			                    <% end %>
+			                </div>
+		            	</div>
+			            <div class="card-body">
+			                <h3 class="heading heading-5 strong-300 mb-0">
+			                    <%= link_to product.title, admin_product_path(product.id) %>
+			                </h3>
+			            </div>
+			            <div class="card-footer">
+			                <div class="row">
+			                    <div class="col">
+			                        <div class="price-wrapper">
+			                            <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
+			                        </div>
+			                    </div>
+		                	</div>
+		            	</div>
+		        	</div>
+				</div>
+			<%end%>
+		<% end %>
+	</div>
+</div>
+	

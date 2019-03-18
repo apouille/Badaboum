@@ -14,6 +14,13 @@ Rails.application.routes.draw do
   resources :charges
   resource :profile, only: [:show, :edit, :update]
   resource :children
+
+  namespace :admin do
+    root 'admin#index'
+    resources :users, only: [:index, :show, :destroy]
+    resources :products, only: [:index, :show, :destroy]
+    resources :orders, only: [:index, :show, :destroy]
+  end
   
 
   get "/fetch_products" => 'products#from_category', as: 'fetch_products'
