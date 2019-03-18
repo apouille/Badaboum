@@ -14,18 +14,17 @@
                     </div>
 
                     <p class="c-gray-light mt-2 pl-4">
-                    Nos transactions sont sécurisés par notre partenaire de paiement Stripe. 
+                    Nos transactions sont sécurisés par notre partenaire de paiement Stripe.
                     </p>
                 </div>
 		<!-- Bloc carte bleu -->
                 <div class="col-lg-4 text-lg-right">
                   <%= image_tag "mastercard.png" ,size:'40px', class:"mr-2" %>
                   <%= image_tag "visa.png" ,size:'40px', class:"mr-2" %>
-                  <%= image_tag "skrill.png" ,size:'40px',class:"" %>
                 </div>
             </div>
 
-			<div class="row">	
+			<div class="row">
 				    <div class="col-6">
 				        <a href="/" class="link link--style-3">
 				            <i class="fas fa-long-arrow-left"></i>
@@ -41,7 +40,7 @@
 						    </div>
 						  <% end %>
 						  <label class="amount">
-						  
+
 						  <p class="c-gray-light mt-2 pl-4">Total :  <%=@product.price%> €</p>
 						  </label>
 						</article>
@@ -53,12 +52,12 @@
 						        data-locale="auto">
 						</script>
 						<% end %>
-			 		</div>		
-			        
-			       
-           	 </div>  
+			 		</div>
+
+
+           	 </div>
         </div>
-	</div>   
+	</div>
 
 
 <div class="card">
@@ -73,7 +72,7 @@
         </div>
       <% end %>
       <label class="amount">
-      
+
       <p class="c-gray-light mt-2 pl-4">Total :  <%=@product.price%> €</p>
       </label>
     </article>
