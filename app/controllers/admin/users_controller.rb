@@ -7,6 +7,7 @@ class Admin::UsersController < AdminController
 	def show
 		@user = User.find(params[:id])
 		@profile = @user.profile
+		@wishlist_products = WishlistProduct.where(user: @user).all
 	end
 
 	def destroy
