@@ -2552,10 +2552,10 @@ a:hover {
 }
 
 .btn-back-to-top:before {
-  font-family: "Ionicons";
-  content: "\f3d8";
+  font-family: "Font Awesome 5 Free";
+  content: "^";
   display: block;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #FFF;
 }
 
@@ -2565,6 +2565,7 @@ a:hover {
   -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
   -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
   transition: opacity 0.3s 0s, visibility 0s 0s;
+  text-decoration: none;
 }
 
 .btn-back-to-top.back-to-top-is-visible {

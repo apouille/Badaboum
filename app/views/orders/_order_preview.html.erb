@@ -1,59 +1,65 @@
-   
-<h3 class="heading heading-3 strong-400 mb-4">Mon panier</h3>
-<form class="form-default" data-toggle="validator" role="form">
-    <div class="card">
-        <div class="card-body">
-            <table class="table-cart">
-                <thead>
-                    <tr>
-                        <th class="product-image"></th>
-                        <th class="product-name">Produit</th>
-                        <th class="product-size d-none d-lg-table-cell">Taille</th>
-                   	 	<th class="product-size d-none d-lg-table-cell">Couleur</th>
-                     	<th class="product-size d-none d-lg-table-cell">Marque</th>
-                        <th class="product-total">Prix</th>
-                        <th class="product-remove"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="cart-item">
-                        <td class="product-image">
-                            <a href="#">
-                                <% if @product.pictures.attached? %>
-								<%= image_tag @product.pictures.first, alt:product.title %>
-								<% else %>
-								<%= image_tag("shoes.jpg", alt:@product.title) %>
-								<% end %>
-                            </a>
-                        </td>
 
-                        <td class="product-name">
-                           <%= @product.title%>
-                        </td>
+<div role="tabpanel" class="tab-pane active" id="tabThree-1">
+    <div class="tab-body">   
 
-                        <td class="product-size product-size d-none d-lg-table-cell">
-                            <span class="strong-600"><%=@product.size_id%></span>
-                        </td>
-                        <td class="product-size product-size d-none d-lg-table-cell">
-                            <span class="strong-600"><%=@product.color%></span>
-                        </td>
-                        <td class="product-size product-size d-none d-lg-table-cell">
-                            <span class="strong-600"><%=@product.brand%></span>
-                        </td>
+        <h3 class="heading heading-3 strong-400 mb-4">Mon panier</h3>
 
-                        <td class="product-total">
-                            <span>  <%=@product.price%> €</span>
-                        </td>
-                        <td class="product-remove">
-                            <a href="#" class="text-right pl-4">
-                                <i class="ion-trash-a"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <form class="form-default" data-toggle="validator" role="form">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table-cart">
+                        <thead>
+                            <tr>
+                                <th class="product-image"></th>
+                                <th class="product-name">Produit</th>
+                                <th class="product-size d-none d-lg-table-cell">Taille</th>
+                           	 	<th class="product-size d-none d-lg-table-cell">Couleur</th>
+                             	<th class="product-size d-none d-lg-table-cell">Marque</th>
+                                <th class="product-total">Prix</th>
+                                <th class="product-remove"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart-item">
+                                <td class="product-image">
+                                    <a href="#">
+                                        <% if @product.pictures.attached? %>
+        								<%= image_tag @product.pictures.first, alt:product.title %>
+        								<% else %>
+        								<%= image_tag("shoes.jpg", alt:@product.title) %>
+        								<% end %>
+                                    </a>
+                                </td>
+
+                                <td class="product-name">
+                                   <%= @product.title%>
+                                </td>
+
+                                <td class="product-size product-size d-none d-lg-table-cell">
+                                    <span class="strong-600"><%=@product.size_id%></span>
+                                </td>
+                                <td class="product-size product-size d-none d-lg-table-cell">
+                                    <span class="strong-600"><%=@product.color%></span>
+                                </td>
+                                <td class="product-size product-size d-none d-lg-table-cell">
+                                    <span class="strong-600"><%=@product.brand%></span>
+                                </td>
+
+                                <td class="product-total">
+                                    <span>  <%=@product.price%> €</span>
+                                </td>
+                                <td class="product-remove">
+                                    <a href="#" class="text-right pl-4">
+                                        <i class="ion-trash-a"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+
     </div>
-
-</form>
-                          
+</div>
