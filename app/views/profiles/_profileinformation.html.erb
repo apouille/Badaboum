@@ -5,8 +5,8 @@
 	<h6 class="card-title mt-2"> <%= @profile.zip_code %> <%= @profile.city %></h6>
 	<i class="fas fa-at fa-2x mt-3"></i>
 	<h6 class="card-title mt-2"><%= @profile.user.email %></h6>
-	<i class="fas fa-baby fa-3x mt-3"></i>
 	<% unless @children.nil? %>
+		<i class="fas fa-baby fa-3x mt-3"></i>
 		<% @children.each do |child| %>
 			<h6 class="card-title mt-2"><%= child.nickname %></h6>
 		<% end %>
