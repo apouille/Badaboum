@@ -35,7 +35,7 @@ RSpec.describe Product, type: :model do
 
     describe "#price" do
       it { expect(@product).to validate_presence_of(:price).with_message("Merci de remplir tous les champs obligatoires!") }
-      it { expect(@product).to validate_numericality_of(:price).only_integer.is_greater_than(1).with_message("Le prix doit être supérieur à 1€") }
+      it { expect(@product).to validate_numericality_of(:price).only_integer.is_greater_than_or_equal_to(1).with_message("Le prix doit être supérieur ou égal à 1€") }
     end
   end
 
