@@ -7,4 +7,5 @@ $('#toggle_wish_<%=@product.id%>').html('<%= link_to  '<i class="far fa-heart"><
 if (document.location.pathname == '/wishlist_products')
 {
   $('#card_product_<%=@product.id%>').fadeOut()
-} 
+}
+$('#toggle_wish_<%=@product.id%>').tooltip('hide').attr('data-original-title', "Ajouter à ma babylist").tooltip('fixTitle').tooltip('show');

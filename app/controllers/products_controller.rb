@@ -6,7 +6,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @products = Product.where(nil)
     @products = @products.cat(params[:category]) if params[:category].present?
     @products = @products.page(params[:page]).per(9)
-    
+
     @categories = Category.all
   end
 
@@ -15,9 +15,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @seller_profile = @product.seller.profile
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
     @comment = Comment.new
-#    @profile = current_user.profile
 
-    
   end
 
   def new
@@ -67,7 +65,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
                        color: params[:color],
                        size_id: params[:size],
                        category_id: params[:category])
-      
+
       redirect_to root_path
       flash[:success] = "L'article #{@product.title} à bien été mis-à-jour"
     else
