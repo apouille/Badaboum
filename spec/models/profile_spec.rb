@@ -71,7 +71,15 @@ RSpec.describe Profile, type: :model do
       it { expect(profile.address).to eq("5 Parvis Alan Turing, Paris, France") }
       it { expect(profile.latitude).to be_within(0.5).of(48.8) }
       it { expect(profile.longitude).to be_within(0.5).of(2.3) }
-    end 
+    end
+
+    describe "the profil_picture_thumbnail method" do
+      it "resize the image" do
+        file = fixture_file_upload(Rails.root.join('public', 'apple-touch-icon.png'), 'image/png')
+        @profile.profil_picture.attach(file)
+        expect(@profile.profil_picture_thumbnail).to be_an_instance_of(ActiveStorage::Variant)
+      end
+    end  
   end 
 
   context "associations" do
