@@ -38,6 +38,7 @@ users.each do |u|
 end
 puts '5 users have been seeded'
 
+
 i = 1
 users.each do |u|
 	profile = Profile.find(i)
