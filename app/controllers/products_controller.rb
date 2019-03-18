@@ -15,9 +15,8 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @seller_profile = @product.seller.profile
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
     @comment = Comment.new
-    @profile = current_user.profile
-    puts '$'*50
-    puts @map_api_key = ENV['MAP_API_KEY']
+#    @profile = current_user.profile
+
     
   end
 
