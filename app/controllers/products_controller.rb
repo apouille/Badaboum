@@ -15,7 +15,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @seller_profile = @product.seller.profile
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
     @comment = Comment.new
-    # @profile = current_user.profile
+
   end
 
   def new
