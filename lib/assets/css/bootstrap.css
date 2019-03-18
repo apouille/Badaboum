@@ -26,7 +26,7 @@
   --success_hover: #6aa855;
   --info: #5d6480;
   --warning: #ffe56f;
-  --warning_hover: #f2b759;
+  --warning_hover: #ffdf51;
   --danger: #ff7c6f;
   --light: #d5d6d8;
   --dark: #343a40;
@@ -1645,12 +1645,12 @@ pre code {
 }
 
 .table-hover .table-warning:hover {
-  background-color: #f2b759;
+  background-color: #ffdf51;
 }
 
 .table-hover .table-warning:hover > td,
 .table-hover .table-warning:hover > th {
-  background-color: #f2b759;
+  background-color: #ffdf51;
 }
 
 .table-danger,
@@ -2509,8 +2509,8 @@ fieldset:disabled a.btn {
 
 .btn-warning:hover {
   color: #212529;
-  background-color: #f2b759;
-  border-color: #f2b759;
+  background-color: #ffdf51;
+  border-color: #ffdf51;
 }
 
 .btn-warning:focus, .btn-warning.focus {
