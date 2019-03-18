@@ -1,6 +1,8 @@
 class ChargesController < ApplicationController
   before_action :authenticate_user!
-	
+	after_action :confirmation_order, only: [:create]
+  after_action :confirmation_purchase, only: [:create]
+
 	def new
 	end
   
@@ -33,10 +35,13 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   	end
 
-#  def confirmation_send
-#    @items = current_user.carts.last.cart_items
-#    UserMailer.confirmation_email(current_user, @items).deliver_now
-#  end
+   def confirmation_order
+     SellerMailer.confirmation_order(@order.product.seller).deliver_now
+   end
+
+   def confirmation_purchase
+     UserMailer.confirmation_purchase(current_user).deliver_now
+   end
 #
 #  def new_order_send
 #    @cart_items = current_user.carts.last.cart_items

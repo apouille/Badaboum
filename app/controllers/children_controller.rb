@@ -5,24 +5,16 @@ class ChildrenController < ApplicationController
 	end
 
 	def create
-		
-		if params[:sex] == "Fille"
-			sex = 1
-		else params[:sex] == "Garçon"
-			sex = 2
-		end
+    @profile = current_user.profile
 
-		@profile = current_user.profile
-		@child = Child.new(nickname: params[:nickname],
-                  sex: sex,
-                  birthday: params[:birthday],
-                  profile: current_user.profile,
-                  )
+    params[:sex] == "Fille" ? sex = 1 : sex = 2
+		
+		@child = Child.new(nickname: params[:nickname], sex: sex, birthday: params[:birthday], profile: @profile)
 		if @child.save
-      		redirect_to root_path
-      		flash[:success] = "Votre enfant est bien enregistré!"
-    	else
-      		redirect_back fallback_location: root_path
-    	end
+      redirect_to root_path
+      flash[:success] = "Votre enfant est bien enregistré!"
+    else
+      redirect_back fallback_location: root_path
+    end
 	end
 end
