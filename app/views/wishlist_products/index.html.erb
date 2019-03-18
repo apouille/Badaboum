@@ -1,24 +1,23 @@
-<section class="slice sct-color-1" id="sct_products">
+<section class="sct-color-1" id="sct_products">
     <div class="container">
         <div class="row">
-        	<%= render 'wishlist_profile' %>
+        	<div class="card col-lg-3 order-lg-1 my-5">
+                <%= render 'profiles/profilecard' %>
+            </div>
 
-            <div class="col-lg-9 order-lg-2">
+            <div class="col-lg-9 order-lg-2 p-5">
 				<% if user_has_a_wishlist? %>
-    						<h2> Mes articles préférés </h2>
-    						<br><br>
+    						<h2 class="pb-5"> Mes articles préférés </h2>
     			<%else%>
 					        <h3>Vous n'avez aucun produit dans votre Babylist </h3>
 					        <h5>Pour ajouter des produits, cliquez simplement sur le petit coeur situé en bas de chaque article </h5>
 			    <%end%>
-                <div class="row-wrapper">
-                    <div class="filter-grid row cols-xs-space cols-sm-space cols-md-space">
-                    
+                <div class="row">
+
                     		<%= render partial: 'wishlist_grid', locals: { filter_products: @wishlist_products} %>
-					
-                    </div>
+
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 </section>
