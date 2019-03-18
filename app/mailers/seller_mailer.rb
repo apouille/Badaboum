@@ -13,5 +13,11 @@ class SellerMailer < ApplicationMailer
     mail(to: @seller.email, subject: 'Notification de commentaire')
   end
 
+  def confirmation_order(user, product)
+		@seller = product.seller
 
+    @url  = 'http://badaboum-demo.herokuapp.com/login'
+
+    mail(to: @seller.email, subject: 'Notification Confirmation Commande')
+  end
 end

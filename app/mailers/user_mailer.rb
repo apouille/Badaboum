@@ -7,4 +7,6 @@ class UserMailer < ApplicationMailer
 		mail(to: @user.email, subject: 'Inscription Badaboum.com') 
 	end
 
+	def confirmation_purchase(user, product)
+
 end
