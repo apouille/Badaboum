@@ -69,6 +69,11 @@ RSpec.describe Profile, type: :model do
       profile = FactoryBot.create(:profile)
       profile.update(first_name: "Bastien", last_name: "Hiel", street: "5 Parvis Alan Turing", city: "Paris", zip_code: "75013")
       it { expect(profile.address).to eq("5 Parvis Alan Turing, Paris, France") }
+    end
+
+    describe "geocoded by method" do
+      profile = FactoryBot.create(:profile)
+      profile.update(first_name: "Bastien", last_name: "Hiel", street: "5 Parvis Alan Turing", city: "Paris", zip_code: "75013")
       it { expect(profile.latitude).to be_within(0.5).of(48.8) }
       it { expect(profile.longitude).to be_within(0.5).of(2.3) }
     end
