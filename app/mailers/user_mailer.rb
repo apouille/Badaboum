@@ -7,6 +7,10 @@ class UserMailer < ApplicationMailer
 		mail(to: @user.email, subject: 'Inscription Badaboum.com') 
 	end
 
-	def confirmation_purchase(user, product)
-
+  def confirmation_purchase(user)
+  	@user = user
+    @url  = 'http://badaboum-demo.herokuapp.com/login'
+    mail(to: @user.email, subject: 'Notification Confirmation Achat')
+  end
+  
 end
