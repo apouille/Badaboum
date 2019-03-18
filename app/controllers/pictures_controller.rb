@@ -3,20 +3,15 @@ class PicturesController < ApplicationController
 		puts "*"*100
 		puts params
 		puts "*"*100
-    if (params[:pictures]) != nil
       @product = Product.find(params[:product_id])
       @product.pictures.attach(params[:pictures])
+    respond_to do |format|
+      format.html {redirect_to request.referrer}
+      format.js {render layout: false}
     end
-    redirect_to root_path
-    # respond_to do |format|
-    #   format.js {render layout: false}
-    # end
 	end
 
 	def destroy
-		puts "*"*100
-		puts params
-		puts "*"*100
 		@picture = ActiveStorage::Attachment.find(params[:product_id])
 		@product = @picture.record
   	@picture.purge
