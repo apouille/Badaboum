@@ -6058,7 +6058,7 @@ a > .block {
 .btn-styled {
   font-weight: 600;
   letter-spacing: 0;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   padding: 0.75rem 2rem;
 }
 
