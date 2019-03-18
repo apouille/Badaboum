@@ -3,3 +3,8 @@
   background-image: image-url('shoes');
   background-position: bottom center;
 }
+
+@media screen and (min-width: 992px) {
+#tab-explanations li a { min-width: 100px;}
+#tab-explanations li { margin: 0 5em 0 0; }
+}

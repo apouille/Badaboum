@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
 
   before(:each) do 
-    @product = FactoryBot.create(:product)    
+    @product = FactoryBot.create(:product)
+    @message = "Merci de remplir tous les champs obligatoires!"   
   end
 
   it "has a valid factory" do
@@ -25,17 +26,22 @@ RSpec.describe Product, type: :model do
     end 
 
     describe "#title" do
-      it { expect(@product).to validate_presence_of(:title).with_message("Merci de remplir tous les champs obligatoires!") }
+      it { expect(@product).to validate_presence_of(:title).with_message(@message) }
     end
 
     describe "#description" do
-      it { expect(@product).to validate_presence_of(:description).with_message("Merci de remplir tous les champs obligatoires!") }
+      it { expect(@product).to validate_presence_of(:description).with_message(@message) }
       it { expect(@product).to validate_length_of(:description).is_at_least(20).with_message("La description doit faire au minimum 20 caractères") }
     end
 
     describe "#price" do
-      it { expect(@product).to validate_presence_of(:price).with_message("Merci de remplir tous les champs obligatoires!") }
-      it { expect(@product).to validate_numericality_of(:price).only_integer.is_greater_than(1).with_message("Le prix doit être supérieur à 1€") }
+      it { expect(@product).to validate_presence_of(:price).with_message(@message) }
+      it { expect(@product).to validate_numericality_of(:price).only_integer.is_greater_than_or_equal_to(1).with_message("Le prix doit être supérieur ou égal à 1€") }
+    end
+
+    describe "#state" do
+      it { expect(@product).to validate_presence_of(:state).with_message(@message) }
+      it { should define_enum_for(:state).with_values(in_stock:1, sold:2) }
     end
   end
 
