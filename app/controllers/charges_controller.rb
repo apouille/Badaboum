@@ -27,7 +27,7 @@ class ChargesController < ApplicationController
       @product.update(state: 'sold')
       puts @product
       flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'
-      redirect_to root_path
+      redirect_to orders_path
 
     rescue Stripe::CardError => e
       flash[:error] = e.message

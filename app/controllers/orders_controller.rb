@@ -16,7 +16,12 @@ class OrdersController < ApplicationController
   end
 
   def update 
-	end
+  	@order=Order.find(params[:id])
+  
+  	@order.update(status: 3)
+  	redirect_to orders_path
+
+  end
 
   def show
 	@order = Order.find(params[:id])
@@ -24,6 +29,12 @@ class OrdersController < ApplicationController
 	@profile = current_user.profile
 	@seller_profile = @product.seller.profile
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
+  end
+
+  def index
+  	@orders = Order.where(user: current_user)
+  	@paid_orders = Order.where(user: current_user, status: 2)
+  	@completed_orders = Order.where(user: current_user, status: 3)
   end
 
 end

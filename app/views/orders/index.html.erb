@@ -1,0 +1,99 @@
+<div class="container mt-5">
+<br>
+<h3 class="heading heading-6 strong-600 text-uppercase mt-5"> Mes commandes en cours </h3>
+	
+	<div class="row mb-3 mt-3">
+		<div class="card col-12 ">
+			 
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>ID #</th>
+                  <th>Photo</th>
+                  <th>Produit</th>
+                  <th>Vendeur</th>
+                  <th>Validation</th>
+                  <th>Litige</th>
+                  <th>Contact</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+             <% @paid_orders.each do |paid_order|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=paid_order.id%></a></td>
+                  <td class="product-image">  <% if paid_order.product.pictures.attached? %>
+        								<%= image_tag paid_order.product?pictures.first, alt:paid_order.product.title %>
+        								<% else %>
+        								<%= image_tag("shoes.jpg", alt:paid_order.product.title,size: "50") %>
+        								<% end %></td>
+                  <td><%=paid_order.product.title%><br>
+                  	<%=paid_order.updated_at%><br>
+                  	Prix : <%=paid_order.product.price%> €<br></td>
+                  </td>
+
+                  <td><%=paid_order.product.seller.profile.first_name%> 
+                  	<%=paid_order.product.seller.profile.last_name%><br>
+                  	<%=paid_order.product.seller.profile.street%><br>
+                  	<%=paid_order.product.seller.profile.city%>
+                  	<%=paid_order.product.seller.profile.zip_code%><br>
+                  	<%=paid_order.product.seller.profile.phone_number%><br>
+                  </td>
+                  <td><%=link_to "J'ai bien reçu ma commande", order_path(paid_order), method: :put, class:'btn btn-primary'%></td>
+
+                   <td><%=link_to "Ouvrir un litige", root_path %></td>
+                      <td><%=link_to "Contacter le vendeur", root_path %></td>
+                  <td><span class="badge badge-danger m-0">En cours de livraison</span></td>
+                </tr>
+               <%end%>
+              </tbody>
+            </table>
+             
+        </div>	
+	</div>
+
+
+
+
+
+<br>
+	<h3 class="heading heading-6 strong-600 text-uppercase mb-0"> Mes commandes passées</h3>
+	
+	<div class="row mb-3 mt-3">
+		<div class="card col-12 ">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>Commande #</th>
+                  <th>Photo</th>
+                  <th>Produit</th>
+                  <th>Date d'achat</th>
+                  <th>Vendeur</th>
+                  <th>Statut</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+              	<% @completed_orders.each do |completed_order|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=completed_order.id%></a></td>
+                  <td class="product-image">  <% if completed_order.product.pictures.attached? %>
+        								<%= image_tag completed_order.product?pictures.first, alt:completed_order.product.title %>
+        								<% else %>
+        								<%= image_tag("shoes.jpg", alt:completed_order.product.title,size: "50") %>
+        								<% end %></td>
+                  <td><%=completed_order.product.title%></td>
+                  <td><%=completed_order.updated_at%></td>
+                  <td><%=completed_order.product.seller.profile.first_name%></td>
+                  <td><span class="badge badge-success m-0">Completed</span></td>
+                
+                  <td><%=completed_order.product.price%></td>
+                </tr>
+                <%end%>
+              </tbody>
+            </table>
+        </div>	
+	</div>
+
+
+</div> 
