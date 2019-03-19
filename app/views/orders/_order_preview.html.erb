@@ -33,15 +33,14 @@
                                 </td>
 
                                 <td class="product-size product-size d-none d-lg-table-cell">
-                                    <span class="strong-600"><%=@product.size_id%></span>
+                                    <span class="strong-600"><%= @product.size_id.present? ? @product.size_id : " " %></span>
                                 </td>
                                 <td class="product-size product-size d-none d-lg-table-cell">
-                                    <span class="strong-600"><%=@product.color%></span>
+                                    <span class="strong-600"><%= @product.color.present? ? @product.color : " " %></span>
                                 </td>
                                 <td class="product-size product-size d-none d-lg-table-cell">
-                                    <span class="strong-600"><%=@product.brand%></span>
+                                    <span class="strong-600"><%= @product.brand.present? ? @product.brand : " " %></span>
                                 </td>
-
                                 <td class="product-total">
                                     <span>  <%=@product.price%> €</span>
                                 </td>
