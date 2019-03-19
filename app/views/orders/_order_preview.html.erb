@@ -21,13 +21,11 @@
                         <tbody>
                             <tr class="cart-item">
                                 <td class="product-image">
-                                    <a href="#">
-                                        <% if @product.pictures.attached? %>
-        								    <%= image_tag @product.pictures.first.variant(resize:'100x100'), alt:product.title %>
-        								<% else %>
-        								    <%= image_tag("shoes.jpg", alt:@product.title) %>
-        								<% end %>
-                                    </a>
+                                    <% if @product.pictures.attached? %>
+    								    <%= link_to (image_tag @product.pictures.first.variant(resize:'100x100'), alt:product.title), product_path(@product.id) %>
+    								<% else %>
+    								    <%= link_to (image_tag "shoes.jpg", alt:@product.title), product_path(@product.id) %>
+    								<% end %>
                                 </td>
 
                                 <td class="product-name">
