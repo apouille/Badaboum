@@ -8,6 +8,7 @@ gem 'oauth2'
 gem "aws-sdk-s3", require: false
 gem 'jquery-rails'
 gem 'devise'
+gem 'devise-i18n'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
