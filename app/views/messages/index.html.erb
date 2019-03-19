@@ -1,1 +1,36 @@
-<%= render 'messages' %>
+<div class="container pt-2">
+<% if @over_ten %>
+ <%= link_to 'Show Previous', '?m=all' %>
+<% end %>
+
+<div class="card border mx-auto mt-5 mb-3">
+  <div class="card-header"><h4>Messages échangés </h4></div>
+  <div class="card-body text-primary text-right">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+          <% if @user != current_user %>
+            <div class="text-left border rounded p-2 m-1">
+              <em><small><strong>user <%= user.id %></strong> : <%= message.message_time %></small></em><br>
+              <%= message.body %>
+            </div>
+          <% else %>
+            <div class="text-muted border border-light rounded p-2 m-1">
+              <em><small><strong>user <%= user.id %></strong> : <%= message.message_time %></small></em><br>
+              <%= message.body %>
+            </div>
+          <% end %>
+        <% end %>
+    <% end %>
+
+    <%= form_for [@conversation, @message]  do |f| %>
+      <div class="form-group card-body text-primary">
+          <%= f.text_area :body, class: "form-control", placeholder: 'Ton message' %>
+          <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+          <%= f.submit "Envoyer", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Retour à la liste des messages", conversations_path, class:"btn" %>
+</div>

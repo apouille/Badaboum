@@ -1,15 +1,12 @@
-<div class="card border mx-auto">
-            <div class="card-header"><h3>Mes conversations</h3></div>
-                <div class="list-group">
-                    <% @conversations.each do |conversation| %>
-                            <% if conversation.sender_id == current_user.id ||  conversation.recipient_id == current_user.id %>
-                                <% if conversation.sender_id == current_user.id %>
-                                    <% recipient = User.find(conversation.recipient_id) %>
-                                <% else %>
-                                    <% recipient = User.find(conversation.sender_id) %>
-                                <% end %>
-                                <%= link_to "user #{recipient.id}", conversation_messages_path(conversation), class:"list-group-item list-group-item-action" %>
-                            <% end %>
-                        <% end %>
-                </div>
-            </div>
+<% @conversations.each do |conversation| %>
+    <% if conversation.sender_id == current_user.id ||  conversation.recipient_id == current_user.id %>
+        <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+        <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+        <% end %>
+
+        <%= link_to "user #{recipient.id}", conversation_messages_path(conversation), class:"list-group-item list-group-item-action", remote: true %>
+    <% end %>
+<% end %>
+
