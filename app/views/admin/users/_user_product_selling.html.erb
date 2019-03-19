@@ -23,8 +23,9 @@
 			            <div class="card-footer">
 			                <div class="row">
 			                    <div class="col">
-			                        <div class="price-wrapper">
-			                            <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
+			                        <div class="d-flex price-wrapper">
+			                            <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> € </span> 
+			                            <span class="price heading-6 c-gray-light strong-400 ml-auto"><span class="price-value"><%= product.wishlist_products.count %></span> <i class="fas fa-heart text-danger"></i></span>
 			                        </div>
 			                    </div>
 		                	</div>
