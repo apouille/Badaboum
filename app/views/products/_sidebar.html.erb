@@ -3,16 +3,19 @@
     <%= form_tag url_for(action: 'index'), method: "get" do %>
 		  <% if false %> 
 			<%= render 'sidebar_city' %>
+			<%= render 'sidebar_color' %>
 			
 			  
 			   
-			<%= render 'sidebar_material' %>
+			
 			<% end %>
+
 
 			<%= render 'sidebar_cat' %>
 			<%= render 'sidebar_price' %>
 			<%= render 'sidebar_size' %>
-			<%= render 'sidebar_color' %>
+			<%= render 'sidebar_brand' %>
+			
 
 
 	 		<%= submit_tag "Filtrer", class: "btn btn-styled btn-block btn-base-4" %>

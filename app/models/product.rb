@@ -19,4 +19,13 @@ class Product < ApplicationRecord
   scope :cat, -> (category) { where category_id: category }
   scope :price, -> (price) { reorder(price: price) }
   scope :siz, -> (size) { where size_id: size }
+  scope :brand, -> (brand) {where brand: brand }
+
+  def self.brand_array(current_category)
+    brand_array = []
+    self.all.cat(current_category).each do |product|
+      brand_array << product.brand
+    end
+    return brand_array.uniq
   end
+end
