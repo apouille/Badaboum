@@ -23,10 +23,9 @@
                             <h3 class="heading heading-5 strong-500 mb-0">
                                 <%= link_to product.title, product_path(product.id) %>
                             </h3>
-                            <div class="price-wrapper">
+                            <div class="price-wrapper p-3 d-flex">
                                 <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
-                                    <p class=""> 11 Vues <br>
-                                    10 Baby-list</p>
+                                <span class="price heading-6 c-gray-light strong-400 ml-auto"><span class="price-value"><%= product.wishlist_products.count %></span> <i class="fas fa-heart text-danger"></i></span>
                           </div>
                         </div>
 
