@@ -1,0 +1,9 @@
+
+	    
+	    <!-- Filter by material -->
+	    <div class="sidebar-object b-xs-bottom pb-4 mb-4">
+	        <h2 class="sidebar-object-title">
+	            <span>Filtrer</span> par marque
+	        </h2>
+	        <%= select_tag(:brand, options_for_select(@brand_array), prompt: "Choisir la marque" , :class => 'form-control') %>
+	    </div>
