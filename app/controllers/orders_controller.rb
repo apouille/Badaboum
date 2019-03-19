@@ -24,15 +24,26 @@ class OrdersController < ApplicationController
   	@status = params[:status]
   	@notation = params[:notation]
 
+  	#Variable pour le paiment stripe
+  	@product =@order.product
+  	@amount = @order.product.price*100
+  	@application_fee_amount = (@amount*0.1).to_i
+  	@seller_uid = @order.product.seller.stripe_uid
+    customer = @order.stripe_customer_id
+    
+
   	if params[:status] == 'completed'
-  		#Dans le cas ou la commande est validée, une notation vendeur est exigée
+  		#Dans le cas ou la commande est validée, une notation vendeur est exigée. 
+  		charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
+	})
   		@order.update(notation: @notation, status: @status)
-		flash[:success] = "Merci. Votre commande est validée"
+
+		flash[:success] = "Merci. Votre commande est validée et le montant vient d'être débité de votre compte"
 		redirect_to orders_path
 	else
 		#Dans le cas contraire, pas de notation ajoutée à l'order
 		@order.update(status: @status)
-		flash[:success] = "Merci. Votre demande de remboursement a été prise en compte"
+		flash[:success] = "Merci. Votre commande a été annulé. "
 		redirect_to orders_path
 	end
   end
