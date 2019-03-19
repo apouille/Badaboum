@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-  	@order = Order.create(user_id: current_user.id, product_id: params[:product], status:1)
+  	@order = Order.create(user_id: current_user.id, product_id: params[:product], status:1, notation:2)
 
   	puts @order
   	redirect_to order_path(@order)
@@ -17,8 +17,8 @@ class OrdersController < ApplicationController
 
   def update 
   	@order=Order.find(params[:id])
-  
-  	@order.update(status: 3)
+
+  	@order.update(notation:2, status: 3)
   	redirect_to orders_path
 
   end
@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
   	@orders = Order.where(user: current_user)
   	@paid_orders = Order.where(user: current_user, status: 2)
   	@completed_orders = Order.where(user: current_user, status: 3)
+  	@disputed_orders = Order.where(user: current_user, status: 4)
   end
 
 end

@@ -1,5 +1,40 @@
 <div class="container mt-5">
 <br>
+
+
+
+
+<div class="row cols-xs-space cols-sm-space cols-md-space">
+    <div class="col-12 col-lg-4 card">
+        
+                    <p><span style="font-size: 48px;" ><i class="fas fa-check-square"></i></span><br>
+                       Votre achat est confirmé.  Contactez le vendeur pour convenir d'une date et d'un lieu de livraison. L'argent est conservé sur notre plateforme pendant maximum 30 jours
+                    </p>
+         
+    </div>
+    <div class="col-12 col-lg-4 card">
+        
+                    <p><span style="font-size: 48px;" ><i class="fas fa-check-square"></i></span><br>
+                      Vous avez déjà récupéré votre bien ? Pensez à noter le vendeur et à approuver la transaction afin que nous puissions payer le vendeur. 
+                    </p>
+         
+    </div>
+    <div class="col-12 col-lg-4 card">
+        
+                    <p><span style="font-size: 48px;" ><i class="fas fa-check-square"></i></span><br>
+                        Vous avez changé d'avis ou n'avez pas pu récupérer votre bien ? Demandez vitre remboursement. 
+                    </p>
+         
+    </div>
+</div>
+
+
+
+
+
+
+
+
 <h3 class="heading heading-6 strong-600 text-uppercase mt-5"> Mes commandes en cours </h3>
 	
 	<div class="row mb-3 mt-3">
@@ -12,8 +47,8 @@
                   <th>Photo</th>
                   <th>Produit</th>
                   <th>Vendeur</th>
-                  <th>Validation</th>
-                  <th>Litige</th>
+                  <th>Noter le vendeur</th>
+                  <th>Statut</th>
                   <th>Contact</th>
                   <th>Statut</th>
                 </tr>
@@ -39,11 +74,18 @@
                   	<%=paid_order.product.seller.profile.zip_code%><br>
                   	<%=paid_order.product.seller.profile.phone_number%><br>
                   </td>
-                  <td><%=link_to "J'ai bien reçu ma commande", order_path(paid_order), method: :put, class:'btn btn-primary'%></td>
+                  <td>
+                  	<i class="fas fa-star"></i>
+                  	<i class="fas fa-star"></i>
+              		<i class="fas fa-star"></i>
+          			<i class="fas fa-star"></i>
+  				    <i class="fas fa-star-half-alt"></i>
+ 					 </td>
 
-                   <td><%=link_to "Ouvrir un litige", root_path %></td>
+                   <td><%=link_to "J'ai bien reçu ma commande", order_path(paid_order), method: :put, class:'btn btn-primary'%><br> ou <br>
+                   	<%=link_to "Je veux être remboursé", root_path , class:'btn btn-danger'%><br>
                       <td><%=link_to "Contacter le vendeur", root_path %></td>
-                  <td><span class="badge badge-danger m-0">En cours de livraison</span></td>
+                  <td><span class="badge badge-danger m-0">En cours</span></td>
                 </tr>
                <%end%>
               </tbody>
