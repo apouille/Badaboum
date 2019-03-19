@@ -98,7 +98,8 @@ puts '10 children have been seeded'
 		seller: User.all.sample, 
 		category: Category.all.sample,
 		size: Size.all.sample,	
-		state: 1
+		state: 1,
+		condition: rand(1..5)
 	)
 end
 puts '200 products have been seeded'
