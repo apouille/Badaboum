@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   
   before_action :authenticate_user! 
 
-  before_action :notation, only: [:update]
+
 
 
   def new
@@ -19,11 +19,22 @@ class OrdersController < ApplicationController
   end
 
   def update 
+
   	@order=Order.find(params[:id])
   	@status = params[:status]
-  	@order.update(notation:2, status: @status)
-  	redirect_to orders_path
+  	@notation = params[:notation]
 
+  	if params[:status] == 'completed'
+  		#Dans le cas ou la commande est validée, une notation vendeur est exigée
+  		@order.update(notation: @notation, status: @status)
+		flash[:success] = "Merci. Votre commande est validée"
+		redirect_to orders_path
+	else
+		#Dans le cas contraire, pas de notation ajoutée à l'order
+		@order.update(status: @status)
+		flash[:success] = "Merci. Votre demande de remboursement a été prise en compte"
+		redirect_to orders_path
+	end
   end
 
   def show
@@ -52,4 +63,6 @@ class OrdersController < ApplicationController
 		@order.update(status: 2)
 		end 
 	end
+
+
 end
