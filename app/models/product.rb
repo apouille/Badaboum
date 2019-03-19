@@ -14,5 +14,6 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 1,  message: "Le prix doit être supérieur ou égal à 1€" };
 
   scope :cat, -> (category) { where category_id: category }
-
+  scope :price, -> (price) { reorder(price: price) }
+  scope :siz, -> (size) { where size_id: size }
   end
