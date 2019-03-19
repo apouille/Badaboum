@@ -3,15 +3,20 @@
     <div class="container">
     	<br><br>
         <div class="row">
+
         	<%= render 'sidebar' %>
+
             <div class="col-lg-9 order-lg-2">
                 <div class="row-wrapper">
                     <div id="products_grid" class="filter-grid row cols-xs-space cols-sm-space cols-md-space">
 
                     	<%= render partial: 'product_grid', locals: { filter_products: @products} %>
+
                     </div>
                 </div>
+
       	 		 <%= render 'pagination' %>
+
             </div>
 		<!-- Ancien emplacement sidebar filter -->
         </div>
