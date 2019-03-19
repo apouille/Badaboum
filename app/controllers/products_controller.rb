@@ -38,18 +38,22 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   def create
     @categories = Category.all
     @sizes = Size.all
+
+    @category_id = params[:category]
+    @size_id = params[:size]
+
     @product = Product.new(
       title: params[:title],
       description: params[:description],
       price: params[:price],
       brand: params[:brand],
       color: params[:color],
-      size_id: params[:size],
+      size_id: @size_id,
       seller_id: current_user.id,
-      category_id: params[:category],
+      category_id: @category_id,
       state: 1
     )
-    
+
     @product.pictures.attach(params[:pictures])
 
     if @product.save
@@ -70,14 +74,16 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
+    @category_id = params[:category]
+    @size_id = params[:size]
 
     if @product.update(title: params[:title],
                        description: params[:description],
                        price: params[:price],
                        brand: params[:brand],
                        color: params[:color],
-                       size_id: params[:size],
-                       category_id: params[:category])
+                       size_id: @size_id,
+                       category_id: @category_id)
 
       redirect_to root_path
       flash[:success] = "L'article #{@product.title} à bien été mis-à-jour"

@@ -1,18 +1,23 @@
+<% if user_signed_in? %>
+    <% if @comment.errors.any? %>
+        <div class="alert alert-danger mt-3" role="alert">
+            <p>Comment creation process failed due to:</p>
+            <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
 
-<% if @comment.errors.any? %>
-  <div class="alert alert-danger mt-3" role="alert">
-    <p>Comment creation process failed due to:</p>
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+    <%= form_tag(product_comments_path(params[:id]), method: :create) do%>
+        <%= text_area_tag 'content', '', class: 'form-control mt-3', placeholder: 'Commentaire'%>
+        <div class="text-right">
+            <%= submit_tag "Soumettre mon commentaire", class: "btn btn-styled btn-base-1 btn-circle mt-4 btn-warning" %>
+        </div>
+    <%end%>
+<% else %>
+    <p>Pour pouvoir envoyer un message au vendeur il faut se connecter ou s'inscrire :</p>
+    <%= link_to '<i class="fas fa-sign-in-alt"></i>Connexion'.html_safe, new_user_session_path, class:"btn btn-styled btn-base-1 btn-circle mt-4" %>
+    <%= link_to '<i class="fas fa-user-plus"></i>Inscription'.html_safe, new_user_registration_path, class:"btn btn-styled btn-base-1 btn-circle mt-4" %>
 <% end %>
-
-<%= form_tag(product_comments_path(params[:id]), method: :create) do%>
-  <%= text_area_tag 'content', '', class: 'form-control mt-3', placeholder: 'Commentaire'%>
-  	<div class="text-right">
-  <%= submit_tag "Soumettre mon commentaire", class: "btn btn-styled btn-base-1 btn-circle mt-4" %>
-	</div>
-<%end%>

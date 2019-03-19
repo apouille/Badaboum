@@ -1,0 +1,36 @@
+<div class="container mt-5 mb-5">
+  <div class="row">
+
+<!-- User Profile-->    
+
+    <div class="card col-lg-3 order-lg-1 mt-5 mb-3">
+    <%= render 'admin/users/user_profile_card' %>
+    </div>
+
+<!-- User Product-->    
+
+	<div class="col-lg-9 order-lg-2 p-5">
+		<div class="container-fluid">
+        <div class="tabs tabs--style-2">
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a href="#tab_default_1" data-toggle="tab" class="nav-link active text-uppercase strong-1000">Articles en vente</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tab_default_2" data-toggle="tab" class="nav-link text-uppercase strong-1000">Commandes passées</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tab_default_3" data-toggle="tab" class="nav-link text-uppercase strong-1000">Babylist</a>
+                </li>
+            </ul>
+            <div class="tab-content pt-0">
+                <%= render 'admin/users/user_product_selling' %>
+                <%= render 'admin/users/user_product_order' %>
+                <%= render 'admin/users/user_product_babylist' %>
+            </div>
+        </div>
+    	</div>
+    </div>
+  </div>
+  <%= link_to "Retour", admin_users_path %>
+</div>

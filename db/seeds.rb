@@ -33,7 +33,8 @@ users.each do |u|
 	user = User.create!(
 		email: u[0],
 		password: "test1234",
-		stripe_uid: u[3]
+		stripe_uid: u[3],
+		is_admin: true
 	)
 end
 puts '5 users have been seeded'
