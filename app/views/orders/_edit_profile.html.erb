@@ -1,8 +1,7 @@
 
 <!-- Customer info -->
-
 <div role="tabpanel" class="tab-pane" id="tabThree-2">
-    <div class="tab-body text-center">                           
+    <div class="tab-body">
 		<h3 class="heading heading-3 strong-400 mb-4">Mes coordonnées pour le vendeur</h3>
 			<div class="card">
     			<div class="card-body">
@@ -24,12 +23,11 @@
 					        <h6 class="text-secondary">Code Postal *</h6>
 					        <%= text_field_tag 'zip_code', @profile.zip_code, class: "form-control mb-3"%>
 
-					    
 					        <small class="text-primary">* Champs obligatoires</small></br>
 					        <%= submit_tag "Mettre à jour mon profil", class: "btn btn-primary mt-3 mb-3" %>
 					    </div>
 					<% end %>
-			
+
 					<% if @profile.errors.any? %>
 					    <div class="alert alert-danger" role="alert">
 					        <p>Nous n'avons pas réussi à enregistrer votre profil pour la (ou les) raison(s) suivante(s) :</p>

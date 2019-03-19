@@ -1,6 +1,5 @@
-
 <div role="tabpanel" class="tab-pane active" id="tabThree-1">
-    <div class="tab-body">   
+    <div class="tab-body">
 
         <h3 class="heading heading-3 strong-400 mb-4">Mon panier</h3>
 
@@ -22,13 +21,11 @@
                         <tbody>
                             <tr class="cart-item">
                                 <td class="product-image">
-                                    <a href="#">
-                                        <% if @product.pictures.attached? %>
-        								<%= image_tag @product.pictures.first, alt:product.title %>
-        								<% else %>
-        								<%= image_tag("shoes.jpg", alt:@product.title) %>
-        								<% end %>
-                                    </a>
+                                    <% if @product.pictures.attached? %>
+    								    <%= link_to (image_tag @product.pictures.first.variant(resize:'100x100'), alt:product.title), product_path(@product.id) %>
+    								<% else %>
+    								    <%= link_to (image_tag "shoes.jpg", alt:@product.title), product_path(@product.id) %>
+    								<% end %>
                                 </td>
 
                                 <td class="product-name">
@@ -36,30 +33,22 @@
                                 </td>
 
                                 <td class="product-size product-size d-none d-lg-table-cell">
-                                    <span class="strong-600"><%=@product.size_id%></span>
+                                    <span class="strong-600"><%= @product.size_id.present? ? @product.size_id : " " %></span>
                                 </td>
                                 <td class="product-size product-size d-none d-lg-table-cell">
-                                    <span class="strong-600"><%=@product.color%></span>
+                                    <span class="strong-600"><%= @product.color.present? ? @product.color : " " %></span>
                                 </td>
                                 <td class="product-size product-size d-none d-lg-table-cell">
-                                    <span class="strong-600"><%=@product.brand%></span>
+                                    <span class="strong-600"><%= @product.brand.present? ? @product.brand : " " %></span>
                                 </td>
-
                                 <td class="product-total">
                                     <span>  <%=@product.price%> €</span>
-                                </td>
-                                <td class="product-remove">
-                                    <a href="#" class="text-right pl-4">
-                                        <i class="ion-trash-a"></i>
-                                    </a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </form>
-
     </div>
 </div>
