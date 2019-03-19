@@ -2,6 +2,9 @@ class OrdersController < ApplicationController
   
   before_action :authenticate_user! 
 
+  before_action :notation, only: [:update]
+
+
   def new
   end
 
@@ -17,8 +20,8 @@ class OrdersController < ApplicationController
 
   def update 
   	@order=Order.find(params[:id])
-
-  	@order.update(notation:2, status: 3)
+  	@status = params[:status]
+  	@order.update(notation:2, status: @status)
   	redirect_to orders_path
 
   end
@@ -35,7 +38,18 @@ class OrdersController < ApplicationController
   	@orders = Order.where(user: current_user)
   	@paid_orders = Order.where(user: current_user, status: 2)
   	@completed_orders = Order.where(user: current_user, status: 3)
-  	@disputed_orders = Order.where(user: current_user, status: 4)
+  	@disputed_orders = Order.where(user: current_user, status: 4).or(Order.where(user: current_user, status: 5))
+
+  	@refunded_orders = Order.where(user: current_user, status: 5)
   end
 
+
+	private
+	def notation
+		@order=Order.find(params[:id])
+		unless @order.notation !=nil
+		flash[:error] = "Vous devez noter le vendeur avant de clôturer la transaction"
+		@order.update(status: 2)
+		end 
+	end
 end
