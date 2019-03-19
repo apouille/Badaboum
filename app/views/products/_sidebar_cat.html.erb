@@ -1,48 +1,7 @@
 <!-- Product categories menu -->
 	    <div class="sidebar-object b-xs-bottom pb-4 mb-4">
 	        <h2 class="sidebar-object-title">
-	            <span>Categories</span>
+	            <span>Filtrer</span> par catégorie
 	        </h2>
-
-	        <div class="filter-checkbox">
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryWomen">
-	                <label for="chkFilterCategoryWomen">Soins Bébés</label>
-	            </div>
-
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryMen">
-	                <label for="chkFilterCategoryMen">Chaises hautes & sièges auto</label>
-	            </div>
-
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryKids">
-	                <label for="chkFilterCategoryKids">Poussettes</label>
-	            </div>
-	            
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryKids">
-	                <label for="chkFilterCategoryKids">Jeux & Jouets</label>
-	            </div>
-	            
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryKids">
-	                <label for="chkFilterCategoryKids">Livres & Scolarité</label>
-	            </div>
-	            
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryKids">
-	                <label for="chkFilterCategoryKids">Sécurité</label>
-	            </div>
-	            
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryKids">
-	                <label for="chkFilterCategoryKids">Repas</label>
-	            </div>
-
-	            <div class="checkbox">
-	                <input type="checkbox" id="chkFilterCategoryKids">
-	                <label for="chkFilterCategoryKids">Habillement</label>
-	            </div>
-	        </div>
+	        <%= select_tag(:category, options_for_select(@nested_array_of_cat, selected: @current_category), :class => 'form-control') %>     
 	    </div>

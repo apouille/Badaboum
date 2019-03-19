@@ -1,5 +1,5 @@
-<div class="container mt-5">
-	<h3> <i class="far fa-id-card"></i> Index des utilisateurs </h3>
+<div class="container mt-5 mb-5">
+	<h3><i class="far fa-id-card mt-5 "></i> - Index des utilisateurs </h3>
 	<br><br>
 <table class="table">
   <thead>
@@ -10,7 +10,6 @@
       <th scope="col">Nom </th>
       <th scope="col">Prénom </th>
       <th scope="col">Email </th>
-      <th class="d-flex justify-content-center", scope="col">Détail</th>
     </tr>
   </thead>
   <tbody>
@@ -18,9 +17,9 @@
     <tr>
       <td class="profile-picture user_icon", style="width:80px">
         <% if user.profile.profil_picture.attached?%>
-            <%= image_tag @profile.profil_picture_thumbnail, alt: 'profil_picture' %>
+            <%= link_to (image_tag user.profile.profil_picture_thumbnail, alt: 'profil_picture'), admin_user_path(user.id), class:"mt-3" %>
         <% else %>
-            <%= image_tag "profile-default.png" %>
+            <%= link_to (image_tag "profile-default.png"), admin_user_path(user.id), class:"mt-3" %>
         <% end %>
       </td>
       <td ></td>
@@ -28,9 +27,9 @@
       <td><%= user.profile.present? ? user.profile.last_name : "N#A" %> </td>
       <td><%= user.profile.present? ? user.profile.first_name : "N#A" %> </td>
       <td><%= user.email %> </td>
-      <td class="d-flex justify-content-center"><%=link_to '<i class="fas fa-user-circle fa-3x" style="color:gray"></i>'.html_safe, admin_user_path(user.id), class:"mt-3" %></td>
     </tr>
 <%end%>
   </tbody>
 </table>
+<%= link_to "Retour", admin_root_path %>
 </div>

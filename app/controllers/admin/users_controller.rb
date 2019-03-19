@@ -10,12 +10,4 @@ class Admin::UsersController < AdminController
 		@wishlist_products = WishlistProduct.where(user: @user).all
 	end
 
-	def destroy
-		@user = User.find(params[:id])
-		if @user.destroy
-			redirect_to request.referer
-			flash[:notice] = "Vous avez supprimé un article avec succès"
-		end
-	end
-
 end

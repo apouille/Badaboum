@@ -33,7 +33,8 @@ users.each do |u|
 	user = User.create!(
 		email: u[0],
 		password: "test1234",
-		stripe_uid: u[3]
+		stripe_uid: u[3],
+		is_admin: true
 	)
 end
 puts '5 users have been seeded'
@@ -87,7 +88,7 @@ end
 puts '10 children have been seeded'
 
 
-20.times do
+200.times do
 	product = Product.create!(
 		title: Faker::Vehicle.manufacture,
 		price: rand(19..99),
@@ -100,6 +101,6 @@ puts '10 children have been seeded'
 		state: 1
 	)
 end
-puts '20 products have been seeded'
+puts '200 products have been seeded'
 
 

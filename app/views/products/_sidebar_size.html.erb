@@ -1,25 +1,8 @@
  <!-- Filter by size -->
 	    <div class="sidebar-object b-xs-bottom pb-4 mb-4">
 	        <h2 class="sidebar-object-title">
-	            <span>Filter</span> by size
+	            <span>Filtrer</span> par taille
 	        </h2>
 
-	        <ul class="list-inline checkbox-alphanumeric">
-	            <li>
-	                <input type="radio" id="size-1" name="size">
-	                <label for="size-1">s</label>
-	            </li>
-	            <li>
-	                <input type="radio" id="size-2" name="size">
-	                <label for="size-2">m</label>
-	            </li>
-	            <li>
-	                <input type="radio" id="size-3" name="size" checked="">
-	                <label for="size-3">l</label>
-	            </li>
-	            <li>
-	                <input type="radio" id="size-4" name="size">
-	                <label for="size-4">xl</label>
-	            </li>
-	        </ul>
+	        <%= collection_select(:size, :size_id, Size.all, :id, :title, {prompt: "Choisir la taille"}, {class: "form-control"}) %>
 	    </div>
