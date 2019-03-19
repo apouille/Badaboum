@@ -3,11 +3,22 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @products = Product.where(nil)
-    @products = @products.cat(params[:category]) if params[:category].present?
-    @products = @products.page(params[:page]).per(9)
+
+    @nested_array_of_cat = Category.nested_array_of_cat
 
     @categories = Category.all
+    @current_category = params[:category]
+    puts "*" * 30
+    puts params 
+    puts "*" * 30
+
+
+    @products = Product.where(nil)
+    @products = @products.cat(params[:category]) if params[:category].present?
+    @products = @products.price(params[:price]) if params[:price].present?
+
+    @products = @products.siz(size_params[:size_id]) if params[:size].present? && !size_params[:size_id].empty?
+    @products = @products.page(params[:page]).per(9)
   end
 
   def show
@@ -27,16 +38,18 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   def create
     @categories = Category.all
     @sizes = Size.all
-    @product = Product.new(title: params[:title],
-                       description: params[:description],
-                       price: params[:price],
-                       brand: params[:brand],
-                       color: params[:color],
-                       size_id: params[:size],
-                       seller_id: current_user.id,
-                       category_id: params[:category],
-                       status: 1
-                       )
+    @product = Product.new(
+      title: params[:title],
+      description: params[:description],
+      price: params[:price],
+      brand: params[:brand],
+      color: params[:color],
+      size_id: params[:size],
+      seller_id: current_user.id,
+      category_id: params[:category],
+      state: 1
+    )
+    
     @product.pictures.attach(params[:pictures])
 
     if @product.save
@@ -87,6 +100,12 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     respond_to do |format|
       format.js
     end
+  end
+
+  private
+
+  def size_params
+      params.require(:size).permit(:size_id) if params[:size].present?
   end
 
 end
