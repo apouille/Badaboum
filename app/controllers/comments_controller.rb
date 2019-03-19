@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
-
-after_action :notification_comment, only: [:create]
+  
+  before_action :authenticate_user! 
+  after_action :notification_comment, only: [:create]
 
 	def new
 		@comment = Comment.new

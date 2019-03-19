@@ -1,0 +1,27 @@
+    <section class="container pt-3 pb-4 mb-5" data-offset-top="110" id="services">
+      <h2 class="h3 block-title text-center mb-3">Hello administrateur<small>Interface admin</small></h2>
+      <div class="row">
+        <div class="col-lg-4 col-sm-6">
+          <div class="icon-box text-center mx-auto">
+            <div class="icon-box-icon"><i class="far fa-images"></i></div>
+            <h3 class="icon-box-title">Produits</h3>
+              <%= link_to "Tous les produits", admin_products_path, class:"btn btn-secondary btn-sm mb-2" %>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="icon-box text-center mx-auto">
+            <div class="icon-box-icon"><i class="fas fa-users"></i></div>
+            <h3 class="icon-box-title">Utilisateurs</h3>
+              <%= link_to "Tous les utilisateurs", admin_users_path, class:"btn btn-secondary btn-sm mb-2" %>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="icon-box text-center mx-auto">
+            <div class="icon-box-icon"><i class="fas fa-shopping-basket"></i></div>
+            <h3 class="icon-box-title">Commandes et paniers</h3>
+              <%= link_to "Toutes les commandes", admin_orders_path, class:"btn btn-secondary btn-sm mb-2" %>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-5">
+    </section>
