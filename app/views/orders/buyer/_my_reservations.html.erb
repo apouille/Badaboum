@@ -20,7 +20,7 @@
                 <tr>
                   <td><a class="navi-link" data-toggle="modal"><%=paid_order.id%></a></td>
                   <td class="product-image">  <% if paid_order.product.pictures.attached? %>
-        								<%= image_tag paid_order.product?pictures.first, alt:paid_order.product.title %>
+                        <%= image_tag paid_order.product.pictures.first.variant(resize:'100x100'), alt:paid_order.product.title %>
         								<% else %>
         								<%= image_tag("shoes.jpg", alt:paid_order.product.title,size: "50") %>
         								<% end %><br>

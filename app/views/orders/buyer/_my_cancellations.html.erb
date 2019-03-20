@@ -5,7 +5,7 @@
             <table class="table table-hover mb-0">
               <thead>
                 <tr>
-                  <th>Commande #</th>
+                  <th>ID</th>
                   <th>Photo</th>
                   <th>Produit</th>
                   <th>Date d'achat</th>
@@ -19,7 +19,7 @@
                 <tr>
                   <td><a class="navi-link" data-toggle="modal"><%=disputed_order.id%></a></td>
                   <td class="product-image">  <% if disputed_order.product.pictures.attached? %>
-                        <%= image_tag disputed_order.product?pictures.first, alt:disputed_order.product.title %>
+                        <%= image_tag disputed_order.product.pictures.first.variant(resize:'100x100'), alt:disputed_order.product.title %>
                         <% else %>
                         <%= image_tag("shoes.jpg", alt:disputed_order.product.title,size: "50") %>
                         <% end %></td>

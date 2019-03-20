@@ -21,7 +21,7 @@
                 <tr>
                   <td><a class="navi-link" data-toggle="modal"><%=reservation.id%></a></td>
                   <td class="product-image">  <% if reservation.product.pictures.attached? %>
-        								<%= image_tag reservation.product?pictures.first, alt:reservation.product.title %>
+                        <%= image_tag reservation.product.pictures.first.variant(resize:'100x100'), alt:reservation.product.title %>
         								<% else %>
         								<%= image_tag("shoes.jpg", alt:reservation.product.title,size: "50") %>
         								<% end %><br>
