@@ -6,7 +6,7 @@
             <% recipient = User.find(conversation.sender_id) %>
         <% end %>
 
-        <%= link_to "user #{recipient.id}", conversation_messages_path(conversation), class:"list-group-item list-group-item-action", remote: true %>
+        <%= link_to recipient.profile.first_name, conversation_messages_path(conversation), class:"list-group-item list-group-item-action", remote: true %>
     <% end %>
 <% end %>
 

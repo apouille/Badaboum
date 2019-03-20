@@ -37,8 +37,21 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new(message_params)
 
     if @message.save
-      redirect_to conversation_messages_path(@conversation)
+      respond_to do |format|
+        flash[:notice] = "Message envoyé !"
+
+        format.html { redirect_to conversations_path(@conversation) }
+
+        format.js
+      end
     end
+
+
+    # if @message.save
+
+    #   # redirect_to conversation_messages_path(@conversation)
+    # end
+
 
   end
 

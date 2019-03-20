@@ -1,0 +1,5 @@
+console.log("coucou");
+var messages = document.getElementById("card-messages");
+console.log(messages);
+
+document.getElementById("card-messages").insertAdjacentHTML("afterend", "<div class='text-muted border border-light rounded p-2 m-1'><em><small><strong><% escape_javascript render 'messages/new_message' %></strong></div>");
