@@ -14,4 +14,5 @@ class Category < ApplicationRecord
     end
     return nested_array
   end 
+
 end

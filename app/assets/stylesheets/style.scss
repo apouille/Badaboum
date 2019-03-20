@@ -28,3 +28,16 @@ a.anchor {
 .default_image {
 	max-height: 300px!important;
 }
+
+.police_logo {
+  font-family: 'Boogaloo', cursive;
+  color: #45b1b4;
+}
+
+// fixer le footer en bas
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer { margin-top: auto;}
