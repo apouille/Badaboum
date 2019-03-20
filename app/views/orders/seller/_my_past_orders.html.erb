@@ -7,7 +7,7 @@
             <table class="table table-hover mb-0">
               <thead>
                 <tr>
-                  <th>Commande #</th>
+                  <th>ID</th>
                   <th>Photo</th>
                   <th>Produit</th>
                   <th>Date d'achat</th>
@@ -21,7 +21,7 @@
                 <tr>
                   <td><a class="navi-link" data-toggle="modal"><%=completed_order.id%></a></td>
                   <td class="product-image">  <% if completed_order.product.pictures.attached? %>
-        								<%= image_tag completed_order.product?pictures.first, alt:completed_order.product.title %>
+        								<%= image_tag completed_order.product.pictures.first.variant(resize:'100x100'), alt:completed_order.product.title %>
         								<% else %>
         								<%= image_tag("shoes.jpg", alt:completed_order.product.title,size: "50") %>
         								<% end %></td>

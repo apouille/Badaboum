@@ -1,0 +1,9 @@
+<%= form_for @product, id:"categories" do |f| %>
+   <h5 class="text-primary">1. Sélectionner la catégorie *</h5>
+   <%= f.collection_select :category, @categories, :id, :title, {data: {remote: true, url: new_product_path, method: :put }}, {class: "form-control"} %>
+   
+   <%= f.submit "Choisir une catégorie", class: "btn btn-primary btn-shadow btn-circle mt-3" %>
+<% end %>
+
+  <div id="attributes"></div>
+

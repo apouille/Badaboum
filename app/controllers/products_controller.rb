@@ -7,7 +7,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     puts params
     puts "*" * 30
     if !params[:category].present?
-      @products = Product.all.page(params[:page]).per(18)
+      @products = Product.all.in_stock.page(params[:page]).per(18)
     else
       @current_category = params[:category]
       @brand_array = Product.brand_array(@current_category)
@@ -17,6 +17,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
 
 
       @products = Product.where(nil)
+      @products = @products.in_stock
       @products = @products.cat(@current_category) if @current_category.present?
       @products = @products.price(params[:price]) if params[:price].present?
       @products = @products.brand(params[:brand]) if params[:brand].present?

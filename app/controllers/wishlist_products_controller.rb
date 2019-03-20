@@ -4,6 +4,12 @@ class WishlistProductsController < ApplicationController
 
   def index
     @wishlist_products = WishlistProduct.where(user: current_user).all
+   
+    puts '$'*1000
+    puts  @wishlist_products
+    @wishlist_products_in_stock = in_stock 
+    puts '$'*1000
+    puts  @wishlist_products_in_stock
     @profile = current_user.profile
     @children = Child.where(profile_id: @profile.id)
   end
@@ -50,6 +56,21 @@ class WishlistProductsController < ApplicationController
 
 
   end
+
+  private 
+
+  def in_stock
+    wish_in_stocks = []
+    WishlistProduct.where(user: current_user).all.each do |wp|
+      if (wp.product.state == 'in_stock') 
+        wish_in_stocks << wp
+      end
+    end
+    return wish_in_stocks  
+  end
+
+   
+
 
 
 end
