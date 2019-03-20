@@ -1,224 +1,46 @@
 <div class="container mt-5">
-<br>
-
-<div class="row">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body text-center">
-         <span style="font-size: 48px; color: #309396;">
-      <i class="fas fa-credit-card"></i>
-      </span>
-        <p class="card-text">Votre achat est confirmé.  Contactez le vendeur pour récupérer votre produit. L'argent est conservé sur notre plateforme pendant maximum 30 jours</p>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body text-center">
-        <span style="font-size: 48px; color: #309396;">
-      <i class="fas fa-handshake"></i>
-    </span>
-        <p class="card-text">Vous avez déjà récupéré votre produit ? Pensez à noter le vendeur et à approuver la transaction afin que nous puissions payer le vendeur au plus vite.  </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body text-center">
-         <span style="font-size: 48px; color: #309396;">
-        <i class="fas fa-undo"></i>
-      </span>
-        <p class="card-text"> Vous avez changé d'avis ou n'avez pas pu récupérer votre bien ? Annulez votre commande dans les 30 jours suivaant votre paiement. </p>
-       
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-<h3 class="heading heading-6 strong-600 text-uppercase mt-5"> Mes commandes en cours </h3>
-	
-	<div class="row mb-3 mt-3">
-		<div class="card col-12 ">
-			 
-            <table class="table table-hover mb-0">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Photo</th>
-                  <th>Produit</th>
-                  <th>Vendeur</th>
-                  <th>Noter le vendeur</th>
-                  <th>Statut</th>
-                  <th>Deadline</th>
-                </tr>
-              </thead>
-              <tbody>
-             <% @paid_orders.each do |paid_order|%>
-                <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=paid_order.id%></a></td>
-                  <td class="product-image">  <% if paid_order.product.pictures.attached? %>
-        								<%= image_tag paid_order.product?pictures.first, alt:paid_order.product.title %>
-        								<% else %>
-        								<%= image_tag("shoes.jpg", alt:paid_order.product.title,size: "50") %>
-        								<% end %><br>
-                      </td>
-                      <td>
-                  <strong><%=paid_order.product.title%></strong><br>
-                  	<%=paid_order.updated_at.strftime("%b %d, %Y")%><br>
-                  	<span style="color:#45b1b4;">Prix : <%=paid_order.product.price%> €</span><br></td>
-                  </td>
-
-                  <td><strong><%=paid_order.product.seller.profile.first_name%>
-                  	<%=paid_order.product.seller.profile.last_name%></strong> <br>
-                   <%=link_to "Contacter le vendeur ", root_path %><br>
-                  	<%=paid_order.product.seller.profile.phone_number%><br>
-                  </td>
-                  <td>
-
-                  <%= form_tag order_path(paid_order.id, status:'completed'),  method: :put , multipart: true do %>
-                   <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio1" value="1">
-                      <label class="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio2" value="2">
-                      <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio3" value="3">
-                      <label class="form-check-label" for="inlineRadio3">3</label>
-                    </div>  
-                      <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio4" value="4">
-                      <label class="form-check-label" for="inlineRadio4">4</label>
-                    </div>  
-                      <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio5" value="5">
-                      <label class="form-check-label" for="inlineRadio5">5</label>
-                    </div>        
-                  <%= submit_tag "Valider la commande", class: "btn btn-primary mt-3 mb-3" %>
-                  <%end%>
-                 </td>
-                  <td>
-                    <span class="badge badge-warning m-0">En cours</span>
-                    <div class="countdown countdown-sm" data-countdown-date="<%=deadline(paid_order)%>" data-countdown-label="show"></div>
-                  </td>
-                  <td>
-                  <%=link_to "Annulation", order_path(paid_order.id, status:'disputed'), method: :patch, class:"btn btn-danger" %><br>
-                  </td>
-                </tr>
-               <%end%>
-              </tbody>
-            </table>
-             
-        </div>	
-	</div>
-
-  <h3 class="heading heading-6 strong-600 text-uppercase mb-0"> Mes demande de remboursements</h3>
-  
-  <div class="row mb-3 mt-3">
-    <div class="card col-12 ">
-            <table class="table table-hover mb-0">
-              <thead>
-                <tr>
-                  <th>Commande #</th>
-                  <th>Photo</th>
-                  <th>Produit</th>
-                  <th>Date d'achat</th>
-                  <th>Vendeur</th>
-                  <th>Statut</th>
-                  <th>Montant</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @disputed_orders.each do |disputed_order|%>
-                <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=disputed_order.id%></a></td>
-                  <td class="product-image">  <% if disputed_order.product.pictures.attached? %>
-                        <%= image_tag disputed_order.product?pictures.first, alt:disputed_order.product.title %>
-                        <% else %>
-                        <%= image_tag("shoes.jpg", alt:disputed_order.product.title,size: "50") %>
-                        <% end %></td>
-                  <td><%=disputed_order.product.title%></td>
-                  <td><%=disputed_order.updated_at.strftime("%Y-%m-%d") %></td>
-                  <td><%=disputed_order.product.seller.profile.first_name%></td>
-                  
-                  <%if disputed_order.status=='disputed'%>
-                  <td><span class="badge badge-danger m-0">En cours</span></td>
-                  <%else%>
-                   <td><span class="badge badge-success m-0"> Remboursée</span></td>
-                <%end%>
-                 
-                
-                  <td><%=disputed_order.product.price%> €</td>
-                </tr>
-                <%end%>
-              </tbody>
-            </table>
-        </div>  
-  </div>
-
-
-
-
 
 <br>
-	<h3 class="heading heading-6 strong-600 text-uppercase mb-0"> Mes commandes passées</h3>
-	
-	<div class="row mb-3 mt-3">
-		<div class="card col-12 ">
-            <table class="table table-hover mb-0">
-              <thead>
-                <tr>
-                  <th>Commande #</th>
-                  <th>Photo</th>
-                  <th>Produit</th>
-                  <th>Date d'achat</th>
-                  <th>Vendeur</th>
-                  <th>Statut</th>
-                  <th>Montant</th>
-                </tr>
-              </thead>
-              <tbody>
-              	<% @completed_orders.each do |completed_order|%>
-                <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=completed_order.id%></a></td>
-                  <td class="product-image">  <% if completed_order.product.pictures.attached? %>
-        								<%= image_tag completed_order.product?pictures.first, alt:completed_order.product.title %>
-        								<% else %>
-        								<%= image_tag("shoes.jpg", alt:completed_order.product.title,size: "50") %>
-        								<% end %></td>
-                  <td><%=completed_order.product.title%></td>
-                  <td><%=completed_order.updated_at.strftime("%Y-%m-%d")%></td>
-                  <td><%=completed_order.product.seller.profile.first_name%>
-                    <div>
-                    <% completed_order.notation.to_i.times do  %>
-                   <span class="text-warning"><i class="fas fa-star"></i></span>
-                    <% end %>
 
-                    <% blank_stars(completed_order).times do %>
-                  <span class="text-warning"><i class="far fa-star"></i></span>
-                    <% end %>
-                  </div>
-                  </td>
-                    <td><span class="badge badge-success m-0">Effectuée</span>
-                  <td><%=completed_order.product.price%> €</td>
-                </tr>
+
+
+  <div class="col-lg-12 p-5">
+    <div class="container-fluid">
+        <div class="tabs tabs--style-2">
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a href="#tab_default_1" data-toggle="tab" class="nav-link active text-uppercase strong-1000">Mes commandes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tab_default_2" data-toggle="tab" class="nav-link text-uppercase strong-1000">Mes ventes</a>
+                </li>
+            </ul>
+
+            <div class="tab-content pt-0">
+              <div class="tab-pane active" id="tab_default_1">
+                <br>
+                <%= render 'three_steps_buyer' %>
+                <% if user_has_bought? %> 
+
+                <%= render 'orders/buyer/my_reservations' %>
+                <%= render 'orders/buyer/my_cancellations' %>
+                <%= render 'orders/buyer/my_past_orders' %>
                 <%end%>
-              </tbody>
-            </table>
-        </div>	
-	</div>
+              </div> 
+
+              <div class="tab-pane inactive" id="tab_default_2">
+                 <br>
+                <%= render 'three_steps_seller' %>
+                <% if user_has_sold? %>
+                <%= render 'orders/seller/my_reservations' %>
+                <%= render 'orders/seller/my_cancellations' %>
+                <%= render 'orders/seller/my_past_orders' %>
+                <%end%>
+              </div> 
+            </div>
+        </div>
+    </div>
+  </div>
 
 
 </div> 
