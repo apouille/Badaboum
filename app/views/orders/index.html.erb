@@ -1,7 +1,7 @@
 <div class="container mt-5">
 
 <br>
-<%= render 'three_steps_explanations' %>
+
 
 
   <div class="col-lg-12 p-5">
@@ -18,7 +18,10 @@
 
             <div class="tab-content pt-0">
               <div class="tab-pane active" id="tab_default_1">
+                <br>
+                <%= render 'three_steps_buyer' %>
                 <% if user_has_bought? %> 
+
                 <%= render 'orders/buyer/my_reservations' %>
                 <%= render 'orders/buyer/my_cancellations' %>
                 <%= render 'orders/buyer/my_past_orders' %>
@@ -26,7 +29,8 @@
               </div> 
 
               <div class="tab-pane inactive" id="tab_default_2">
-
+                 <br>
+                <%= render 'three_steps_seller' %>
                 <% if user_has_sold? %>
                 <%= render 'orders/seller/my_reservations' %>
                 <%= render 'orders/seller/my_cancellations' %>

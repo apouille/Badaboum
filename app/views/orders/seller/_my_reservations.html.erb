@@ -11,9 +11,9 @@
                   <th>Photo</th>
                   <th>Produit</th>
                   <th>Acheteur</th>
-                 
                   <th>Statut</th>
                   <th>contact</th>
+                  <th>Annuler</th>
                 </tr>
               </thead>
               <tbody>
@@ -43,7 +43,10 @@
                     <div class="countdown countdown-sm" data-countdown-date="<%=deadline(reservation)%>" data-countdown-label="show"></div>
                   </td>
                   <td>
-                   <%=link_to "Contacter l'acheteur ", root_path, class:"btn btn-success" %><br>
+                   <%=link_to "Contacter l'acheteur ", root_path %><br>
+                  </td>
+                  <td>
+        <%=link_to "Annuler la réservation", order_path(reservation.id, status:'refunded'), method: :patch, class:"btn btn-danger" %>
                   </td>
                 </tr>
                <%end%>
