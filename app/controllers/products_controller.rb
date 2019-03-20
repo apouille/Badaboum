@@ -46,6 +46,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
       price: params[:price],
       brand: params[:brand],
       color: params[:color],
+      condition: params[:condition].to_i,
       size_id: @size_id,
       seller_id: current_user.id,
       category_id: @category_id,
@@ -80,6 +81,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
                        price: params[:price],
                        brand: params[:brand],
                        color: params[:color],
+                       condition: params[:condition].to_i,
                        size_id: @size_id,
                        category_id: @category_id)
 
