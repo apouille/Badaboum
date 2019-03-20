@@ -1,7 +1,6 @@
 <div class="container">
-
 <div class="card border mx-auto mt-3 mb-3">
-  <div class="card-header"><h4>Messages échangés avec <%= @conversation.recipient.profile.first_name %></h4></div>
+  <div class="card-header"><h4>Messages échangés</h4></div>
   <div id="card-messages" class="card-body text-primary text-right">
     <% @messages.each do |message| %>
       <% if message.body %>
