@@ -7,4 +7,9 @@ module OrdersHelper
 	def deadline(order)
 		order.updated_at + 30.days
 	end
+
+
+	def blank_stars(order)
+ 	5 - order.notation.to_i
+	end
 end

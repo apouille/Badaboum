@@ -4,9 +4,11 @@
 <div class="row">
   <div class="col-sm-4">
     <div class="card">
-      <div class="card-body">
-      <i class="fal fa-credit-card"></i>
-        <p class="card-text">Votre achat est confirmé.  Contactez le vendeur pour récupérer votre achat. L'argent est conservé sur notre plateforme pendant maximum 30 jours</p>
+      <div class="card-body text-center">
+         <span style="font-size: 48px; color: #309396;">
+      <i class="fas fa-credit-card"></i>
+      </span>
+        <p class="card-text">Votre achat est confirmé.  Contactez le vendeur pour récupérer votre produit. L'argent est conservé sur notre plateforme pendant maximum 30 jours</p>
         
       </div>
     </div>
@@ -14,18 +16,22 @@
 
   <div class="col-sm-4">
     <div class="card">
-      <div class="card-body">
-       <i class="fas fa-handshake-alt"></i>
-        <p class="card-text">Vous avez déjà récupéré votre bien ? Pensez à noter le vendeur et à approuver la transaction afin que nous puissions payer le vendeur.  </p>
+      <div class="card-body text-center">
+        <span style="font-size: 48px; color: #309396;">
+      <i class="fas fa-handshake"></i>
+    </span>
+        <p class="card-text">Vous avez déjà récupéré votre produit ? Pensez à noter le vendeur et à approuver la transaction afin que nous puissions payer le vendeur au plus vite.  </p>
       </div>
     </div>
   </div>
 
   <div class="col-sm-4">
     <div class="card">
-      <div class="card-body">
-        <i class="fal fa-undo"></i>
-        <p class="card-text"> Vous avez changé d'avis ou n'avez pas pu récupérer votre bien ? Demandez votre remboursement avant la deadline de 30 jours </p>
+      <div class="card-body text-center">
+         <span style="font-size: 48px; color: #309396;">
+        <i class="fas fa-undo"></i>
+      </span>
+        <p class="card-text"> Vous avez changé d'avis ou n'avez pas pu récupérer votre bien ? Annulez votre commande dans les 30 jours suivaant votre paiement. </p>
        
       </div>
     </div>
@@ -47,7 +53,7 @@
             <table class="table table-hover mb-0">
               <thead>
                 <tr>
-                  <th>ID #</th>
+                  <th>ID</th>
                   <th>Photo</th>
                   <th>Produit</th>
                   <th>Vendeur</th>
@@ -78,21 +84,37 @@
                   	<%=paid_order.product.seller.profile.phone_number%><br>
                   </td>
                   <td>
-                  	<i class="fas fa-star"></i>
-                  	<i class="fas fa-star"></i>
-              		  <i class="fas fa-star"></i>
-          			     <i class="fas fa-star"></i>
-  				          <i class="fas fa-star-half-alt"></i>
- 					        </td>
 
-                   <td><%=link_to "J'ai bien reçu ma commande", order_path(paid_order, status:'completed'), method: :put, class:'btn btn-primary'%><br> ou <br>
-                   	<%=link_to "Je veux être remboursé", order_path(paid_order, status:'disputed') %><br>
-                     
-                  <td><span class="badge badge-warning m-0">En cours</span>
-                   
-                  
-                   <div class="countdown countdown-sm" data-countdown-date="<%=deadline(paid_order)%>" data-countdown-label="show"></div>
-
+                  <%= form_tag order_path(paid_order.id, status:'completed'),  method: :put , multipart: true do %>
+                   <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio1" value="1">
+                      <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio2" value="2">
+                      <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio3" value="3">
+                      <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>  
+                      <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio4" value="4">
+                      <label class="form-check-label" for="inlineRadio4">4</label>
+                    </div>  
+                      <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="notation" id="inlineRadio5" value="5">
+                      <label class="form-check-label" for="inlineRadio5">5</label>
+                    </div>        
+                  <%= submit_tag "Valider la commande", class: "btn btn-primary mt-3 mb-3" %>
+                  <%end%>
+                 </td>
+                  <td>
+                    <span class="badge badge-warning m-0">En cours</span>
+                    <div class="countdown countdown-sm" data-countdown-date="<%=deadline(paid_order)%>" data-countdown-label="show"></div>
+                  </td>
+                  <td>
+                  <%=link_to "Annulation", order_path(paid_order.id, status:'disputed'), method: :patch, class:"btn btn-danger" %><br>
                   </td>
                 </tr>
                <%end%>
@@ -128,7 +150,7 @@
                         <%= image_tag("shoes.jpg", alt:disputed_order.product.title,size: "50") %>
                         <% end %></td>
                   <td><%=disputed_order.product.title%></td>
-                  <td><%=disputed_order.updated_at%></td>
+                  <td><%=disputed_order.updated_at.strftime("%Y-%m-%d") %></td>
                   <td><%=disputed_order.product.seller.profile.first_name%></td>
                   
                   <%if disputed_order.status=='disputed'%>
@@ -177,8 +199,18 @@
         								<%= image_tag("shoes.jpg", alt:completed_order.product.title,size: "50") %>
         								<% end %></td>
                   <td><%=completed_order.product.title%></td>
-                  <td><%=completed_order.updated_at%></td>
-                  <td><%=completed_order.product.seller.profile.first_name%></td>
+                  <td><%=completed_order.updated_at.strftime("%Y-%m-%d")%></td>
+                  <td><%=completed_order.product.seller.profile.first_name%>
+                    <div>
+                    <% completed_order.notation.to_i.times do  %>
+                   <span class="text-warning"><i class="fas fa-star"></i></span>
+                    <% end %>
+
+                    <% blank_stars(completed_order).times do %>
+                  <span class="text-warning"><i class="far fa-star"></i></span>
+                    <% end %>
+                  </div>
+                  </td>
                     <td><span class="badge badge-success m-0">Effectuée</span>
                   <td><%=completed_order.product.price%> €</td>
                 </tr>
