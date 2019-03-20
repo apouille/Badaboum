@@ -1,21 +1,20 @@
+<% if !@current_category.nil? %>
   <div class="col-lg-3 order-lg-1">
     <div class="sidebar sidebar--style-4 b-lg-right">
-    <%= form_tag url_for(action: 'index'), method: "get" do %>
-		  <% if false %> 
-			<%= render 'sidebar_city' %>
-			<%= render 'sidebar_color' %>
-			<% end %>
+      <%= form_tag url_for(action: 'index'), method: "get" do %>
+  			<%= render 'sidebar_cat' %>
+  			<%= render 'sidebar_price' %>
+
+  			<%= render :partial => "sidebar_size" unless @current_category == '2' || @current_category == '3'%>
+
+  			<%= render 'sidebar_brand' %>
+
+  			
 
 
-			<%= render 'sidebar_cat' %>
-			<%= render 'sidebar_price' %>
-			<%= render 'sidebar_size' %>
-			<%= render 'sidebar_brand' %>
-			
+  	 		<%= submit_tag "Filtrer", class: "btn btn-styled btn-block btn-base-4" %>
 
-
-	 		<%= submit_tag "Filtrer", class: "btn btn-styled btn-block btn-base-4" %>
-
-	 <% end %>
-	</div>
-</div>
+  	  <% end %>
+	  </div>
+  </div>
+<% end %>
