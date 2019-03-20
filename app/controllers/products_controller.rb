@@ -13,6 +13,8 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
       @brand_array = Product.brand_array(@current_category)
       @nested_array_of_cat = Category.nested_array_of_cat
       @categories = Category.all
+      @category = Category.find_by(id: params[:category])
+
 
       @products = Product.where(nil)
       @products = @products.cat(@current_category) if @current_category.present?

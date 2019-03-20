@@ -7,7 +7,7 @@ categories = [
 	["Sécurité", "fas fa-hard-hat"],
 	["Allaitement & Repas", "fas fa-utensils"],
 	["Vêtements", "fas fa-tshirt"],
-	["Autres", "fas fa-ellipsis-h"]  
+	["Autres", "fas fa-ellipsis-h"]
 ]
 
 sizes = ["Prématuré", 
