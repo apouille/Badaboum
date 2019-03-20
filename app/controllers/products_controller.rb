@@ -3,20 +3,24 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @current_category = params[:category]
+    puts "*" * 30
+    puts params
+    puts "*" * 30
+    if !params[:category].present?
+      @products = Product.all.page(params[:page]).per(18)
+    else
+      @current_category = params[:category]
+      @brand_array = Product.brand_array(@current_category)
+      @nested_array_of_cat = Category.nested_array_of_cat
+      @categories = Category.all
 
-    @brand_array = Product.brand_array(@current_category)
-
-    @nested_array_of_cat = Category.nested_array_of_cat
-
-    @categories = Category.all
-
-    @products = Product.where(nil)
-    @products = @products.cat(@current_category) if @current_category.present?
-    @products = @products.price(params[:price]) if params[:price].present?
-    @products = @products.brand(params[:brand]) if params[:brand].present?
-    @products = @products.siz(size_params[:size_id]) if params[:size].present? && !size_params[:size_id].empty?
-    @products = @products.page(params[:page]).per(9)
+      @products = Product.where(nil)
+      @products = @products.cat(@current_category) if @current_category.present?
+      @products = @products.price(params[:price]) if params[:price].present?
+      @products = @products.brand(params[:brand]) if params[:brand].present?
+      @products = @products.siz(size_params[:size_id]) if params[:size].present? && !size_params[:size_id].empty?
+      @products = @products.page(params[:page]).per(9)
+    end
   end
 
   def show
@@ -46,6 +50,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
       price: params[:price],
       brand: params[:brand],
       color: params[:color],
+      condition: params[:condition].to_i,
       size_id: @size_id,
       seller_id: current_user.id,
       category_id: @category_id,
@@ -80,6 +85,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
                        price: params[:price],
                        brand: params[:brand],
                        color: params[:color],
+                       condition: params[:condition].to_i,
                        size_id: @size_id,
                        category_id: @category_id)
 
