@@ -3,9 +3,6 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    puts "*" * 30
-    puts params
-    puts "*" * 30
     if !params[:category].present?
       @products = Product.all.page(params[:page]).per(18)
     else
