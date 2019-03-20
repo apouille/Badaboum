@@ -46,12 +46,17 @@
                               data-key="<%= Rails.configuration.stripe[:stripe_publishable_key] %>"
                               data-description="Acheter ce produit"
                               data-currency="eur"
-                              data-label="Payer ma commande"
+                              data-label="Poser une option sur ce produit"
                               data-amount="<%= @product.price*100 %>"
                               data-locale="auto">
                         </script>
                     <% end %>
+                   
                 </div>
+                   <p class="c-gray-light mt-2 pl-4">
+                  Vous ne serez débité que lorsque vous aurez récupéré votre produit et confirmé la commande
+                    </p>
+               
             </div>
         </div>
     </div>
