@@ -1,0 +1,40 @@
+
+<br>
+	<h3 class="heading heading-6 strong-600 text-uppercase mb-0"> Mes ventes passées</h3>
+	
+	<div class="row mb-3 mt-3">
+		<div class="card col-12 ">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Photo</th>
+                  <th>Produit</th>
+                  <th>Date d'achat</th>
+                  <th>Acheteur</th>
+                  <th>Statut</th>
+                  <th>Montant</th>
+                </tr>
+              </thead>
+              <tbody>
+              	<% @seller_sales.each do |completed_order|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=completed_order.id%></a></td>
+                  <td class="product-image">  <% if completed_order.product.pictures.attached? %>
+        								<%= image_tag completed_order.product.pictures.first.variant(resize:'100x100'), alt:completed_order.product.title %>
+        								<% else %>
+        								<%= image_tag("shoes.jpg", alt:completed_order.product.title,size: "50") %>
+        								<% end %></td>
+                  <td><%=completed_order.product.title%></td>
+                  <td><%=completed_order.updated_at.strftime("%Y-%m-%d")%></td>
+                  <td><%=completed_order.user.profile.first_name%>
+                   
+                  </td>
+                    <td><span class="badge badge-success m-0">Livrée</span>
+                  <td><%=completed_order.product.price%> €</td>
+                </tr>
+                <%end%>
+              </tbody>
+            </table>
+        </div>	
+	</div>

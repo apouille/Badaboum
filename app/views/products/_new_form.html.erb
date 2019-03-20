@@ -13,6 +13,8 @@
             <%= text_field_tag 'brand', @product.brand, class: "form-control mb-3" %>
             <h6 class="text-secondary">Couleur</h6>
             <%= text_field_tag 'color', @product.color, class: "form-control mb-3" %>
+            <h6 class="text-secondary">Etat du produit *</h6>
+            <%= select_tag 'condition', options_for_select(Product.conditions), class: "form-control mb-3" %>
             <h6 class="text-secondary">Taille *</h6>
             <%= select_tag 'size', options_for_select(@sizes.collect{|size|[size.title, size.id]}), class: "form-control mb-3" %>
             <h5 class="text-primary">4. Choisissez une catégorie *</h5>

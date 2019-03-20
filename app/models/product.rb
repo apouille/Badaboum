@@ -3,6 +3,8 @@ class Product < ApplicationRecord
 	belongs_to :category
 	belongs_to :size
 	enum state: { in_stock:1, sold:2 }
+	enum condition: { Neuf:1, Bon:2, Moyen:3, Mauvais:4, Dégradé:5 }
+
 
 	has_many_attached :pictures
 
@@ -10,10 +12,20 @@ class Product < ApplicationRecord
 	has_many :wishlist_products
 	has_one :order
 
-  validates :title, :description, :price, presence: { message: "Merci de remplir tous les champs obligatoires!" };
+  validates :title, :description, :price, :condition,presence: { message: "Merci de remplir tous les champs obligatoires!" };
   validates :description, length: { minimum: 20, message: "La description doit faire au minimum 20 caractères" };
   validates :price, numericality: { greater_than_or_equal_to: 1,  message: "Le prix doit être supérieur ou égal à 1€" };
 
   scope :cat, -> (category) { where category_id: category }
+  scope :price, -> (price) { reorder(price: price) }
+  scope :siz, -> (size) { where size_id: size }
+  scope :brand, -> (brand) {where brand: brand }
 
+  def self.brand_array(current_category)
+    brand_array = []
+    self.all.cat(current_category).each do |product|
+      brand_array << product.brand
+    end
+    return brand_array.uniq
   end
+end

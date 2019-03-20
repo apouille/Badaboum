@@ -7,7 +7,7 @@ categories = [
 	["Sécurité", "fas fa-hard-hat"],
 	["Allaitement & Repas", "fas fa-utensils"],
 	["Vêtements", "fas fa-tshirt"],
-	["Autres", "fas fa-ellipsis-h"]  
+	["Autres", "fas fa-ellipsis-h"]
 ]
 
 sizes = ["Prématuré", 
@@ -88,7 +88,7 @@ end
 puts '10 children have been seeded'
 
 
-20.times do
+200.times do
 	product = Product.create!(
 		title: Faker::Vehicle.manufacture,
 		price: rand(19..99),
@@ -98,9 +98,10 @@ puts '10 children have been seeded'
 		seller: User.all.sample, 
 		category: Category.all.sample,
 		size: Size.all.sample,	
-		state: 1
+		state: 1,
+		condition: rand(1..5)
 	)
 end
-puts '20 products have been seeded'
+puts '200 products have been seeded'
 
 

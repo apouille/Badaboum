@@ -48,6 +48,14 @@
             <tbody>
                 <tr>
                     <td>
+                        <span class="c-gray-light strong-600">Etat du produit</span>
+                    </td>
+                    <td>
+                        <%= @product.condition %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <span class="c-gray-light strong-600">Taille</span>
                     </td>
                     <td>
@@ -74,10 +82,9 @@
         </table>
 
 
-
-            <%= link_to '<i class="fas fa-credit-card"></i> Acheter ce produit'.html_safe, orders_path(:product => @product.id), method:'POST', class:"btn btn-styled btn-warning btn-lg btn-block btn-base-1 btn-cart mt-2  btn-shadow btn-circle"  %>
-
-
+            <% if current_user != @product.seller %>
+            <%= link_to '<i class="fas fa-credit-card"></i><h4>Acheter ce produit</h4>'.html_safe, orders_path(:product => @product.id), method:'POST', class:"btn btn-styled btn-warning btn-block btn-base-1 btn-cart btn-shadow btn-circle"  %>
+            <%end%>
 
 
 

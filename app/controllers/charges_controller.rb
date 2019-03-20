@@ -19,15 +19,20 @@ class ChargesController < ApplicationController
       email: params[:stripeEmail],
       source: params[:stripeToken],
     )
- 		charge = Stripe::Charge.create({ currency: 'eur', customer: customer.id, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
-})
 
-      @order.update(stripe_customer_id: charge[:customer], status: 2)
+    puts '$'*1000
+    puts customer
+    puts customer.id
+
+ 		#charge = Stripe::Charge.create({ currency: 'eur', customer: customer.id, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
+#})
+
+      @order.update(stripe_customer_id: customer.id, status: 2)
      
       @product.update(state: 'sold')
       puts @product
       flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'
-      redirect_to root_path
+      redirect_to orders_path
 
     rescue Stripe::CardError => e
       flash[:error] = e.message

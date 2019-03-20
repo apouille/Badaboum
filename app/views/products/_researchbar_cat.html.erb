@@ -1,0 +1,6 @@
+<!-- Filter by category -->
+<div style="display:none" class="col-lg-3">
+  <div class="form-group mb-0">
+      <%= select_tag(:category, options_for_select(@nested_array_of_cat, selected: @current_category), :class => 'form-control')%>    
+  </div>
+</div>  

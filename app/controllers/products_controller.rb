@@ -3,11 +3,27 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @products = Product.where(nil)
-    @products = @products.cat(params[:category]) if params[:category].present?
-    @products = @products.page(params[:page]).per(9)
+    puts "*" * 30
+    puts params
+    puts "*" * 30
+    if !params[:category].present?
+      @products = Product.all.in_stock.page(params[:page]).per(18)
+    else
+      @current_category = params[:category]
+      @brand_array = Product.brand_array(@current_category)
+      @nested_array_of_cat = Category.nested_array_of_cat
+      @categories = Category.all
+      @category = Category.find_by(id: params[:category])
 
-    @categories = Category.all
+
+      @products = Product.where(nil)
+      @products = @products.in_stock
+      @products = @products.cat(@current_category) if @current_category.present?
+      @products = @products.price(params[:price]) if params[:price].present?
+      @products = @products.brand(params[:brand]) if params[:brand].present?
+      @products = @products.siz(size_params[:size_id]) if params[:size].present? && !size_params[:size_id].empty?
+      @products = @products.page(params[:page]).per(9)
+    end
   end
 
   def show
@@ -27,19 +43,23 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   def create
     @categories = Category.all
     @sizes = Size.all
+
     @category_id = params[:category]
     @size_id = params[:size]
 
-    @product = Product.new(title: params[:title],
-                       description: params[:description],
-                       price: params[:price],
-                       brand: params[:brand],
-                       color: params[:color],
-                       size_id: @size_id,
-                       seller_id: current_user.id,
-                       category_id: @category_id,
-                       status: 1
-                       )
+    @product = Product.new(
+      title: params[:title],
+      description: params[:description],
+      price: params[:price],
+      brand: params[:brand],
+      color: params[:color],
+      condition: params[:condition].to_i,
+      size_id: @size_id,
+      seller_id: current_user.id,
+      category_id: @category_id,
+      state: 1
+    )
+
     @product.pictures.attach(params[:pictures])
 
     if @product.save
@@ -68,6 +88,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
                        price: params[:price],
                        brand: params[:brand],
                        color: params[:color],
+                       condition: params[:condition].to_i,
                        size_id: @size_id,
                        category_id: @category_id)
 
@@ -92,6 +113,12 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     respond_to do |format|
       format.js
     end
+  end
+
+  private
+
+  def size_params
+      params.require(:size).permit(:size_id) if params[:size].present?
   end
 
 end
