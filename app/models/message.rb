@@ -5,6 +5,6 @@ class Message < ApplicationRecord
   validates_presence_of :body, :conversation_id, :user_id
 
   def message_time
-    created_at.strftime("%d/%m/%y à %-dh%-d")
+    created_at.strftime("%d/%m/%y à %kh%M")
   end
 end

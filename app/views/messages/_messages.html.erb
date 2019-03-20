@@ -8,12 +8,12 @@
         <% user = User.find(message.user_id) %>
           <% if user.id != current_user.id %>
             <div class="text-left border rounded p-2 m-1 alert-warning">
-              <em><small><strong><%= user.profile.first_name %></strong> : <%= message.message_time %></small></em><br>
+              <em><small><strong><%= user.profile.first_name %></strong>, le <%= message.message_time %></small></em><br>
               <%= message.body %>
             </div>
           <% else %>
             <div class="text-muted border border-light rounded p-2 m-1">
-              <em><small><strong><%= user.profile.first_name %></strong> : <%= message.message_time %></small></em><br>
+              <em><small><strong><%= user.profile.first_name %></strong>, le <%= message.message_time %></small></em><br>
               <%= message.body %>
             </div>
           <% end %>

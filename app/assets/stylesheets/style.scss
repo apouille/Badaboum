@@ -33,3 +33,11 @@ a.anchor {
   font-family: 'Boogaloo', cursive;
   color: #45b1b4;
 }
+
+// fixer le footer en bas
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer { margin-top: auto;}

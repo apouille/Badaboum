@@ -35,7 +35,7 @@
                                         <span class="text-primary"><i class="fas fa-list-ul"></i>  </span>Tous les produits
                                     </div>
                                 </div>
-                            <% end %>                            
+                            <% end %>
                         </div>
                     </div>
             </li>
@@ -82,7 +82,7 @@
 
                     <% if user_signed_in? %>
                             <h6 class="dropdown-header">Mon profil</h6>
-                            <%= link_to '<span class="float-right badge badge-primary">4</span><i class="far fa-envelope"></i>Messages'.html_safe, root_path, class:"dropdown-item" %>
+                            <%= link_to '<i class="far fa-envelope"></i>Messages'.html_safe, conversations_path, class:"dropdown-item" %>
                              <%= link_to '<i class="fas fa-cogs"></i>Modifier Email/Mot de passe'.html_safe,  edit_user_registration_path, class:"dropdown-item" %>
                             <%= link_to '<i class="far fa-user"></i> Mon Profil'.html_safe, profile_path, class:"dropdown-item" %>
                             <%= link_to '<i class="fas fa-credit-card"></i> Mes achats/ventes'.html_safe, orders_path, class:"dropdown-item" %>
