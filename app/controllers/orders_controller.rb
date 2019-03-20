@@ -31,19 +31,26 @@ class OrdersController < ApplicationController
   	@seller_uid = @order.product.seller.stripe_uid
     customer = @order.stripe_customer_id
     
-
+   	#Cas ou l'acheteur valide la vente et note le vendeur
   	if params[:status] == 'completed'
-  		#Dans le cas ou la commande est validée, une notation vendeur est exigée. 
   		charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
 	})
   		@order.update(notation: @notation, status: @status)
-
+  		@product.update(state:2)
 		flash[:success] = "Merci. Votre commande est validée et le montant vient d'être débité de votre compte"
 		redirect_to orders_path
-	else
-		#Dans le cas contraire, pas de notation ajoutée à l'order
+	
+	#Cas ou le vendeur accepte l'annulation de la resrvation
+	elsif params[:status] == 'refunded'
 		@order.update(status: @status)
-		flash[:success] = "Merci. Votre commande a été annulé. "
+		@product.update(state:1)
+		flash[:success] = "l'annulation de la réservation a bien été prise en compte. Votre produit est à nouveau disponible à la vente"
+		redirect_to orders_path
+
+	#cas ou l'acheteur demande l'annulation de sa réservation
+	else
+		@order.update(status: @status)
+		flash[:success] = "Merci. Votre demande d'annulation a bien été prise en compte. "
 		redirect_to orders_path
 	end
   end
@@ -56,24 +63,74 @@ class OrdersController < ApplicationController
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
   end
 
+
   def index
+  	#variables pour l'acheteur
   	@orders = Order.where(user: current_user)
   	@paid_orders = Order.where(user: current_user, status: 2)
   	@completed_orders = Order.where(user: current_user, status: 3)
   	@disputed_orders = Order.where(user: current_user, status: 4).or(Order.where(user: current_user, status: 5))
-
   	@refunded_orders = Order.where(user: current_user, status: 5)
+
+  	#Variables pour le vendeur
+  	@seller_reservations = my_reservations(current_user)
+ 	@seller_sales = my_sales(current_user)
+    @seller_cancelled_sales = my_cancelled_sales(current_user)
+  	@seller_refunded_sales = my_refunded_sales(current_user)
   end
 
 
 	private
-	def notation
-		@order=Order.find(params[:id])
-		unless @order.notation !=nil
-		flash[:error] = "Vous devez noter le vendeur avant de clôturer la transaction"
-		@order.update(status: 2)
-		end 
+
+	def my_reservations(user)
+		my_reservations = []
+		reserved_orders=Order.where(status: 2)
+		reserved_orders.each do |order|
+			if (order.product.seller.id == user.id) 
+				my_reservations << order
+			end
+		end
+		return my_reservations	
 	end
+
+
+	def my_sales(user)
+		my_sales = []
+		selled_orders=Order.where(status: 3)
+		selled_orders.each do |order|
+			if (order.product.seller.id == user.id) 
+				my_sales << order
+			end
+		end
+		return my_sales	
+	end
+
+	def my_cancelled_sales(user)
+		my_cancelled_sales = []
+		cancelled_orders=Order.where(status: 4)
+		cancelled_orders.each do |order|
+			if (order.product.seller.id == user.id) 
+				my_cancelled_sales << order
+			end
+		end
+		return my_cancelled_sales	
+	end
+
+	def my_refunded_sales(user)
+		my_refunded_sales = []
+		refunded_orders=Order.where(status: 5)
+		refunded_orders.each do |order|
+			if (order.product.seller.id == user.id) 
+				my_refunded_sales << order
+			end
+		end
+		return my_refunded_sales
+	end
+
+
+
+
+
 
 
 end

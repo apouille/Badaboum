@@ -1,0 +1,73 @@
+
+  <div class="row mb-5 mt-5">
+    <h3 class="heading heading-6 strong-600 text-uppercase mb-0"> Mes demandes d'annulation à valider</h3>
+  
+    <div class="card col-12 mt-3">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>Commande #</th>
+                  <th>Photo</th>
+                  <th>Produit</th>
+                  <th>Date d'achat</th>
+                  <th>Acheteur</th>
+                  <th>Statut</th>
+                  <th>Montant</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @seller_cancelled_sales.each do |disputed_order|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=disputed_order.id%></a></td>
+                  <td class="product-image">  <% if disputed_order.product.pictures.attached? %>
+                        <%= image_tag disputed_order.product?pictures.first, alt:disputed_order.product.title %>
+                        <% else %>
+                        <%= image_tag("shoes.jpg", alt:disputed_order.product.title,size: "50") %>
+                        <% end %></td>
+                  <td><%=disputed_order.product.title%><br>
+                    <%=disputed_order.product.price%>€
+                  </td>
+                  <td><%=disputed_order.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=disputed_order.user.profile.first_name%></td>
+                  
+                 
+                  <td><span class="badge badge-danger m-0">Demande d'annulation</span></td>
+                   <td>
+                  <%=link_to "Accepter", order_path(disputed_order.id, status:'refunded'), method: :patch, class:"btn btn-danger" %><br>
+                  </td>
+               
+              
+                 
+                
+                  <td></td>
+                </tr>
+                <%end%>
+
+
+
+                <% @seller_refunded_sales.each do |refunded_order|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=refunded_order.id%></a></td>
+                  <td class="product-image">  <% if refunded_order.product.pictures.attached? %>
+                        <%= image_tag refunded_order.product?pictures.first, alt:refunded_order.product.title %>
+                        <% else %>
+                        <%= image_tag("shoes.jpg", alt:refunded_order.product.title,size: "50") %>
+                        <% end %></td>
+                  <td><%=refunded_order.product.title%></td>
+                  <td><%=refunded_order.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=refunded_order.product.seller.profile.first_name%></td>
+                  
+               
+                   <td><span class="badge badge-success m-0"> Annnulée</span></td>
+             
+                 
+                
+                  <td><%=refunded_order.product.price%> €</td>
+                </tr>
+                <%end%>
+
+
+              </tbody>
+            </table>
+        </div>  
+  </div>
