@@ -1,8 +1,0 @@
- <!-- Filter by size -->
-	    <div class="sidebar-object b-xs-bottom pb-4 mb-4">
-	        <h2 class="sidebar-object-title">
-	            <span>Filtrer</span> par taille
-	        </h2>
-
-	        <%= collection_select(:size, :size_id, Size.all, :id, :title, {prompt: "Choisir la taille"}, {class: "form-control"}) %>
-	    </div>

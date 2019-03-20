@@ -1,0 +1,20 @@
+
+<% if !@current_category.nil? %>
+    <div class="container mt-5">
+        <div class="feature feature--boxed-border feature--bg-1">
+            <h3 class="heading heading-6 strong-600 text-uppercase mb-0 mb-5"> Que recherchez-vous ?</h3>
+
+            <%= form_tag url_for(action: 'index'), method: "get" do %>
+                <div class="row cols-md-space cols-sm-space cols-xs-space">
+                    <%= render 'researchbar_cat' %>                    
+                    <%= render 'researchbar_price' %>                 
+                    <%= render 'researchbar_brand' %>
+                    <%= render :partial => "researchbar_size" unless @current_category == '2' || @current_category == '3'%>
+                    <div class="col-lg-3">
+                        <%= submit_tag "Rechercher", class: "btn btn-warning btn-styled btn-block btn-base-1" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+<% end %>
