@@ -1,0 +1,6 @@
+<!-- Filter by price -->
+<div class="col-lg-3">
+    <div class="form-group mb-0">
+        <%= select_tag(:price, options_for_select([['Croissant', 'asc'], ['Décroissant', 'desc']]), prompt: "Prix" , :class => 'form-control') %>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+ <!-- Filter by size -->
+<div class="col-lg-3">
+    <div class="form-group mb-0">
+        <%= collection_select(:size, :size_id, Size.all, :id, :title, {prompt: "Taille"}, {class: "form-control"}) %>
+    </div>
+</div>
