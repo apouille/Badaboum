@@ -23,10 +23,7 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Chiffres d'affaires net</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <%= Order.where(status: 3).all.each do |order| %>
-                          <% order.product.price.sum %>
-                          <% order.product.price.sum*0.1%>
-                        <% end %>
+                        <%= turnover %>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -47,7 +44,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Transactions payées</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= @orders.where("status = 2").count%></div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%= @orders.where("status = 3").count%></div>
                         </div>
                       </div>
                     </div>
@@ -65,8 +62,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Transactions en attente</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @orders.where("status = 1").count%></div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Produits pré-commandés</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @orders.where("status = 2").count%></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-angle-double-right fa-2x text-gray-300"></i>
