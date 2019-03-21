@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   get'payment_profile', to: 'stripeconnects#payment_profile'
   get "settings/payment-info/users/auth/stripe_connect/callback", to:"stripeconnects#stripe_callback"
 
+
 end
