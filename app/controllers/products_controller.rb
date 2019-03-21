@@ -3,20 +3,24 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    @current_category = params[:category]
+    if !params[:category].present?
+      @products = Product.all.in_stock.page(params[:page]).per(18)
+    else
+      @current_category = params[:category]
+      @brand_array = Product.brand_array(@current_category)
+      @nested_array_of_cat = Category.nested_array_of_cat
+      @categories = Category.all
+      @category = Category.find_by(id: params[:category])
 
-    @brand_array = Product.brand_array(@current_category)
 
-    @nested_array_of_cat = Category.nested_array_of_cat
-
-    @categories = Category.all
-
-    @products = Product.where(nil)
-    @products = @products.cat(@current_category) if @current_category.present?
-    @products = @products.price(params[:price]) if params[:price].present?
-    @products = @products.brand(params[:brand]) if params[:brand].present?
-    @products = @products.siz(size_params[:size_id]) if params[:size].present? && !size_params[:size_id].empty?
-    @products = @products.page(params[:page]).per(9)
+      @products = Product.where(nil)
+      @products = @products.in_stock
+      @products = @products.cat(@current_category) if @current_category.present?
+      @products = @products.price(params[:price]) if params[:price].present?
+      @products = @products.brand(params[:brand]) if params[:brand].present?
+      @products = @products.siz(size_params[:size_id]) if params[:size].present? && !size_params[:size_id].empty?
+      @products = @products.page(params[:page]).per(9)
+    end
   end
 
   def show
@@ -30,15 +34,24 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   def new
     @product = Product.new
     @sizes = Size.all
+    @last_size = Size.last
     @categories = Category.all
+    unless current_user.stripe_uid.present?
+      redirect_to payment_profile_path
+    end
   end
 
   def create
     @categories = Category.all
     @sizes = Size.all
+    @last_size = Size.last
 
     @category_id = params[:category]
     @size_id = params[:size]
+    @condition_id = params[:condition].to_i
+    if @condition_id == 0
+      @condition_id = nil
+    end
 
     @product = Product.new(
       title: params[:title],
@@ -46,7 +59,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
       price: params[:price],
       brand: params[:brand],
       color: params[:color],
-      condition: params[:condition].to_i,
+      condition: @condition_id,
       size_id: @size_id,
       seller_id: current_user.id,
       category_id: @category_id,
@@ -56,7 +69,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @product.pictures.attach(params[:pictures])
 
     if @product.save
-      redirect_to root_path
+      redirect_to request.referer
       flash[:success] = "L'article #{@product.title} est bien enregistré!"
     else
       render 'new'
@@ -67,28 +80,34 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
+    @category = @product.category
+    @last_size = Size.last
   end
 
   def update
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
-    @category_id = params[:category]
+    @category = @product.category
+    @last_size = Size.last
     @size_id = params[:size]
+    @condition_id = params[:condition].to_i
+    if @condition_id == 0
+      @condition_id = nil
+    end
 
     if @product.update(title: params[:title],
                        description: params[:description],
                        price: params[:price],
                        brand: params[:brand],
                        color: params[:color],
-                       condition: params[:condition].to_i,
-                       size_id: @size_id,
-                       category_id: @category_id)
+                       condition: @condition_id,
+                       size_id: @size_id)
 
-      redirect_to root_path
+      redirect_to profile_path
       flash[:success] = "L'article #{@product.title} à bien été mis-à-jour"
     else
-      render 'new'
+      render 'edit'
     end
   end
 

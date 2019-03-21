@@ -1,0 +1,49 @@
+<div class="form-group">
+	
+	<h5 class="text-primary">Charger l'ensemble de vos images</h5>
+	
+	<h6 class="text-secondary">Images</h6>
+	<%= file_field_tag 'pictures[]', :multiple => true,  class: "form-control mb-3"%>
+
+	<h5 class="text-primary">Quel est votre produit ?</h5>
+	
+	<h6 class="text-secondary">Titre *</h6>
+	<%= text_field_tag 'title', " ", class: "form-control mb-3"%>
+	<h6 class="text-secondary">Description *</h6>
+	<%= text_area_tag 'description', " ", class: "form-control mb-3" %>
+	<h6 class="text-secondary">Etat *</h6>
+    <%= select_tag 'condition', options_for_select(Product.conditions), class: "form-control mb-3" %>
+
+	<h5 class="text-primary">Quel est votre prix ?</h5>
+	
+	<small class="text-secondary font-italic">En euro *</small></br>
+	<%= text_field_tag 'price', " ", class: "form-control mb-3"%>
+
+	<h5 class="text-primary">Indiquez quelques caractéristiques...</h5>
+	
+	<h6 class="text-secondary">Taille *</h6>
+	<% if @category.id == 2 || @category.id == 3 %>	
+		<small class="text-secondary font-italic">La taille est fixe pour cette catégorie</small></br>
+		<%= select_tag 'size', options_for_select([[@last_size.title, @last_size.id]]), class: "form-control mb-3" %>
+	<% else %>
+		<%= select_tag 'size', options_for_select(@sizes.collect{|size|[size.title, size.id]}), class: "form-control mb-3",prompt: " " %>
+	<% end %>
+	
+	<h6 class="text-secondary">Marque</h6>
+	<% if @category.id == 5 %>
+		<small class="text-secondary font-italic">Pas de besoin d'indiquer la marque pour cette catégorie</small></br>
+		<%= text_field_tag 'brand', " ", class: "form-control mb-3", disabled:true %>
+	<% else %>
+		<%= text_field_tag 'brand', " ", class: "form-control mb-3" %>	
+	<% end %>                                                        
+    
+    <h6 class="text-secondary">Couleur</h6>
+    <% if @category.id == 4 || @category.id == 5 || @category.id == 6 || @category.id == 7 %>	
+		<small class="text-secondary font-italic">Pas besoin d'indiquer la couleur pour cette catégorie</small></br>
+		<%= text_field_tag 'color', " ", class: "form-control mb-3", disabled: true %>
+	<% else %>
+		<%= text_field_tag 'color', " ", class: "form-control mb-3" %>
+	<% end %>
+
+	<%= submit_tag "Ajouter mon produit", class: "btn btn-primary" %>
+</div>

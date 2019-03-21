@@ -1,7 +1,7 @@
 class ChargesController < ApplicationController
   before_action :authenticate_user!
-	after_action :confirmation_order, only: [:create]
-  after_action :confirmation_purchase, only: [:create]
+	after_action :confirmation_buyer_reservation, only: [:create]
+  after_action :confirmation_seller_reservation, only: [:create]
 
 	def new
 	end
@@ -20,9 +20,7 @@ class ChargesController < ApplicationController
       source: params[:stripeToken],
     )
 
-    puts '$'*1000
-    puts customer
-    puts customer.id
+  
 
  		#charge = Stripe::Charge.create({ currency: 'eur', customer: customer.id, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
 #})
@@ -30,7 +28,6 @@ class ChargesController < ApplicationController
       @order.update(stripe_customer_id: customer.id, status: 2)
      
       @product.update(state: 'sold')
-      puts @product
       flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'
       redirect_to orders_path
 
@@ -40,12 +37,12 @@ class ChargesController < ApplicationController
   	end
 
 
-   def confirmation_order
-     SellerMailer.confirmation_order(@order.product.seller).deliver_now
+   def confirmation_buyer_reservation
+     UserMailer.confirmation_buyer_reservation(current_user).deliver_now
    end
 
-   def confirmation_purchase
-     UserMailer.confirmation_purchase(current_user).deliver_now
+   def confirmation_seller_reservation
+     SellerMailer.confirmation_seller_reservation(@order.product.seller).deliver_now
    end
 
 end

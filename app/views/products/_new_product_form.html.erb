@@ -1,0 +1,20 @@
+<%= form_tag url_for(action: 'create'), method: "post", multipart: true do %>
+
+<h5 class="text-primary"> Sélectionner la catégorie</h5>
+<%= select_tag :category, options_for_select(@categories.collect{|category| [category.title,category.id]}),data: { remote: true, url: url_for(controller: 'categories', action: 'index')}, prompt: " ", class: "form-control mb-3" %>
+
+<div id="attributes"></div>
+
+<% end %>
+
+<% if @product.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+        <p>Nous n'avons pas réussi à enregistrer votre produit pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+            <% @product.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+

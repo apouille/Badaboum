@@ -1,23 +1,20 @@
-<%= form_tag url_for(action: 'create', controller: 'children'), method: "post", multipart: true do %>
+<%= form_tag url_for(action: 'create', controller: 'children'), method: "post" do %>
     <div class="form-group">
         <h5 class="text-primary">Ajouter un enfant</h5>
         <h6 class="text-secondary">Prénom/Surnom *</h6>
-        <%= text_field_tag 'nickname', @child.nickname, class: "form-control mb-3"%>
+        <%= text_field_tag 'nickname', '', class: "form-control mb-3"%>
         <h6 class="text-secondary">Sexe *</h6>
-        <%= select_tag 'sex', raw("<option>Fille</option><option>Garçon</option>"),class: "form-control mb-3" %>
+        <%= select_tag 'sex', options_for_select(Child.sexes), prompt: " ", class: "form-control mb-3" %>
         <h6 class="text-secondary">Naissance *</h6>
-         <%= date_field_tag 'birthday', @child.birthday, class: "form-control" %>
+         <%= date_field_tag 'birthday', '', class: "form-control" %>
         <small class="text-primary">* Champs obligatoires</small></br>
         <%= submit_tag "Ajouter un enfant", class: "btn btn-primary mt-3 mb-3" %>
     </div>
 <% end %>
-<% if @child.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-        <p>Nous n'avons pas réussi à enregistrer votre profil pour la (ou les) raison(s) suivante(s) :</p>
-        <ul>
-            <% @child.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
+
+<h5 class="mt-4 mb-4 text-primary">Les enfants</h5>
+<div class="container-fluid text-secondary">
+    <% @profile.children.each do |child| %>
+        <p><i class="fas fa-baby-carriage fa-lg"></i> - <%= child.nickname %> (<%= child.sex %>) : <%= child.birthday.strftime("%d/%m/%Y") %></p>
+    <% end %>
+</div>

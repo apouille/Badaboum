@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   root "home#index"
-  get 'kitui', to: 'home#kitui'
   get 'team', to: 'home#team'
+  get 'kitui', to: 'home#kitui'
 
   resources :products do
   	resources :comments
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :charges
   resource :profile, only: [:show, :edit, :update]
   resource :children
+  resources :categories, only: [:index]
+  
 
   namespace :admin do
     root 'admin#index'
@@ -21,10 +23,15 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show, :destroy]
     resources :orders, only: [:index, :show, :destroy]
   end
-  
+
+  resources :conversations do
+    resources :messages
+  end
+
 
   get "/fetch_products" => 'products#from_category', as: 'fetch_products'
   get'payment_profile', to: 'stripeconnects#payment_profile'
   get "settings/payment-info/users/auth/stripe_connect/callback", to:"stripeconnects#stripe_callback"
+
 
 end

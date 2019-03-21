@@ -6,10 +6,12 @@ class ChildrenController < ApplicationController
 
 	def create
     @profile = current_user.profile
-
-    params[:sex] == "Fille" ? sex = 1 : sex = 2
-	@nickname = params[:nickname]
-	@child = Child.new(nickname: params[:nickname], sex: sex, birthday: params[:birthday], profile: @profile)
+    @nickname = params[:nickname]
+    @sex = params[:sex].to_i
+    if @sex == 0
+      @sex = nil
+    end
+	@child = Child.new(nickname: params[:nickname], sex: @sex, birthday: params[:birthday], profile: @profile)
 		if @child.save
 			flash[:success] = "#{@nickname} a bien été ajouté"
 	    	redirect_to profile_path

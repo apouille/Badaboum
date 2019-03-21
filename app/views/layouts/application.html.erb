@@ -12,6 +12,8 @@
         <%= stylesheet_link_tag    'application', media: 'all' %>
         <%= javascript_include_tag 'application' %>
 
+        <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
@@ -39,5 +41,13 @@
             })
         </script>
 
+        <script type="text/javascript">
+        $(document).ready(function(){
+          setTimeout(function(){
+            $('#flash').remove();
+          }, 3000);
+         })
+        </script>
+        
     </body>
 </html>
