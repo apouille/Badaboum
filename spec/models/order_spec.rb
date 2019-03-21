@@ -18,7 +18,7 @@ RSpec.describe Order, type: :model do
 
     describe "#status" do
       it { expect(@order).to validate_presence_of(:status) }
-      it { should define_enum_for(:status).with_values(in_progress:1, paid_with_stripe:2) }
+      it { should define_enum_for(:status).with_values(in_progress:1, paid_with_stripe:2, completed:3, disputed:4, refunded:5) }
     end
   end
 
