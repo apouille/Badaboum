@@ -23,6 +23,11 @@ RSpec.describe Category, type: :model do
       it { expect(@category).to validate_presence_of(:icon) }
     end
   end
+
+
+  context "public methods" do 
+    it { expect(Category.nested_array_of_cat).to include([@category.title, @category.id]) }
+  end
   
 
   context "associations" do
