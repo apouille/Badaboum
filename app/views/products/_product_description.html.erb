@@ -14,13 +14,13 @@
                             <div class="col text-right"data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Retirer de ma baby-list" id="toggle_wish_<%= @product.id %>">
                                 <%= link_to  '<span style="color: Tomato;"><i class="fas fa-heart"></i></span>'.html_safe, wishlist_product_path(transform_product_to_wishlist_product(@product),:product => @product), method: :delete, :class => "toggle_wish", remote: true %>
                             </div>
-                        <%else%>
+                        <% else %>
                             <div class="col text-right" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ajouter à ma baby-list" id="toggle_wish_<%= @product.id %>">
 
                                 <%= link_to  '<i class="far fa-heart"></i>'.html_safe, wishlist_products_path(:product => @product), method: :post, :class => "toggle_wish", remote: true %>
 
                             </div>
-                        <%end%>
+                        <% end %>
                     <% end %>
                 <%else%>
                     <div class="col text-right"data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Se connecter pour accéder la baby-list" >
