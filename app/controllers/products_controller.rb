@@ -46,6 +46,9 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @category_id = params[:category]
     @size_id = params[:size]
     @condition_id = params[:condition].to_i
+    if @condition_id == 0
+      @condition_id = nil
+    end
 
     @product = Product.new(
       title: params[:title],
@@ -63,7 +66,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @product.pictures.attach(params[:pictures])
 
     if @product.save
-      redirect_to profile_path
+      redirect_to request.referer
       flash[:success] = "L'article #{@product.title} est bien enregistré!"
     else
       render 'new'
