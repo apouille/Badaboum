@@ -34,6 +34,21 @@ a.anchor {
   color: #45b1b4;
 }
 
+.border-left-primary{
+  border-left: .50rem solid #45b1b4 !important;
+}
+
+.border-left-success{
+  border-left: .50rem solid #8ec97a !important;
+}
+
+.border-left-info{
+  border-left: .50rem solid #5d6480 !important;
+}
+
+.border-left-warning{
+  border-left: .50rem solid #ffe56f !important;
+}
 
 
 // fixer le footer en bas
