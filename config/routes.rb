@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   devise_for :users
   root "home#index"
-  get 'kitui', to: 'home#kitui'
   get 'team', to: 'home#team'
 
   resources :products do
@@ -14,6 +13,8 @@ Rails.application.routes.draw do
   resources :charges
   resource :profile, only: [:show, :edit, :update]
   resource :children
+  resources :categories, only: [:index]
+  
 
   namespace :admin do
     root 'admin#index'

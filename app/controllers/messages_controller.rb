@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+  after_action :new_email_message, only: [:create]
   before_action do
      @conversation = Conversation.find(params[:conversation_id])
   end
@@ -39,19 +41,10 @@ class MessagesController < ApplicationController
     if @message.save
       respond_to do |format|
         flash[:notice] = "Message envoyé !"
-
         format.html { redirect_to conversations_path(@conversation) }
-
         format.js
       end
     end
-
-
-    # if @message.save
-
-    #   # redirect_to conversation_messages_path(@conversation)
-    # end
-
 
   end
 
@@ -59,6 +52,10 @@ class MessagesController < ApplicationController
 
     def message_params
       params.require(:message).permit(:body, :user_id)
+    end
+
+    def new_email_message
+      UserMailer.new_private_message(recipient).deliver_now
     end
 
 end

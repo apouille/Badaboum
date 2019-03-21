@@ -63,15 +63,13 @@
             <li class="nav-item dropdown">
 
                 <!-- avatar -->
-                <a id="navbar_1_dropdown_3" class="nav-link nav-link-icon has-badge" href="#" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" title="Mon profil">
+                <a id="navbar_1_dropdown_3" class="nav-link nav-link-icon" href="#" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" title="Mon profil">
                     <% if user_signed_in? %>
                         <% if current_user.profile.profil_picture.attached? %>
-                          <%= image_tag current_user.profile.profil_picture_thumbnail, alt: 'Photo', class:"dropdown-image rounded-circle img-fluid", width:'18px' %>
+                          <%= image_tag current_user.profile.profil_picture_thumbnail, alt: 'Photo', class:"dropdown-image border rounded-circle img-fluid", width:'18px' %>
                         <% else %>
-                           <%= image_tag "profile-default.png", class:"dropdown-image rounded-circle img-fluid", width:'18px' %>
+                           <%= image_tag "profile-default.png", class:"dropdown-image rounded-circle img-fluid border", width:'22px' %>
                         <% end %>
-
-                        <sup class="badge bg-primary text-white">4</sup>
                     <%else%>
                         <i class="fas fa-user"></i> Se connecter / S'inscrire
                     <%end%>

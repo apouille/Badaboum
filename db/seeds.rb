@@ -19,7 +19,7 @@ sizes = ["Prématuré",
 	          "12 - 18 mois", 
 	          "18 - 24 mois",
 	          "24 - 36 mois",
-	          "4 ans", "5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "11 ans", "12 ans", "Femmes enceintes", "Autres"
+	          "4 ans", "5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "11 ans", "12 ans", "Femmes enceintes", "Unique"
 	          ]
 users = [
 	["bastien.hiel@yopmail.com", "Bastien", "Hiel"],

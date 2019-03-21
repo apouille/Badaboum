@@ -21,7 +21,7 @@
 
 <!-- User button-->   ​
     <div class="block-body text-center">
-        <a href="#" class="btn btn-primary btn-shadow btn-circle">Voir mes messages</a>
+        <%= link_to "Voir mes messages", conversations_path, class: "btn btn-primary btn-shadow btn-circle" %>
         <%= link_to "Editer mes informations", edit_profile_path, class: "btn btn-secondary mt-2 btn-shadow btn-circle" %>
     </div>
 

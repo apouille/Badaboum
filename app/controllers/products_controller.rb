@@ -3,9 +3,6 @@ class ProductsController < ApplicationController
 before_action :authenticate_user! , only: [:new, :edit, :delete]
 
   def index
-    puts "*" * 30
-    puts params
-    puts "*" * 30
     if !params[:category].present?
       @products = Product.all.in_stock.page(params[:page]).per(18)
     else
@@ -37,12 +34,14 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   def new
     @product = Product.new
     @sizes = Size.all
+    @last_size = Size.last
     @categories = Category.all
   end
 
   def create
     @categories = Category.all
     @sizes = Size.all
+    @last_size = Size.last
 
     @category_id = params[:category]
     @size_id = params[:size]
