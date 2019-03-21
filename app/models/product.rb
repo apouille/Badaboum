@@ -12,6 +12,8 @@ class Product < ApplicationRecord
 	has_many :wishlist_products
 	has_one :order
 
+
+  validates :state, presence:true
   validates :title, :description, :price, :condition, :category, :size, presence: { message: " Ce champs est obligatoire!" };
   validates :description, length: { minimum: 20, message: " La description doit faire au minimum 20 caractères" };
   validates :price, numericality: { greater_than_or_equal_to: 1,  message: "Le prix doit être supérieur ou égal à 1€" };
