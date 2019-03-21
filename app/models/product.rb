@@ -3,13 +3,13 @@ class Product < ApplicationRecord
 	belongs_to :category
 	belongs_to :size
 	enum state: { in_stock:1, sold:2 }
-	enum condition: { Neuf:1, Bon:2, Moyen:3, Mauvais:4, Dégradé:5 }, presence: { message: " Ce champs est obligatoire!" }
+	enum condition: { Neuf:1, Bon:2, Moyen:3, Mauvais:4, Dégradé:5 }
 
 
 	has_many_attached :pictures
 
 	has_many :comments, dependent: :destroy
-	has_many :wishlist_products
+	has_many :wishlist_products, dependent: :destroy
 	has_one :order
 
 
