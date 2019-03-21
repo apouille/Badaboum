@@ -33,11 +33,11 @@
       <td ><%= order.product.title %></td>
       <td ><%= order.product.price %> €</td>
       <% if order.status == "in_progress" %>
-        <td ><span class="badge badge-primary"><%= order.status %></td>
-      <% elsif order.status == "paid_with_stripe" %>
-        <td ><span class="badge badge-success"><%= order.status %></td>
-      <% elsif order.status == "completed" %>
         <td ><span class="badge badge-light"><%= order.status %></td>
+      <% elsif order.status == "paid_with_stripe" %>
+        <td ><span class="badge badge-primary"><%= order.status %></td>
+      <% elsif order.status == "completed" %>
+        <td ><span class="badge badge-success"><%= order.status %></td>
       <% elsif order.status == "disputed" %>
         <td ><span class="badge badge-warning"><%= order.status %></td>
       <% elsif order.status == "refunded" %>
