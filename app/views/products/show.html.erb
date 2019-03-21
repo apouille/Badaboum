@@ -40,3 +40,22 @@
 
 </section>
 
+<script>
+
+    let seller = $('#tab_default_1')
+    let sellerlink = $("a[href$='default_1']")
+    let comment = $('#tab_default_2')
+    let commentlink = $("a[href$='default_2']")
+
+
+    $(document).ready(function () {
+    if(window.location.href.indexOf("?table=2") > -1) {
+        seller.removeClass( "active show" )
+        sellerlink.removeClass( "active show" )
+
+        comment.addClass( "active show" )
+        commentlink.addClass( "active show" )
+    }
+});
+</script>
+
