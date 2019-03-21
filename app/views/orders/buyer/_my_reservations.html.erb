@@ -77,8 +77,7 @@
                   <%end%>
                  </td>
                   <td>
-                    <span class="badge badge-warning m-0">A récupérer dans les 30 jours</span>
-                    <div class="countdown countdown-sm" data-countdown-date="<%=deadline(paid_order)%>" data-countdown-label="show"></div>
+                    <span class="badge badge-warning m-0">A récupérer avant le <%=(paid_order.updated_at+30.days).strftime("%d-%m-%Y")%></span>
                   </td>
                   <td>
                   <%=link_to "Annulation", order_path(paid_order.id, status:'disputed'), method: :patch, class:"btn btn-danger" %><br>
@@ -90,3 +89,5 @@
              
         </div>	
 	</div>
+
+
