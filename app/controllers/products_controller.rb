@@ -79,22 +79,21 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
-    @category_id = params[:category]
     @size_id = params[:size]
+    @condition_id = params[:condition]
 
     if @product.update(title: params[:title],
                        description: params[:description],
                        price: params[:price],
                        brand: params[:brand],
                        color: params[:color],
-                       condition: params[:condition].to_i,
-                       size_id: @size_id,
-                       category_id: @category_id)
+                       condition: @condition_id,
+                       size_id: @size_id)
 
-      redirect_to root_path
+      redirect_to profile_path
       flash[:success] = "L'article #{@product.title} à bien été mis-à-jour"
     else
-      render 'new'
+      render 'edit'
     end
   end
 
