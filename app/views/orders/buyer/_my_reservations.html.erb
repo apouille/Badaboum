@@ -33,7 +33,21 @@
 
                   <td><strong><%=paid_order.product.seller.profile.first_name%>
                   	<%=paid_order.product.seller.profile.last_name%></strong> <br>
-                   <%=link_to "Contacter le vendeur ", root_path %><br>
+
+
+
+                    <% if user_signed_in? %>
+                       <% unless current_user.id == paid_order.product.seller.id %>
+                        <%= link_to 'Contacter le vendeur', conversations_path(sender_id: current_user.id, recipient_id: paid_order.product.seller.id), method: 'post'%>
+                      <% end %>
+                    <% end %>
+
+
+                  
+
+
+
+
                   	<%=paid_order.product.seller.profile.phone_number%><br>
                   </td>
                   <td>
