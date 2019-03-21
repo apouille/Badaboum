@@ -1,7 +1,8 @@
+// margin to prevent the content to be hidden by the sticky navbar
 .margin-navbar {
   margin-bottom: 5.5em;
 }
-
+// for the anchor link to arrive at the good place (because of the sticky navbar)
 a.anchor {
     display: block;
     position: relative;
@@ -9,31 +10,36 @@ a.anchor {
     visibility: hidden;
 }
 
+// no margin right on the awesome icons
 .no-margin-right i {
   margin-right:0 !important;
 }
 
+// payment page
 .tabs--style-2 .nav-tabs .disable-hover .nav-link:hover {
   border-bottom: none;
   background: transparent !important;
   color: #6c757d;
 }
 
+// photo on profile page
 .user_icon img {
     border-radius: 100%;
     border: 4px solid rgba(0, 0, 0, 0.1)
 }
 
-
+// bug on the default image chrome
 .default_image {
 	max-height: 300px!important;
 }
 
+// Titles product pages on categories
 .police_logo {
   font-family: 'Boogaloo', cursive;
   color: #45b1b4;
 }
 
+<<<<<<< HEAD
 .border-left-primary{
   border-left: .50rem solid #45b1b4 !important;
 }
@@ -52,9 +58,15 @@ a.anchor {
 
 
 // fixer le footer en bas
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 footer { margin-top: auto;}
+
+// images product edit forms
+.edit-img {
+  max-width: 500px;
+}
