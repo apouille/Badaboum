@@ -13,11 +13,29 @@ class SellerMailer < ApplicationMailer
     mail(to: @seller.email, subject: 'Notification de commentaire')
   end
 
-  def confirmation_order(seller)
+  def confirmation_seller_reservation(seller)
 		@seller = seller
     @url  = 'http://badaboum-demo.herokuapp.com/login'
-    mail(to: @seller.email, subject: 'Notification Confirmation Commande')
+    mail(to: @seller.email, subject: 'Vous avez une nouvelle réservation')
   end
 
+  def confirmation_seller_transaction(seller)
+    @seller=seller
+    @url  = 'http://badaboum-demo.herokuapp.com/login'
+    mail(to: @seller.email, subject: 'Votre transaction est validée')
+  end
+
+
+  def confirmation_seller_cancellation(seller)
+    @seller=seller
+    @url  = 'http://badaboum-demo.herokuapp.com/login'
+    mail(to: @seller.email, subject: 'Une reservation a été annulée')
+  end
+
+  def confirmation_seller_refund(seller)
+    @seller=seller
+    @url  = 'http://badaboum-demo.herokuapp.com/login'
+    mail(to: @seller.email, subject: "L'annulation est confirmé"")
+  end
 
 end

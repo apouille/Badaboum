@@ -3,6 +3,7 @@
     <h3 class="heading heading-6 strong-600 text-uppercase mb-0"> Mes demandes d'annulation à valider</h3>
 
     <div class="card col-12 mt-3">
+      <div class="table-responsive">
             <table class="table table-hover mb-0">
               <thead>
                 <tr>
@@ -38,16 +39,9 @@
                       <%= link_to 'Ouvrir un litige', conversations_path(sender_id: current_user.id, recipient_id: 6), method: 'post', class:"" %>
                     </div>
                   </td>
-
-
-
-
-                  <td></td>
                 </tr>
                 <%end%>
-
-
-
+                
                 <% @seller_refunded_sales.each do |refunded_order|%>
                 <tr>
                   <td><a class="navi-link" data-toggle="modal"><%=refunded_order.id%></a></td>
@@ -59,18 +53,12 @@
                   <td><%=refunded_order.product.title%></td>
                   <td><%=refunded_order.updated_at.strftime("%Y-%m-%d") %></td>
                   <td><%=refunded_order.product.seller.profile.first_name%></td>
-
-
-                   <td><span class="badge badge-success m-0"> Annnulée</span></td>
-
-
-
+                  <td><span class="badge badge-success m-0"> Annnulée</span></td>
                   <td><%=refunded_order.product.price%> €</td>
                 </tr>
                 <%end%>
-
-
               </tbody>
             </table>
+          </div>
         </div>
   </div>
