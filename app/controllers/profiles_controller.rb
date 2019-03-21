@@ -20,11 +20,11 @@ class ProfilesController < ApplicationController
     	if params[:profil_picture].present?
         @profile.profil_picture.attach(params[:profil_picture])
     	end
-      redirect_back fallback_location: root_path 
-      flash[:succes] = "Profil mis à jour!"    
+      redirect_back fallback_location: profile_path 
+      flash[:succes] = "Votre profil a été mis à jour!"    
     else
       render 'edit'
-      flash[:error] = "Le profil n'a pas pu être mis à jour!" 
+      flash[:error] = "Votre profil n'a pas pu être mis à jour!" 
     end
   end
 

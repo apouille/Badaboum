@@ -2,23 +2,42 @@
     <div class="form-group">
         
         <h5 class="text-primary mb-0">Votre produit</h5>
-        <small class="text-secondary ">Dans la catégorie <%= @product.category.title %></small>
+        <small class="text-secondary ">Dans la catégorie <%= @category.title %></small>
         
         <h6 class="text-secondary mt-3">Titre *</h6>
         <%= text_field_tag 'title', @product.title, class: "form-control mb-3"%>
         <h6 class="text-secondary">Description *</h6>
         <%= text_area_tag 'description', @product.description, class: "form-control mb-3" %>
+        <h6 class="text-secondary">Etat *</h6>
+        <%= select_tag 'condition', options_for_select(Product.conditions), prompt: " ", class: "form-control mb-3" %>
         <h6 class="text-secondary">Prix *</h6>
         <small class="text-secondary font-italic">En euro</small></br>
         <%= text_field_tag 'price', @product.price, class: "form-control mb-3"%>
-        <h6 class="text-secondary">Marque</h6>
-        <%= text_field_tag 'brand', @product.brand, class: "form-control mb-3"%>
-        <h6 class="text-secondary">Couleur</h6>
-        <%= text_field_tag 'color', @product.color, class: "form-control mb-3"%>
-        <h6 class="text-secondary">Etat du produit *</h6>
-        <%= select_tag 'condition', options_for_select(Product.conditions), prompt: " ", class: "form-control mb-3" %>
+        
         <h6 class="text-secondary">Taille *</h6>
-        <%= select_tag 'size', options_for_select(@sizes.collect{|size|[size.title, size.id]}), prompt: " ", class: "form-control mb-3" %>
+        <% if @category.id == 2 || @category.id == 3 %>
+            <small class="text-secondary font-italic">La taille est fixe pour cette catégorie</small></br>
+            <%= select_tag 'size', options_for_select([[@last_size.title, @last_size.id]]), class: "form-control mb-3" %>
+        <% else %>
+            <%= select_tag 'size', options_for_select(@sizes.collect{|size|[size.title, size.id]}), prompt: " ", class: "form-control mb-3" %>
+        <% end %>
+
+        <h6 class="text-secondary">Marque</h6>
+        <% if @category.id == 5 %>
+            <small class="text-secondary font-italic">Pas de besoin d'indiquer la marque pour cette catégorie</small></br>
+            <%= text_field_tag 'brand', " ", class: "form-control mb-3", disabled:true %>
+        <% else %>
+            <%= text_field_tag 'brand', @product.brand, class: "form-control mb-3"%>
+        <% end %>
+
+        <h6 class="text-secondary">Couleur</h6>
+        <% if @category.id == 4 || @category.id == 5 || @category.id == 6 || @category.id == 7 %>   
+            <small class="text-secondary font-italic">Pas besoin d'indiquer la couleur pour cette catégorie</small></br>
+            <%= text_field_tag 'color', " ", class: "form-control mb-3", disabled: true %>
+        <% else %>
+            <%= text_field_tag 'color', @product.color, class: "form-control mb-3"%>
+        <% end %>
+
         <small class="text-primary">* Champs obligatoires</small></br>
         
         <%= submit_tag "Mettre-à-jour mon article", class: "btn btn-primary mt-3 mb-3" %>
