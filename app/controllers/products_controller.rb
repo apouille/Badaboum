@@ -36,6 +36,9 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @sizes = Size.all
     @last_size = Size.last
     @categories = Category.all
+    unless current_user.stripe_uid.present?
+      redirect_to payment_profile_path
+    end
   end
 
   def create
@@ -45,6 +48,10 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
 
     @category_id = params[:category]
     @size_id = params[:size]
+    @condition_id = params[:condition].to_i
+    if @condition_id == 0
+      @condition_id = nil
+    end
 
     @product = Product.new(
       title: params[:title],
@@ -52,7 +59,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
       price: params[:price],
       brand: params[:brand],
       color: params[:color],
-      condition: params[:condition].to_i,
+      condition: @condition_id,
       size_id: @size_id,
       seller_id: current_user.id,
       category_id: @category_id,
@@ -62,7 +69,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @product.pictures.attach(params[:pictures])
 
     if @product.save
-      redirect_to root_path
+      redirect_to request.referer
       flash[:success] = "L'article #{@product.title} est bien enregistré!"
     else
       render 'new'
@@ -73,14 +80,21 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
+    @category = @product.category
+    @last_size = Size.last
   end
 
   def update
     @categories = Category.all
     @sizes = Size.all
     @product = Product.find(params[:id])
+    @category = @product.category
+    @last_size = Size.last
     @size_id = params[:size]
-    @condition_id = params[:condition]
+    @condition_id = params[:condition].to_i
+    if @condition_id == 0
+      @condition_id = nil
+    end
 
     if @product.update(title: params[:title],
                        description: params[:description],

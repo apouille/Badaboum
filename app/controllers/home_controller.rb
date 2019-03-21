@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @products = Product.order(created_at: :desc)
+    @products = Product.all.in_stock.order(created_at: :desc)
 
     #current_ip_address = '195.154.25.0'    # return your ip address
  	#results = Geocoder.search(current_ip_address)
