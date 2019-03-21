@@ -1,7 +1,8 @@
 <section class="container pt-3 pb-4 mb-5" data-offset-top="110" id="services">
-  <h2 class="h3 block-title text-center mb-3 mt-5">Hello administrateur!</h2>
+  <h2 class="police_logo strong-600 text-uppercase text-center mb-0 mb-5 mt-5">Welcome Super-Badaboumer!</h2>
+  
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Overview</h1>
+        <h1 class="police_logo h3 mb-0 text-gray-800">Overview</h1>
     </div>
 
     <div class="row mt-5">
@@ -9,31 +10,44 @@
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
-      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+      <h1 class="police_logo h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
         
     <div class="row mt-5">
-      <div class="col-lg-4 col-sm-6">
-        <div class="icon-box text-center mx-auto">
-          <div class="icon-box-icon"><i class="far fa-images fa-2x text-gray-300"></i></div>
-            <h3 class="icon-box-title">Produits</h3>
-              <%= link_to "Tous les produits", admin_products_path, class:"btn btn-secondary btn-sm mb-2" %>
-          </div>
-      </div>
 
       <div class="col-lg-4 col-sm-6">
-        <div class="icon-box text-center mx-auto">
-          <div class="icon-box-icon"><i class="fas fa-users fa-2x text-gray-300"></i></div>
-          <h3 class="icon-box-title">Utilisateurs</h3>
-            <%= link_to "Tous les utilisateurs", admin_users_path, class:"btn btn-secondary btn-sm mb-2" %>
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="icon-box text-center mx-auto">
+              <div class="icon-box-icon"><i class="far fa-images fa-2x text-gray-300"></i></div>
+                 <h3 class="icon-box-title">Produits</h3>
+                    <%= link_to "Tous les produits", admin_products_path, class:"btn btn-secondary btn-sm mb-2" %>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="col-lg-4 col-sm-6">
-        <div class="icon-box text-center mx-auto">
-          <div class="icon-box-icon"><i class="fas fa-shopping-basket fa-2x text-gray-300"></i></div>
-          <h3 class="icon-box-title">Commandes et paniers</h3>
-            <%= link_to "Toutes les commandes", admin_orders_path, class:"btn btn-secondary btn-sm mb-2" %>
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="icon-box text-center mx-auto">
+              <div class="icon-box-icon"><i class="fas fa-users fa-2x text-gray-300"></i></div>
+                <h3 class="icon-box-title">Utilisateurs</h3>
+                 <%= link_to "Tous les utilisateurs", admin_users_path, class:"btn btn-secondary btn-sm mb-2" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="icon-box text-center mx-auto">
+              <div class="icon-box-icon"><i class="fas fa-shopping-basket fa-2x text-gray-300"></i></div>
+                <h3 class="icon-box-title">Commandes et paniers</h3>
+                  <%= link_to "Toutes les commandes", admin_orders_path, class:"btn btn-secondary btn-sm mb-2" %>
+            </div>
+          </div>
         </div>
       </div>
 
