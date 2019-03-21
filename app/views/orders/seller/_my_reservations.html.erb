@@ -43,7 +43,11 @@
                     <div class="countdown countdown-sm" data-countdown-date="<%=deadline(reservation)%>" data-countdown-label="show"></div>
                   </td>
                   <td>
-                   <%=link_to "Contacter l'acheteur ", root_path %><br>
+                    <% if user_signed_in? %>
+                      
+                        <%= link_to "Contacter l'acheteur", conversations_path(sender_id: current_user.id, recipient_id: reservation.user.id), method: 'post'%>
+                 
+                    <% end %>
                   </td>
                   <td>
         <%=link_to "Annuler la réservation", order_path(reservation.id, status:'refunded'), method: :patch, class:"btn btn-danger" %>
