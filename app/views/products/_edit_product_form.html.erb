@@ -1,9 +1,10 @@
 <%= form_tag url_for(action: 'update'), method: "patch", multipart: true do %>
-    <div class="form-group">
-        
-        <h5 class="text-primary">Votre produit</h5>
-        
-        <h6 class="text-secondary">Titre *</h6>
+    <div class="form-group border-md-right p-4">
+
+        <h5 class="text-primary mb-0">Votre produit</h5>
+        <small class="text-secondary ">Dans la catégorie <%= @product.category.title %></small>
+
+        <h6 class="text-secondary mt-3">Titre *</h6>
         <%= text_field_tag 'title', @product.title, class: "form-control mb-3"%>
         <h6 class="text-secondary">Description *</h6>
         <%= text_area_tag 'description', @product.description, class: "form-control mb-3" %>
@@ -15,15 +16,13 @@
         <h6 class="text-secondary">Couleur</h6>
         <%= text_field_tag 'color', @product.color, class: "form-control mb-3"%>
         <h6 class="text-secondary">Etat du produit *</h6>
-        <%= select_tag 'condition', options_for_select(Product.conditions), class: "form-control mb-3" %>
+        <%= select_tag 'condition', options_for_select(Product.conditions), prompt: " ", class: "form-control mb-3" %>
         <h6 class="text-secondary">Taille *</h6>
-        <%= select_tag 'size', options_for_select(@sizes.collect{|size|[size.title, size.id]}), class: "form-control mb-3" %>
-        <h6 class="text-secondary">Catégorie *</h6>
-        <%= select_tag 'category', options_for_select(@categories.collect{|category|[category.title, category.id]}), class: "form-control mb-3" %>
+        <%= select_tag 'size', options_for_select(@sizes.collect{|size|[size.title, size.id]}), prompt: " ", class: "form-control mb-3" %>
         <small class="text-primary">* Champs obligatoires</small></br>
-        
-        <%= submit_tag "Mettre-à-jour mon article", class: "btn btn-primary mt-3 mb-3" %>
-    
+
+        <%= submit_tag "Mettre à jour mon article", class: "btn btn-primary mt-3 mb-3" %>
+
     </div>
 <% end %>
 
