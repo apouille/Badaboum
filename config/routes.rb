@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "home#index"
   get 'team', to: 'home#team'
+  get 'kitui', to: 'home#kitui'
 
   resources :products do
   	resources :comments
@@ -31,5 +32,6 @@ Rails.application.routes.draw do
   get "/fetch_products" => 'products#from_category', as: 'fetch_products'
   get'payment_profile', to: 'stripeconnects#payment_profile'
   get "settings/payment-info/users/auth/stripe_connect/callback", to:"stripeconnects#stripe_callback"
+
 
 end

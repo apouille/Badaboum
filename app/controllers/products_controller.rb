@@ -36,6 +36,9 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
     @sizes = Size.all
     @last_size = Size.last
     @categories = Category.all
+    unless current_user.stripe_uid.present?
+      redirect_to payment_profile_path
+    end
   end
 
   def create
