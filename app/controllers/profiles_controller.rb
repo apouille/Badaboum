@@ -16,22 +16,17 @@ class ProfilesController < ApplicationController
 	def update
 		@profile = current_user.profile
 
-		respond_to do |format|
-      if @profile.update profile_params
-      	if params[:profil_picture].present?
-          @profile.profil_picture.attach(params[:profil_picture])
-      	end
-        format.html { redirect_back fallback_location: profile_path, notice: "Profil mis à jour!" }
-        format.json { render :edit, status: :ok, location: @profile }
-
-      else
-        format.html { redirect_back fallback_location: edit_profile_path, flash: { error: "Le profil n'a pas pu être mis à jour!" } }
-        format.json { render json: @profile.errors.messages, status: :unprocessable_entity }
-      end
+    if @profile.update profile_params
+    	if params[:profil_picture].present?
+        @profile.profil_picture.attach(params[:profil_picture])
+    	end
+      redirect_back fallback_location: root_path 
+      flash[:succes] = "Profil mis à jour!"    
+    else
+      render 'edit'
+      flash[:error] = "Le profil n'a pas pu être mis à jour!" 
     end
   end
-
-
 
 	private
 
