@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
 		flash[:success] = "Merci. Votre commande est validée et le montant vient d'être débité de votre compte"
 		redirect_to orders_path
 	
-	#Cas ou le vendeur accepte l'annulation de la resrvation
+	#Cas ou le vendeur accepte l'annulation de la reservation
 	elsif params[:status] == 'refunded'
 		@order.update(status: @status)
 		@product.update(state:1)
