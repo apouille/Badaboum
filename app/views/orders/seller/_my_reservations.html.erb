@@ -3,59 +3,55 @@
 	
 	<div class="row mb-3 mt-3">
 		<div class="card col-12 ">
-			 
-            <table class="table table-hover mb-0">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Photo</th>
-                  <th>Produit</th>
-                  <th>Acheteur</th>
-                  <th>Statut</th>
-                  <th>contact</th>
-                  <th>Annuler</th>
-                </tr>
-              </thead>
-              <tbody>
-             <% @seller_reservations.each do |reservation|%>
-                <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=reservation.id%></a></td>
-                  <td class="product-image">  <% if reservation.product.pictures.attached? %>
+			 <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Photo</th>
+                      <th>Produit</th>
+                      <th>Acheteur</th>
+                      <th>Statut</th>
+                      <th>contact</th>
+                      <th>Annuler</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @seller_reservations.each do |reservation|%>
+                    <tr>
+                      <td><a class="navi-link" data-toggle="modal"><%=reservation.id%></a></td>
+                      <td class="product-image">  
+                        <% if reservation.product.pictures.attached? %>
                         <%= image_tag reservation.product.pictures.first.variant(resize:'100x100'), alt:reservation.product.title %>
-        								<% else %>
-        								<%= image_tag("shoes.jpg", alt:reservation.product.title,size: "50") %>
-        								<% end %><br>
+                        <% else %>
+                        <%= image_tag("shoes.jpg", alt:reservation.product.title,size: "50") %>
+                        <% end %><br>
                       </td>
                       <td>
-                  <strong><%=reservation.product.title%></strong><br>
-                  	<%=reservation.updated_at.strftime("%b %d, %Y")%><br>
-                  	<span style="color:#45b1b4;">Prix : <%=reservation.product.price%> €</span><br></td>
-                  </td>
-
-                  <td><strong><%=reservation.user.profile.first_name%>
-                  	<%=reservation.user.profile.last_name%></strong> <br>
-                  
-                  	<%=reservation.user.profile.phone_number%><br>
-                  </td>
-                  
-                  <td>
-                   
-                      <span class="badge badge-warning m-0">A livrer à l'acheteur avant le <%=(reservation.updated_at+30.days).strftime("%d-%m-%Y")%></span>
-                  </td>
-                  <td>
-                    <% if user_signed_in? %>
-                      
+                        <strong><%=reservation.product.title%></strong><br>
+                        <%=reservation.updated_at.strftime("%b %d, %Y")%><br>
+                        <span style="color:#45b1b4;">Prix : <%=reservation.product.price%> €</span><br>
+                      </td>
+                      <td>
+                        <strong><%=reservation.user.profile.first_name%>
+                        <%=reservation.user.profile.last_name%></strong> <br>
+                        <%=reservation.user.profile.phone_number%><br>
+                      </td>
+                      <td>
+                        <span class="badge badge-warning m-0">A livrer à l'acheteur avant le <%=(reservation.updated_at+30.days).strftime("%d-%m-%Y")%></span>
+                      </td>
+                      <td>
+                        <% if user_signed_in? %> 
                         <%= link_to "Contacter l'acheteur", conversations_path(sender_id: current_user.id, recipient_id: reservation.user.id), method: 'post'%>
-                 
-                    <% end %>
-                  </td>
-                  <td>
-        <%=link_to "Annuler la réservation", order_path(reservation.id, status:'refunded'), method: :patch, class:"btn btn-danger" %>
-                  </td>
-                </tr>
-               <%end%>
-              </tbody>
-            </table>
-             
+                        <% end %>
+                      </td>
+                      <td>
+                       <%=link_to "Annuler la réservation", order_path(reservation.id, status:'refunded'), method: :patch, class:"btn btn-danger" %>
+                      </td>
+                    </tr>
+                    <%end%>
+                </tbody>
+                </table>
+             </div>
         </div>	
 	</div>

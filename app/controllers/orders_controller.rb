@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
 		@product.update(state:1)
 
 		#Je déclenche les notifications mails
-		confirmation_buyer_refund@order.user)
+		confirmation_buyer_refund(@order.user)
   		confirmation_seller_refund(@order.product.seller)
 
 		flash[:success] = "l'annulation de la réservation a bien été prise en compte. Votre produit est à nouveau disponible à la vente"
