@@ -35,7 +35,7 @@ class SellerMailer < ApplicationMailer
   def confirmation_seller_refund(seller)
     @seller=seller
     @url  = 'http://badaboum-demo.herokuapp.com/login'
-    mail(to: @seller.email, subject: "L'annulation est confirmé"")
+    mail(to: @seller.email, subject: "L'annulation est confirmé")
   end
 
 end
