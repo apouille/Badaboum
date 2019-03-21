@@ -5,6 +5,8 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph(2) }
     brand { Faker::Company.name }
     color { Faker::Color.color_name }
+    state { rand(1..2) }
+    condition { rand(1..5) }
     size { FactoryBot.create(:size) }
     seller { FactoryBot.create(:user) }
     category { FactoryBot.create(:category) }
