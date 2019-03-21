@@ -24,8 +24,8 @@
                 <div class="row cols-md-space cols-sm-space cols-xs-space">
                     <%= render 'researchbar_cat' %>                    
                     <%= render 'researchbar_price' %>                 
-                    <%= render 'researchbar_brand' %>
-                    <%= render :partial => "researchbar_size" unless @current_category == '2' || @current_category == '3'%>
+                    <%= render 'researchbar_brand' unless @current_category == '5'%>
+                    <%= render 'researchbar_size' unless @current_category == '2' || @current_category == '3'%>
                     <div class="col-lg-3">
                         <%= submit_tag "Rechercher", class: "btn btn-warning btn-styled btn-block btn-base-1" %>
                     </div>

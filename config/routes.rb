@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show, :destroy]
     resources :orders, only: [:index, :show, :destroy]
   end
-  
+
+  resources :conversations do
+    resources :messages
+  end
+
 
   get "/fetch_products" => 'products#from_category', as: 'fetch_products'
   get'payment_profile', to: 'stripeconnects#payment_profile'
