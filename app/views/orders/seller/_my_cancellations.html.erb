@@ -34,7 +34,7 @@
 
                   <td><span class="badge badge-danger m-0">Demande d'annulation</span></td>
                   <td>
-                    <%=link_to "Accepter", order_path(disputed_order.id, status:'refunded'), method: :patch, class:"btn btn-danger" %><br>
+                    <%=link_to "Accepter", order_path(disputed_order.id, status:'refunded'), method: :patch, class:"btn btn-danger mb-2" %><br>
                     <div data-toggle="tooltip" data-placement="bottom" title="Envoyer un message à l'administrateur du site pour ouvrir un litige">
                       <%= link_to 'Ouvrir un litige', conversations_path(sender_id: current_user.id, recipient_id: 6), method: 'post', class:"" %>
                     </div>
