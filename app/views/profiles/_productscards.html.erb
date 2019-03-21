@@ -5,38 +5,37 @@
         <% unless @myproducts.nil? %>
 
             <% @myproducts.each do |product| %>
+                <div class="col-lg-4 mb-5">
+                    <div class="card z-depth-2-top">
+                        <div class="card-image">
+                            <div class="view view-first">
+                                <% if product.pictures.attached? %>
+                                    <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
+                                <% else %>
+                                    <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
+                                <% end %>
+                            </div>
+                            <div class="block-body px-0 text-center">
+                                <h3 class="heading heading-5 strong-500 mb-0">
+                                    <%= link_to product.title, product_path(product.id) %>
+                                </h3>
+                                <div class="price-wrapper p-3 d-flex">
+                                    <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
+                                    <span class="price heading-6 c-gray-light strong-400 ml-auto"><span class="price-value"><%= product.wishlist_products.count %></span> <i class="fas fa-heart text-danger"></i></span>
+                              </div>
+                            </div>
 
-            <div class="col-lg-4 mb-5">
-                <div class="card z-depth-2-top">
-                    <div class="card-image">
-                        <div class="view view-first">
-                            <% if product.pictures.attached? %>
-                                <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
-                            <% else %>
-                                <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
-                            <% end %>
+                            <div class="card-footer text-center">
+
+                                <%= link_to "Editer le produit", edit_product_path(product.id), class: "btn btn-secondary mt-2  btn-shadow btn-circle"%>
+
+                                <%= link_to "Supprimer le produit",product_path(product.id), class: "btn btn-sm btn-danger mt-2  btn-shadow btn-circle", data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'}, method: "delete" %>
+
+                            </div>
                         </div>
-                        <div class="block-body px-0 text-center">
-                            <h3 class="heading heading-5 strong-500 mb-0">
-                                <%= link_to product.title, product_path(product.id) %>
-                            </h3>
-                            <div class="price-wrapper p-3 d-flex">
-                                <span class="price heading-6 c-gray-light strong-400"><span class="price-value"><%= product.price %></span> €</span>
-                                <span class="price heading-6 c-gray-light strong-400 ml-auto"><span class="price-value"><%= product.wishlist_products.count %></span> <i class="fas fa-heart text-danger"></i></span>
-                          </div>
-                        </div>
 
-                        <div class="card-footer text-center">
-
-                            <%= link_to "Editer le produit", edit_product_path(product.id), class: "btn btn-secondary mt-2  btn-shadow btn-circle"%>
-
-                            <%= link_to "Supprimer le produit",product_path(product.id), class: "btn btn-sm btn-danger mt-2  btn-shadow btn-circle", data: {:confirm => 'Souhaitez vous vraiment supprimer cet article ?'}, method: "delete" %>
-
-                        </div>
                     </div>
-
                 </div>
-            </div>
             <% end %>
         <% end %>
     </div>

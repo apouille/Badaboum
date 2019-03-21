@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
 
-                               
+
                             </div>
                         </div>
 
@@ -50,19 +50,20 @@
                                  <ul class="inline-links inline-links--style-3">
                                    <% if has_notation?(product.seller)%>
                                         <li>
-                                         <% average_notation(product.seller).to_i.times do  %>
-                                        <span class="text-primary"><i class="fas fa-star"></i></span>
-                                        <% end %>
-                                        <% (5 - average_notation(product.seller).to_i).times do %>
-                                        <span class="text-primary"><i class="far fa-star"></i></span>
-                                        <% end %>
-                                        
+                                             <% average_notation(product.seller).to_i.times do  %>
+                                            <span class="text-primary"><i class="fas fa-star"></i></span>
+                                            <% end %>
+                                            <% (5 - average_notation(product.seller).to_i).times do %>
+                                            <span class="text-primary"><i class="far fa-star"></i></span>
+                                            <% end %>
                                         </li>
                                     <%end%>
                                 </ul>
                         </div>
 
                         <% if user_signed_in? %>
+                          <% unless current_user.id == product.seller.id %>
+
                              <%if  product_is_already_wishlist?(product) %>
                                    <div class="col text-right"data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Retirer à ma baby-list" id="toggle_wish_<%=product.id%>">
 
@@ -75,6 +76,7 @@
 
                                     </div>
                              <%end%>
+                          <% end %>
                         <%else%>
                          <%= link_to '<i class="fas fa-heart"></i>'.html_safe, wishlist_products_path, class:"text-primary mr-3" %>
                         <%end%>
