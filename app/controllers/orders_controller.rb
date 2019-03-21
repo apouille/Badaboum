@@ -34,6 +34,12 @@ class OrdersController < ApplicationController
 	})
   		@order.update(notation: @notation, status: @status)
   		@product.update(state:2)
+
+
+  		#Je déclenche les notifications mails
+  		confirmation_buyer_transaction(@order.user)
+  		confirmation_seller_transaction(@order.product.seller)
+
 		flash[:success] = "Merci. Votre commande est validée et le montant vient d'être débité de votre compte"
 		redirect_to orders_path
 	
@@ -125,9 +131,13 @@ class OrdersController < ApplicationController
 	end
 
 
+   def confirmation_buyer_transaction(buyer)
+     UserMailer.confirmation_buyer_transaction(buyer).deliver_now
+   end
 
-
-
+   def confirmation_seller_transaction(seller)
+     SellerMailer.confirmation_seller_transaction(seller).deliver_now
+   end
 
 
 end
