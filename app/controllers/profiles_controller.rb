@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 	def show
 		@profile = current_user.profile
 		@children = Child.where(profile_id: @profile.id)
-    @myproducts = current_user.uploaded_products.order(created_at: :desc)
+    @myproducts = current_user.uploaded_products.in_stock.order(created_at: :desc)
   end
 
 	def edit
@@ -20,11 +20,13 @@ class ProfilesController < ApplicationController
     	if params[:profil_picture].present?
         @profile.profil_picture.attach(params[:profil_picture])
     	end
-      redirect_back fallback_location: root_path 
-      flash[:succes] = "Profil mis à jour!"    
+
+      redirect_back fallback_location: root_path
+      # redirect_to profile_path
+      flash[:success] = "Votre profil a été mis à jour!"
     else
       render 'edit'
-      flash[:error] = "Le profil n'a pas pu être mis à jour!" 
+      flash[:error] = "Votre profil n'a pas pu être mis à jour!"
     end
   end
 

@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 
 		if @comment.save
 			flash[:notice] = "Votre commentaire a été ajouté avec succès ! Votre interlocuteur a été notifié de votre commentaire."
-	 		redirect_to product_path(params[:product_id])
+	 		redirect_to product_path(params[:product_id], table:'2')
 	    else
 	      render :root_path
 		end
