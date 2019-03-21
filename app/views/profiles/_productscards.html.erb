@@ -1,22 +1,19 @@
 <div class="tab-pane active" id="tab_default_1">
 
-    <div class="my-3 text-center">
-      <h3>Mes articles en vente</h3>
-    </div>
 
-    <div class="row">
-        <% unless @products.nil? %>
+    <div class="row mt-5">
+        <% unless @myproducts.nil? %>
 
-            <% @products.each do |product| %>
+            <% @myproducts.each do |product| %>
 
             <div class="col-lg-4 mb-5">
                 <div class="card z-depth-2-top">
                     <div class="card-image">
                         <div class="view view-first">
                             <% if product.pictures.attached? %>
-                                  <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
+                                <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
                             <% else %>
-                                  <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
+                                <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
                             <% end %>
                         </div>
                         <div class="block-body px-0 text-center">
