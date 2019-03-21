@@ -1,6 +1,8 @@
 <div class="container mt-5 mb-5">
 	<h3><i class="far fa-id-card mt-5 "></i> - Index des commandes </h3>
-	<br><br>
+  <div class="container d-flex justify-content-end my-3">
+    <%= link_to "Retour à l'espace administrateur", admin_root_path, class:"btn btn-secondary btn-base-1 mb-2" %>
+  </div>
 <table class="table">
   <thead>
     <tr>
@@ -31,11 +33,11 @@
       <td ><%= order.product.title %></td>
       <td ><%= order.product.price %> €</td>
       <% if order.status == "in_progress" %>
-        <td ><span class="badge badge-primary"><%= order.status %></td>
-      <% elsif order.status == "paid_with_stripe" %>
-        <td ><span class="badge badge-success"><%= order.status %></td>
-      <% elsif order.status == "completed" %>
         <td ><span class="badge badge-light"><%= order.status %></td>
+      <% elsif order.status == "paid_with_stripe" %>
+        <td ><span class="badge badge-primary"><%= order.status %></td>
+      <% elsif order.status == "completed" %>
+        <td ><span class="badge badge-success"><%= order.status %></td>
       <% elsif order.status == "disputed" %>
         <td ><span class="badge badge-warning"><%= order.status %></td>
       <% elsif order.status == "refunded" %>
@@ -45,5 +47,4 @@
 <%end%>
   </tbody>
 </table>
-<%= link_to "Retour", admin_root_path %>
 </div>
