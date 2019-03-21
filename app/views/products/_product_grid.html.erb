@@ -41,6 +41,20 @@
                                         <%= product.seller.profile.first_name.present? ? product.seller.profile.first_name : " " %>
                                     </div>
                                 </div>
+
+                                <div>
+                                    <% if has_notation?(product.seller)%>
+                                        <li>
+                                         <% average_notation(product.seller).to_i.times do  %>
+                                        <span class="text-primary"><i class="fas fa-star"></i></span>
+                                        <% end %>
+                                        <% (5 - average_notation(product.seller).to_i).times do %>
+                                        <span class="text-primary"><i class="far fa-star"></i></span>
+                                        <% end %>
+                                        
+                                        </li>
+                                    <%end%>
+                                </div>
                             </div>
                         </div>
                         <% if user_signed_in? %>

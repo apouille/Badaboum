@@ -20,13 +20,17 @@
                             <%= @seller_profile.first_name.present? ? @seller_profile.first_name : " " %>
                             <%= @seller_profile.last_name.present? ? @seller_profile.last_name : " " %>
                         </h2>
-                        <span class="star-rating star-rating-sm">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </span>
+                     <% if has_notation?(@product.seller)%>
+                                        <li>
+                                         <% average_notation(@product.seller).to_i.times do  %>
+                                        <span class="text-primary"><i class="fas fa-star"></i></span>
+                                        <% end %>
+                                        <% (5 - average_notation(@product.seller).to_i).times do %>
+                                        <span class="text-primary"><i class="far fa-star"></i></span>
+                                        <% end %>
+                                        
+                                        </li>
+                                    <%end%>
                            <p class="heading heading-6 strong-400  profile-occupation mt-3"><%= @seller_profile.description.present? ? @seller_profile.description : "Description non renseignée" %></p>
 
                         <% if user_signed_in? %>
