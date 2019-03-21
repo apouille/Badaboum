@@ -1,4 +1,6 @@
+<p align="center">
 <img src="app/assets/images/logo.png" alt="My cool logo"/> 
+</p>
 
 ## :elephant: Final Project - Badaboum
 
@@ -14,14 +16,14 @@ Voici le lien en production de l'application : <https://badaboum-prod.herokuapp.
 
 ## :fire: Comment tester l'application ?  
 
-#En tant qu'Acheteur  
+**En tant qu'Acheteur**  
 1. Crée un compte Utilisateur
 2. Réalise une recherche d'un article à travers les filtres  
 3. Complète ton profil  
 4. Tu peux mettre dans ta "Baby-list" les produits qui t'intéressent    
 5. Achète un produit en suivant les instructions eeet badabooooum!!
 
-#En tant que Vendeur  
+**En tant que Vendeur**  
 1. Crée un compte Utilisateur
 2. Crée un compte Stripe Connect afin que tu puisses recevoir l'argent  
 3. Complète ton profil  
@@ -45,7 +47,7 @@ mot de passe : test1234
 Puis, entre comme url <https://badaboum-prod.herokuapp.com/admin> et balade-toi!  
 
 
-## Ce super projet a été réalisé avec :heart: par : 
+## :star: Ce super projet a été réalisé avec :heart: par : 
 
 Viviane de Petigny  
 Claudia Partonneau    
