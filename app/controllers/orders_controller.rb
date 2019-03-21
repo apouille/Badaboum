@@ -35,7 +35,6 @@ class OrdersController < ApplicationController
   		@order.update(notation: @notation, status: @status)
   		@product.update(state:2)
 
-
   		#Je déclenche les notifications mails
   		confirmation_buyer_transaction(@order.user)
   		confirmation_seller_transaction(@order.product.seller)
@@ -47,12 +46,22 @@ class OrdersController < ApplicationController
 	elsif params[:status] == 'refunded'
 		@order.update(status: @status)
 		@product.update(state:1)
+
+		#Je déclenche les notifications mails
+		confirmation_buyer_refund@order.user)
+  		confirmation_seller_refund(@order.product.seller)
+
 		flash[:success] = "l'annulation de la réservation a bien été prise en compte. Votre produit est à nouveau disponible à la vente"
 		redirect_to orders_path
 
 	#cas ou l'acheteur demande l'annulation de sa réservation
 	else
 		@order.update(status: @status)
+
+		#Je déclenche les notifications mails
+		confirmation_buyer_cancellation(@order.user)
+  		confirmation_seller_cancellation(@order.product.seller)
+
 		flash[:success] = "Merci. Votre demande d'annulation a bien été prise en compte. "
 		redirect_to orders_path
 	end
@@ -139,5 +148,21 @@ class OrdersController < ApplicationController
      SellerMailer.confirmation_seller_transaction(seller).deliver_now
    end
 
+
+   def confirmation_buyer_cancellation(buyer)
+   	UserMailer.confirmation_buyer_cancellation(buyer).deliver_now
+   end
+
+   def confirmation_seller_cancellation(seller)
+   	SellerMailer.confirmation_seller_cancellation(seller).deliver_now
+	end
+
+	   def confirmation_buyer_refund(buyer)
+   	UserMailer.confirmation_buyer_refund(buyer).deliver_now
+   end
+
+   def confirmation_seller_refund(seller)
+   	SellerMailer.confirmation_seller_refund(seller).deliver_now
+	end
 
 end
