@@ -25,7 +25,11 @@
 
             <p class="heading heading-6 strong-400  profile-occupation mt-3"><%= @seller_profile.description.present? ? @seller_profile.description : "Description non renseignée" %></p>
 
-            <a href="#" class="btn btn-base-1 btn-shadow btn-circle px-4 my-5">Envoyer un message</a>
+            <% if user_signed_in? %>
+                <% unless current_user.id == @product.seller.id %>
+                    <%= link_to 'Envoyer un message', conversations_path(sender_id: current_user.id, recipient_id: @product.seller.id), method: 'post', class:"btn btn-base-1 btn-shadow btn-circle px-4 mt-2"%>
+                <% end %>
+            <% end %>
         </div>
                     <!-- Profile stats -->
 
