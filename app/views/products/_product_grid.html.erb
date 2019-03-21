@@ -50,13 +50,12 @@
                                  <ul class="inline-links inline-links--style-3">
                                    <% if has_notation?(product.seller)%>
                                         <li>
-                                         <% average_notation(product.seller).to_i.times do  %>
-                                        <span class="text-primary"><i class="fas fa-star"></i></span>
-                                        <% end %>
-                                        <% (5 - average_notation(product.seller).to_i).times do %>
-                                        <span class="text-primary"><i class="far fa-star"></i></span>
-                                        <% end %>
-
+                                             <% average_notation(product.seller).to_i.times do  %>
+                                            <span class="text-primary"><i class="fas fa-star"></i></span>
+                                            <% end %>
+                                            <% (5 - average_notation(product.seller).to_i).times do %>
+                                            <span class="text-primary"><i class="far fa-star"></i></span>
+                                            <% end %>
                                         </li>
                                     <%end%>
                                 </ul>

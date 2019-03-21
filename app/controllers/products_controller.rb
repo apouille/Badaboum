@@ -114,6 +114,7 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
+    @product.wishlist_products.destroy
 
     flash[:notice] = "Vous avez supprimé un article avec succès"
     redirect_to profile_path
