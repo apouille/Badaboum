@@ -44,7 +44,7 @@ class ConversationsController < ApplicationController
   end
 
   def buyer_dispute_message
-    UserMailer.buyer_dispute_message(@order.product.user).deliver_now
+    UserMailer.buyer_dispute_message(@order.user).deliver_now
   end
 
 end
