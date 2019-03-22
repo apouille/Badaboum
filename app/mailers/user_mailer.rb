@@ -3,29 +3,29 @@ class UserMailer < ApplicationMailer
 
 	def welcome_email(user)
 		@user = user
-		@url  = 'http://badaboum-prod.herokuapp.com/login'
-		mail(to: @user.email, subject: 'Inscription Badaboum.com')
+		@url  = 'http://badaboum-prod.herokuapp.com/users/sign_in'
+		mail(to: @user.email, subject: 'Inscription Badaboum')
 	end
 
 	def confirmation_buyer_reservation(user)
 		@user = user
-		@url  = 'http://badaboum-prod.herokuapp.com/login'
+		@url  = 'http://badaboum-prod.herokuapp.com/users/sign_in'
 		mail(to: @user.email, subject: 'Votre réservation est validée')
 	end
 
 
 	def confirmation_buyer_transaction(user)
-		@url  = 'http://badaboum-prod.herokuapp.com/login'
+		@url  = 'http://badaboum-prod.herokuapp.com/users/sign_in'
 		mail(to: user.email, subject: 'Votre transaction est validée')
 	end
 
 	def confirmation_buyer_cancellation(user)
-		@url  = 'http://badaboum-prod.herokuapp.com/login'
+		@url  = 'http://badaboum-prod.herokuapp.com/users/sign_in'
 		mail(to: user.email, subject: "Votre demande d'annulation est prise en compte")
 	end
 
 	def confirmation_buyer_refund(user)
-		@url  = 'http://badaboum-prod.herokuapp.com/login'
+		@url  = 'http://badaboum-prod.herokuapp.com/users/sign_in'
 		mail(to: user.email, subject: "L'annulation est confirmée")
 	end
 
@@ -35,5 +35,10 @@ class UserMailer < ApplicationMailer
 		mail(to: @user.email, subject: 'Nouveau message sur Badaboum')
 	end
 
+	def buyer_dispute_message(user)
+		@user = user
+		@url = 'http://badaboum-prod.herokuapp.com/users/sign_in'
+		mail(to: @user.email, subject: 'Litige ouvert sur Badaboum')
+	end
 
 end

@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <h4 class="text-primary">Litiges à régler</h4>  
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> </th>
+                <th scope="col">ID</th>
+                <th scope="col">Contacter acheteur</th>
+                <th scope="col">Contacter vendeur</th>
+                <th scope="col">Dernière mise à jour</th>
+                <th scope="col">Produit</th>
+                <th scope="col">Prix total</th>
+                <th scope="col", class="border-left">Régler le litige</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @orders.where(status: 'dispute').each do |dispute| %>
+                <tr>
+                    <td class="profile-picture", style="width:200px">
+                        <% if dispute.product.pictures.attached?%>
+                            <%= link_to (image_tag dispute.product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(dispute.id) %>
+                        <% else %>
+                            <%= link_to (image_tag "shoes.jpg"), product_path(dispute.id), class:"mt-3" %>
+                        <% end %>
+                    </td>
+                    <td> <%= dispute.id %> </td>
+                    <td> <%= dispute.user.profile.first_name%> </td>
+                    <td> <%= dispute.product.seller.profile.first_name%> </td>
+                    <td> <%= dispute.updated_at.strftime("%d/%m/%y") %></br><%= dispute.updated_at.strftime("%H:%M")%></td>
+                    <td> <%= dispute.product.title %> </td>
+                    <td> <%= dispute.product.price %> € </td>
+                    <%= form_tag admin_order_path(dispute.id), controler: :admin_order, method: :patch do %>
+                        <td class="border-left"><%= select_tag 'admin_status', options_for_select([["confirmation", Order.statuses["confirmation"]], ["cancellation", Order.statuses["cancellation"]]]), prompt: dispute.status, class: "form-control" %></td>
+                        <td><%= submit_tag "Changer", class:"btn btn-danger" %></td>
+                    <% end %>  
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

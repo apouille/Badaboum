@@ -1,21 +1,19 @@
+<div class="block-body text-center mt-2 mx-2">
+    <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Tu n'as pas indiqué ton prénom" %></h2>
 
-	    <div class="block-body text-center mt-2 mx-2">
-	            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Tu n'as pas indiqué ton prénom" %></h2>
+	<% if has_notation?(current_user)%>
+        <ul class="list-unstyled">
+         	<li>
+                <% average_notation(current_user).to_i.times do  %>
+                    <span class="text-primary"><i class="fas fa-star"></i></span>
+                <% end %>
+                <% (5 - average_notation(current_user).to_i).times do %>
+                    <span class="text-primary"><i class="far fa-star"></i></span>
+                <% end %>
+            </li>
+        </ul>
+    <%end%>
 
-	       		<% if has_notation?(current_user)%>
-                                     <ul class="list-unstyled">
-                                     	<li>
-                                         <% average_notation(current_user).to_i.times do  %>
-                                        <span class="text-primary"><i class="fas fa-star"></i></span>
-                                        <% end %>
-                                        <% (5 - average_notation(current_user).to_i).times do %>
-                                        <span class="text-primary"><i class="far fa-star"></i></span>
-                                        <% end %>
-                                        
-                                        </li>
-                                    </ul>
-                <%end%>
-
-	            <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @profile.description.present? ? @profile.description : "N'hésite pas à ajouter une description" %>
-	            </h3>
-	    </div>
+    <h3 class="heading heading-6 strong-400 profile-occupation mt-3"><%= @profile.description.present? ? @profile.description : "N'hésite pas à ajouter une description" %>
+    </h3>
+</div>
