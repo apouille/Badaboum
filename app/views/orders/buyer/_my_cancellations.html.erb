@@ -16,28 +16,60 @@
                 </tr>
               </thead>
               <tbody>
-                <% @disputed_orders.each do |disputed_order|%>
+                <% @buyer_cancellation_requests.each do |cancellation_request|%>
                 <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=disputed_order.id%></a></td>
-                  <td class="product-image">  <% if disputed_order.product.pictures.attached? %>
-                        <%= image_tag disputed_order.product.pictures.first.variant(resize:'100x100'), alt:disputed_order.product.title %>
+                  <td><a class="navi-link" data-toggle="modal"><%=cancellation_request.id%></a></td>
+                  <td class="product-image">  <% if cancellation_request.product.pictures.attached? %>
+                        <%= image_tag cancellation_request.product.pictures.first.variant(resize:'100x100'), alt:cancellation_request.product.title %>
                         <% else %>
-                        <%= image_tag("shoes.jpg", alt:disputed_order.product.title,size: "50") %>
+                        <%= image_tag("shoes.jpg", alt:cancellation_request.product.title,size: "50") %>
                         <% end %></td>
-                  <td><%=disputed_order.product.title%></td>
-                  <td><%=disputed_order.updated_at.strftime("%Y-%m-%d") %></td>
-                  <td><%=disputed_order.product.seller.profile.first_name%></td>
-                  
-                  <%if disputed_order.status=='disputed'%>
-                  <td><span class="badge badge-danger m-0">En cours</span></td>
-                  <%else%>
-                   <td><span class="badge badge-success m-0"> Remboursée</span></td>
-                <%end%>
-                 
-                
-                  <td><%=disputed_order.product.price%> €</td>
+                  <td><%=cancellation_request.product.title%></td>
+                  <td><%=cancellation_request.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=cancellation_request.product.seller.profile.first_name%></td>
+                  <td><span class="badge badge-info m-0">En cours</span></td>
+                  <td><%=cancellation_request.product.price%> €</td>
                 </tr>
-                <%end%>
+               <%end%>
+
+
+
+                  <% @buyer_disputes.each do |dispute|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=dispute.id%></a></td>
+                  <td class="product-image">  <% if dispute.product.pictures.attached? %>
+                        <%= image_tag dispute.product.pictures.first.variant(resize:'100x100'), alt:dispute.product.title %>
+                        <% else %>
+                        <%= image_tag("shoes.jpg", alt:dispute.product.title,size: "50") %>
+                        <% end %></td>
+                  <td><%=dispute.product.title%></td>
+                  <td><%=dispute.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=dispute.product.seller.profile.first_name%></td>
+                  <td><span class="badge badge-danger m-0"> En litige</span></td>
+                  <td><%=dispute.product.price%> €</td>
+                </tr>
+               <%end%>
+
+
+
+                <% @buyer_cancellations.each do |cancellation|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=cancellation.id%></a></td>
+                  <td class="product-image">  <% if cancellation.product.pictures.attached? %>
+                        <%= image_tag cancellation.product.pictures.first.variant(resize:'100x100'), alt:cancellations.product.title %>
+                        <% else %>
+                        <%= image_tag("shoes.jpg", alt:cancellation.product.title,size: "50") %>
+                        <% end %></td>
+                  <td><%=cancellation.product.title%></td>
+                  <td><%=cancellation.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=cancellation.product.seller.profile.first_name%></td>
+                  <td><span class="badge badge-success m-0"> Annulation confirmée</span></td>
+                  <td><%=cancellation.product.price%> €</td>
+                </tr>
+               <%end%>
+
+               
+
               </tbody>
             </table>
           </div>

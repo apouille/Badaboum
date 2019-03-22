@@ -8,8 +8,7 @@ class ChargesController < ApplicationController
   
   def create
 
-	
-  	@order = Order.where(user_id: current_user.id, status: 1).last
+  	@order = Order.where(user_id: current_user.id, status: 'cart').last
   	@product =@order.product
   	@amount = @order.product.price*100
   	@application_fee_amount = (@amount*0.1).to_i
@@ -20,12 +19,7 @@ class ChargesController < ApplicationController
       source: params[:stripeToken],
     )
 
-  
-
- 		#charge = Stripe::Charge.create({ currency: 'eur', customer: customer.id, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
-#})
-
-      @order.update(stripe_customer_id: customer.id, status: 2)
+      @order.update(stripe_customer_id: customer.id, status: 'reservation')
      
       @product.update(state: 'sold')
       flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'

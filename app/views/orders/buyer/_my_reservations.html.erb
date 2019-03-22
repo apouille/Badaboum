@@ -16,29 +16,29 @@
                 </tr>
               </thead>
               <tbody>
-             <% @paid_orders.each do |paid_order|%>
+             <% @buyer_reservations.each do |reservation|%>
                 <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=paid_order.id%></a></td>
-                  <td class="product-image">  <% if paid_order.product.pictures.attached? %>
-                        <%= image_tag paid_order.product.pictures.first.variant(resize:'100x100'), alt:paid_order.product.title %>
+                  <td><a class="navi-link" data-toggle="modal"><%=reservation.id%></a></td>
+                  <td class="product-image">  <% if reservation.product.pictures.attached? %>
+                        <%= image_tag reservation.product.pictures.first.variant(resize:'100x100'), alt:reservation.product.title %>
         								<% else %>
-        								<%= image_tag("shoes.jpg", alt:paid_order.product.title,size: "50") %>
+        								<%= image_tag("shoes.jpg", alt:reservation.product.title,size: "50") %>
         								<% end %><br>
                       </td>
                       <td>
-                  <strong><%=paid_order.product.title%></strong><br>
-                  	<%=paid_order.updated_at.strftime("%b %d, %Y")%><br>
-                  	<span style="color:#45b1b4;">Prix : <%=paid_order.product.price%> €</span><br></td>
+                  <strong><%=reservation.product.title%></strong><br>
+                  	<%=reservation.updated_at.strftime("%b %d, %Y")%><br>
+                  	<span style="color:#45b1b4;">Prix : <%=reservation.product.price%> €</span><br></td>
                   </td>
 
-                  <td><strong><%=paid_order.product.seller.profile.first_name%>
-                  	<%=paid_order.product.seller.profile.last_name%></strong> <br>
+                  <td><strong><%=reservation.product.seller.profile.first_name%>
+                  	<%=reservation.product.seller.profile.last_name%></strong> <br>
 
 
 
                     <% if user_signed_in? %>
-                       <% unless current_user.id == paid_order.product.seller.id %>
-                        <%= link_to 'Contacter le vendeur', conversations_path(sender_id: current_user.id, recipient_id: paid_order.product.seller.id), method: 'post'%>
+                       <% unless current_user.id == reservation.product.seller.id %>
+                        <%= link_to 'Contacter le vendeur', conversations_path(sender_id: current_user.id, recipient_id: reservation.product.seller.id), method: 'post'%>
                       <% end %>
                     <% end %>
 
@@ -48,11 +48,11 @@
 
 
 
-                  	<%=paid_order.product.seller.profile.phone_number%><br>
+                  	<%=reservation.product.seller.profile.phone_number%><br>
                   </td>
                   <td>
 
-                  <%= form_tag order_path(paid_order.id, status:'completed'),  method: :put , multipart: true do %>
+                  <%= form_tag order_path(reservation.id, status:'confirmation'),  method: :put , multipart: true do %>
                    <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="notation" id="inlineRadio1" value="1">
                       <label class="form-check-label" for="inlineRadio1">1</label>
@@ -77,10 +77,10 @@
                   <%end%>
                  </td>
                   <td>
-                    <span class="badge badge-warning m-0">A récupérer avant le <%=(paid_order.updated_at+30.days).strftime("%d-%m-%Y")%></span>
+                    <span class="badge badge-warning m-0">A récupérer avant le <%=(reservation.updated_at+30.days).strftime("%d-%m-%Y")%></span>
                   </td>
                   <td>
-                  <%=link_to "Annulation", order_path(paid_order.id, status:'disputed'), method: :patch, class:"btn btn-danger" %><br>
+                  <%=link_to "Annulation", order_path(reservation.id, status:'cancellation_request'), method: :patch, class:"btn btn-danger" %><br>
                   </td>
                 </tr>
                <%end%>

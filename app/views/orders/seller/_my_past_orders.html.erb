@@ -18,23 +18,23 @@
                 </tr>
               </thead>
               <tbody>
-              	<% @seller_sales.each do |completed_order|%>
+              	<% @seller_confirmations.each do |confirmation| %>
                 <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=completed_order.id%></a></td>
-                  <td class="product-image">  <% if completed_order.product.pictures.attached? %>
-        								<%= image_tag completed_order.product.pictures.first.variant(resize:'100x100'), alt:completed_order.product.title %>
+                  <td><a class="navi-link" data-toggle="modal"><%=confirmation.id%></a></td>
+                  <td class="product-image">  <% if confirmation.product.pictures.attached? %>
+        								<%= image_tag confirmation.product.pictures.first.variant(resize:'100x100'), alt:confirmation.product.title %>
         								<% else %>
-        								<%= image_tag("shoes.jpg", alt:completed_order.product.title,size: "50") %>
+        								<%= image_tag("shoes.jpg", alt:confirmation.product.title,size: "50") %>
         								<% end %></td>
-                  <td><%=completed_order.product.title%></td>
-                  <td><%=completed_order.updated_at.strftime("%Y-%m-%d")%></td>
-                  <td><%=completed_order.user.profile.first_name%>
+                  <td><%=confirmation.product.title%></td>
+                  <td><%=confirmation.updated_at.strftime("%Y-%m-%d")%></td>
+                  <td><%=confirmation.user.profile.first_name%>
                    
                   </td>
-                    <td><span class="badge badge-success m-0">Livrée</span></td>
-                  <td><%=completed_order.product.price%> €</td>
+                    <td><span class="badge badge-success m-0">Commande réceptionnée</span></td>
+                  <td><%=confirmation.product.price%> €</td>
                 </tr>
-                <%end%>
+                <% end %>
               </tbody>
             </table>
           </div>
