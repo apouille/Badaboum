@@ -60,3 +60,12 @@ fr:
       not_saved:
         one: "1 erreur a empêché ce(tte) %{resource} d'être sauvegardé(e) :"
         other: "%{count} erreurs ont empêché ce(tte) %{resource} d'être sauvegardé(e) :"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: ": Cet email est déjà pris par un autre utilisateur, veuillez réessayer avec une autre adresse."
+            password_confirmation:
+              confirmation: ": Vos deux mots de passe ne correspondent pas, veuillez réessayer!"

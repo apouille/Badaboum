@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
 before_action :authenticate_user! , only: [:new, :edit, :delete]
+before_action :mandatory_profile , only: [:new]
 
   def index
     if !params[:category].present?
@@ -131,7 +132,14 @@ before_action :authenticate_user! , only: [:new, :edit, :delete]
   private
 
   def size_params
-      params.require(:size).permit(:size_id) if params[:size].present?
+    params.require(:size).permit(:size_id) if params[:size].present?
+  end
+
+  def mandatory_profile
+    unless current_user.profile.first_name.present?
+      flash[:danger] = "Vous devez compléter votre profil afin de proposer un produit à la vente."
+      redirect_to edit_profile_path
+    end
   end
 
 end
