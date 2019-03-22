@@ -75,9 +75,3 @@ fr:
               invalid: ": Vous n'avez pas soumis de photos dans votre formulaire de vente."
             size:
               required: ": Ce champs est obligatoire!"
-    
-    events:
-      errors:
-        user:
-          attributes:
-            email:
