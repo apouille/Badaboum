@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    </head>
-    <body>
-    <h1> Hello <%= @seller.profile.first_name %>!</h1>
-        <p>
-             Une de vos réservation a été annulée.  <br>
-             Connectez vous à <%= @url %> pour valider cette annulation et remettre votre produit en vente. 
-        </p>
+<h2 style="color:#009499; font-size:22px; padding-top:12px;">
+   Hello <%= @seller.profile.first_name %> !  </h2>
 
-        <p>
-             Si vous avez déjà livré votre produit et que votre acheteur a annulé par erreur votre transaction, ouvrez un litige  <%= @url %>
-        </p>
-
-        <p> À très vite sur badaboum.com !</p>
-
-    </body>
-</html>
+<div align="left" class="article-content">
+    <p>Une de vos réservation a été annulée.  <br>
+             Connectez vous à <%= @url %> pour valider cette annulation et remettre votre produit en vente.
+    <p>
+        Si vous avez déjà livré votre produit et que votre acheteur a annulé par erreur votre transaction, ouvrez un litige  <%= @url %>
+    </p>
+    <p>
+        À très vite sur badaboum !
+    </p>
+</div>
