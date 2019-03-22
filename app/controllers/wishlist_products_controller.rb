@@ -4,12 +4,7 @@ class WishlistProductsController < ApplicationController
 
   def index
     @wishlist_products = WishlistProduct.where(user: current_user).all
-   
-    puts '$'*1000
-    puts  @wishlist_products
-    @wishlist_products_in_stock = in_stock 
-    puts '$'*1000
-    puts  @wishlist_products_in_stock
+    @wishlist_products_in_stock = in_stock
     @profile = current_user.profile
     @children = Child.where(profile_id: @profile.id)
   end
@@ -21,14 +16,11 @@ class WishlistProductsController < ApplicationController
     @product = Product.find(params[:product])
     @wishlist_product = WishlistProduct.create(user: current_user, product: @product)
 
-
    if @wishlist_product.save
      respond_to do |format|
-       flash[:notice] = "Produit ajouté à votre Babylist" 
-
+       flash[:notice] = "Produit ajouté à votre Babylist"
        format.html {redirect_back fallback_location: products_path}
-     
-       format.js 
+       format.js
      end
    end
 
@@ -40,37 +32,28 @@ class WishlistProductsController < ApplicationController
   def new
   end
 
- 
+
   def destroy
     @product = Product.find(params[:product])
     @wishlist_product = WishlistProduct.find(params[:id])
     @wishlist_product.destroy
      respond_to do |format|
-       flash[:notice] = "Produit retiré de votre Babylist" 
-
+       flash[:notice] = "Produit retiré de votre Babylist"
        format.html {redirect_back fallback_location: products_path}
-       
-       format.js 
+       format.js
      end
-
-
-
   end
 
-  private 
+  private
 
-  def in_stock
-    wish_in_stocks = []
-    WishlistProduct.where(user: current_user).all.each do |wp|
-      if (wp.product.state == 'in_stock') 
-        wish_in_stocks << wp
+    def in_stock
+      wish_in_stocks = []
+      WishlistProduct.where(user: current_user).all.each do |wp|
+        if (wp.product.state == 'in_stock')
+          wish_in_stocks << wp
+        end
       end
+      return wish_in_stocks
     end
-    return wish_in_stocks  
-  end
-
-   
-
-
 
 end

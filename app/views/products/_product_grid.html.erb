@@ -8,7 +8,7 @@
                     <div class="view view-first">
 
                         <% if product.pictures.attached? %>
-                              <%= link_to (image_tag product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(product.id) %>
+                              <%= link_to (image_tag product.pictures.first.variant(resize:'400x400'), alt: 'Photo du produit'), product_path(product.id) %>
                             <% else %>
                                <%= link_to (image_tag("shoes.jpg")), product_path(product.id) %>
                             <% end %>

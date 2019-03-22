@@ -2,7 +2,6 @@ class Child < ApplicationRecord
 	belongs_to :profile
 	enum sex: { Fille:1, Garçon:2 }
 	validates :nickname, :birthday, :sex, presence: { message: "Merci de remplir tous les champs du formulaire!" }
-
 	validate :birthday_cannot_be_in_the_futur
 
   def birthday_cannot_be_in_the_futur
