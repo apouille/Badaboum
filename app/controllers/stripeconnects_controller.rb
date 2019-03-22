@@ -12,10 +12,10 @@ def stripe_callback
             @resp = client.auth_code.get_token(code, :params => {:scope => 'read_write'})
             @access_token = @resp.token
             current_user.update!(stripe_uid: @resp.params["stripe_user_id"]) if @resp
-            flash[:notice] = "Your account has been successfully created and is ready to process payments!"
+            flash[:notice] = "Votre compte a bien été créé et accepte maintenant les paiements !"
             redirect_to new_product_path
    end
-  
+
 
    def payment_profile
       @account = Stripe::Account.retrieve("#{current_user.stripe_uid.to_s}") if current_user.stripe_uid.present?

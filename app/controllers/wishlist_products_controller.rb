@@ -24,7 +24,7 @@ class WishlistProductsController < ApplicationController
 
    if @wishlist_product.save
      respond_to do |format|
-       flash[:notice] = "produit ajouté à votre babylist" 
+       flash[:notice] = "Produit ajouté à votre Babylist" 
 
        format.html {redirect_back fallback_location: products_path}
      
@@ -46,7 +46,7 @@ class WishlistProductsController < ApplicationController
     @wishlist_product = WishlistProduct.find(params[:id])
     @wishlist_product.destroy
      respond_to do |format|
-       flash[:notice] = "produit retiré de votre babylist" 
+       flash[:notice] = "Produit retiré de votre Babylist" 
 
        format.html {redirect_back fallback_location: products_path}
        

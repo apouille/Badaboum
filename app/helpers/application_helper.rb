@@ -35,12 +35,16 @@ module ApplicationHelper
 
 	def has_notation?(user)
 		result = false 
-		Order.where(status: 3).all.each do |order|
-			if (order.product.seller == user) && (order.notation >= 1)
+		Order.where(status: 3, notation: 1..5).all.each do |order|
+			if (order.product.seller.id == user.id) 
+				puts '$'*100
+				puts order.product.seller
+				puts order.product.seller.profile.first_name
+				puts order.notation
 				result = true
 			end
-			return result
 		end
+		return result
 	end
 
 end

@@ -1,7 +1,6 @@
 
 	    <div class="block-body text-center mt-2 mx-2">
-	            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Tu n'as pas rempli ton prénom coquin!" %> <%= @profile.last_name.present? ? @profile.last_name : "Tu n'as pas rempli ton
-	            nom petit coquin!" %></h2>
+	            <h2 class="heading heading-4 strong-500 profile-name"><%= @profile.first_name.present? ? @profile.first_name : "Tu n'as pas rempli ton prénom coquin!" %></h2>
 
 	       		<% if has_notation?(current_user)%>
                                      <ul class="list-unstyled">
