@@ -60,3 +60,5 @@ admin_user.profile.update(
 
 puts 'Admin profile has been seeded'
 
+
+

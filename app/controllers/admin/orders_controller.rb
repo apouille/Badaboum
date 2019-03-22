@@ -10,24 +10,25 @@ class Admin::OrdersController < AdminController
 	def update
 		@status = params[:admin_status].to_i
 		@order=Order.find(params[:id])
-	  	@product =@order.product
+	  @product =@order.product
 
-	  	#variables pour le paiment stripe
-	  	@amount = @order.product.price*100
-	  	@application_fee_amount = (@amount*0.1).to_i
-	  	@seller_uid = @order.product.seller.stripe_uid
-	    customer = @order.stripe_customer_id
+  	#variables pour le paiment stripe
+  	@amount = @order.product.price*100
+  	@application_fee_amount = (@amount*0.1).to_i
+  	@seller_uid = @order.product.seller.stripe_uid
+    customer = @order.stripe_customer_id
 
-	    #admin force la réalisation de la vente
+	   #admin force la réalisation de la vente
 		if @status == 3
-	  		charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
-		})
-	  		@order.update(status: @status)
-	  		@product.update(state:'sold')
 
-	  		# mailers
-	  		seller_dispute_order_confirmed
-	  		buyer_dispute_order_confirmed
+	  	charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', transfer_data: {destination: @seller_uid}
+		})
+  		@order.update(status: @status)
+  		@product.update(state:'sold')
+
+  		# mailers
+  		seller_dispute_order_confirmed
+  		buyer_dispute_order_confirmed
 
 			redirect_back fallback_location: admin_orders_path
 

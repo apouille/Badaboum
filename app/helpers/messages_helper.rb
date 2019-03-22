@@ -1,5 +1,4 @@
 module MessagesHelper
-
   def recipient
     if current_user.id == @message.conversation.sender.id
       return @message.conversation.recipient

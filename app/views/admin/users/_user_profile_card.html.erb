@@ -7,15 +7,12 @@
 </div>
 
 <!-- User basics-->
-
 <%= render 'profiles/profilebasics' %>
 
 <!-- User information-->
-
 <%= render 'profiles/profileinformation' %>
 
-<!-- User statistics-->   ​
-​
+<!-- User statistics-->   ​​
 <div class="profile-stats clearfix">
     <div class="stats-entry">
         <span class="stats-count"><%= @user.uploaded_products.where("state = 1").count%></span>

@@ -5,7 +5,7 @@ class ChargesController < ApplicationController
 
 	def new
 	end
-  
+
   def create
 
   	@order = Order.where(user_id: current_user.id, status: 'cart').last
@@ -19,24 +19,25 @@ class ChargesController < ApplicationController
       source: params[:stripeToken],
     )
 
-      @order.update(stripe_customer_id: customer.id, status: 'reservation')
-     
-      @product.update(state: 'sold')
-      flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'
-      redirect_to orders_path
+    @order.update(stripe_customer_id: customer.id, status: 'reservation')
+
+    @product.update(state: 'sold')
+    flash[:notice] = 'Votre commande a bien été prise en compte. Vous recevrez un mail de confirmation très prochainement'
+    redirect_to orders_path
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_charge_path
   	end
 
+  private
 
-   def confirmation_buyer_reservation
+    def confirmation_buyer_reservation
      UserMailer.confirmation_buyer_reservation(current_user).deliver_now
-   end
+    end
 
-   def confirmation_seller_reservation
+    def confirmation_seller_reservation
      SellerMailer.confirmation_seller_reservation(@order.product.seller).deliver_now
-   end
+    end
 
 end

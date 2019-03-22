@@ -2,9 +2,9 @@ module WishlistProductsHelper
 
 	def product_is_already_wishlist?(product)
 		if  WishlistProduct.find_by(product: product, user: current_user) != nil
-		return true
+			return true
 		end
-	end	
+	end
 
 	def transform_product_to_wishlist_product(product)
 		wp = WishlistProduct.find_by(product: product)

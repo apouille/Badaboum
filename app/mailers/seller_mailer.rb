@@ -2,14 +2,11 @@ class SellerMailer < ApplicationMailer
 	default from: 'no-reply@badaboum.fr'
 
 	def notification_comment(user, product)
-		# @comment = @product.comments.last
-#je recupère le dernier commentaire
+    #je recupère le dernier commentaire
 		@comment = product.comments.last
+    #je recupère le vendeur
 		@seller = product.seller
-#je recupère le vendeur
-
     @url  = 'http://badaboum-prod.herokuapp.com/users/sign_in'
-
     mail(to: @seller.email, subject: 'Notification de commentaire')
   end
 

@@ -29,7 +29,6 @@ before_action :mandatory_profile , only: [:new]
     @seller_profile = @product.seller.profile
     @seller_products = @product.seller.uploaded_products.order(created_at: :desc)
     @comment = Comment.new
-
   end
 
   def new
@@ -46,7 +45,6 @@ before_action :mandatory_profile , only: [:new]
     @categories = Category.all
     @sizes = Size.all
     @last_size = Size.last
-
     @category_id = params[:category]
     @size_id = params[:size]
     @condition_id = params[:condition].to_i
@@ -114,7 +112,11 @@ before_action :mandatory_profile , only: [:new]
 
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
+     if @product.order.present?
+        @product.update(state: 'inactive')
+     else
+       @product.destroy
+     end
     @product.wishlist_products.destroy
     @myproducts = current_user.uploaded_products.in_stock.order(created_at: :desc)
     respond_to do |format|
@@ -122,7 +124,6 @@ before_action :mandatory_profile , only: [:new]
     end
     flash[:notice] = "Vous avez supprimé un article avec succès"
   end
-
 
   def from_category
     @selected = Product.where(:category_id => params[:cat_id])
@@ -133,15 +134,15 @@ before_action :mandatory_profile , only: [:new]
 
   private
 
-  def size_params
-    params.require(:size).permit(:size_id) if params[:size].present?
-  end
-
-  def mandatory_profile
-    unless current_user.profile.first_name.present?
-      flash[:danger] = "Vous devez compléter votre profil afin de proposer un produit à la vente."
-      redirect_to edit_profile_path
+    def size_params
+      params.require(:size).permit(:size_id) if params[:size].present?
     end
-  end
+
+    def mandatory_profile
+      unless current_user.profile.first_name.present?
+        flash[:error] = "Vous devez compléter votre profil afin de proposer un produit à la vente."
+        redirect_to edit_profile_path
+      end
+    end
 
 end
