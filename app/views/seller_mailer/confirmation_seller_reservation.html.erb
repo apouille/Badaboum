@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    </head>
-    <body>
-    <h1> Hello <%= @seller.profile.first_name %>!</h1>
-        <p>
-              Un de tes produits a été reservé. Féliciation. <br>
-              Contact sans tarder ton acheteur afin de lui livrer le produit dans les meilleurs conditions.
-        </p>
+<h2 style="color:#009499; font-size:22px; padding-top:12px;">
+   Hello <%= @seller.profile.first_name %> !  </h2>
 
-        <p>
-              Pour accéder à la réservation, connecte-toi via : <%= @url %>.
-        </p>
+<div align="left" class="article-content">
+    <p>Un de tes produits a été reservé. Félicitations. <br>
+              Contacte sans tarder ton acheteur afin de lui livrer le produit dans les meilleurs conditions.
+    <p>
+        Pour accéder à la réservation, connecte-toi via : <%= @url %>.
 
-        <p> À très vite sur badaboum.com !</p>
-
-    </body>
-</html>
+    </p>
+    <p>
+        À très vite sur badaboum !
+    </p>
+</div>
