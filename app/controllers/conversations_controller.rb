@@ -9,15 +9,16 @@ class ConversationsController < ApplicationController
 
   def create
     if params[:status].present? && params[:status] == 'dispute'
-      
+
       @order = Order.find(params[:order])
-      
+
       #Je mets à jour mes status
       @order.update(status: 'dispute')
       @order.product.update(state: 'sold')
 
       #Je déclenche les notifications mails
-      # à remplir
+      seller_dispute_message
+      buyer_dispute_message
 
       flash[:notice] = "Nous avons ouvert votre litige. Merci de cliquer sur la discussion avec l'admin pour spécifier votre demande."
     end
@@ -33,9 +34,17 @@ class ConversationsController < ApplicationController
   end
 
   private
-  
+
   def conversation_params
     params.permit(:sender_id, :recipient_id)
+  end
+
+  def seller_dispute_message
+    SellerMailer.seller_dispute_message(@order.product.seller).deliver_now
+  end
+
+  def buyer_dispute_message
+    UserMailer.buyer_dispute_message(@order.user).deliver_now
   end
 
 end
