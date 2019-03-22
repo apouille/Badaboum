@@ -22,16 +22,44 @@ class Admin::OrdersController < AdminController
 		if @status == 3
 	  		charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
 		})
-	  		@order.update(status: @status)
-	  		@product.update(state:'sold')
+  		@order.update(status: @status)
+  		@product.update(state:'sold')
+
+  		# mailers
+  		seller_dispute_order_confirmed
+  		buyer_dispute_order_confirmed
+
 			redirect_to referrer.require
 
 		#admin déclenche l'annulation de la vente
 		elsif @status == 5
 			@order.update(status: @status)
 			@product.update(state:'in_stock')
-			redirect_to referrer.require	
+
+			# mailers
+			seller_dispute_order_cancelled
+			buyer_dispute_order_cancelled
+
+			redirect_to referrer.require
 		end
 	end
+
+	private
+
+		# mailers order confirmed following a dispute
+		def seller_dispute_order_confirmed
+			SellerMailer.seller_dispute_order_confirmed(@order.product.seller).deliver_now
+		end
+		def buyer_dispute_order_confirmed
+			UserMailer.buyer_dispute_order_confirmed(@order.user).deliver_now
+		end
+
+		# mailers order cancelled following a dispute
+		def seller_dispute_order_cancelled
+			SellerMailer.seller_dispute_order_cancelled(@order.product.seller).deliver_now
+		end
+		def buyer_dispute_order_cancelled
+			UserMailer.buyer_dispute_order_cancelled(@order.user).deliver_now
+		end
 
 end
