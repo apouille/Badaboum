@@ -35,10 +35,25 @@ class UserMailer < ApplicationMailer
 		mail(to: @user.email, subject: 'Nouveau message sur Badaboum')
 	end
 
+	# mail à l'ouverture d'un litige
 	def buyer_dispute_message(user)
 		@user = user
 		@url = 'http://badaboum-prod.herokuapp.com/users/sign_in'
 		mail(to: @user.email, subject: 'Litige ouvert sur Badaboum')
+	end
+
+	# mail suite litige - confirmation vente
+	def buyer_dispute_order_confirmed(user)
+		@user = user
+		@url = 'http://badaboum-prod.herokuapp.com/users/sign_in'
+		mail(to: @user.email, subject: 'Litige traité sur Badaboum - achat confirmé')
+	end
+
+	# mail suite litige - annulation vente
+	def buyer_dispute_order_cancelled(user)
+		@user = user
+		@url = 'http://badaboum-prod.herokuapp.com/users/sign_in'
+		mail(to: @user.email, subject: 'Litige traité sur Badaboum - achat annulé')
 	end
 
 end
