@@ -18,9 +18,9 @@
                 <tr>
                     <td class="profile-picture", style="width:200px">
                         <% if order.product.pictures.attached?%>
-                            <%= link_to (image_tag order.product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'), product_path(order.id) %>
+                            <%= image_tag order.product.pictures.first.variant(resize:'300x300'), alt: 'Photo du produit'%>
                         <% else %>
-                            <%= link_to (image_tag "shoes.jpg"), product_path(order.id), class:"mt-3" %>
+                            <%= image_tag "shoes.jpg" %>
                         <% end %>
                     </td>
                     <td> <%= order.id %> </td>

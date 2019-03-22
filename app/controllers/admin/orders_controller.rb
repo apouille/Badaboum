@@ -20,7 +20,8 @@ class Admin::OrdersController < AdminController
 
 	   #admin force la réalisation de la vente
 		if @status == 3
-	  	charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
+
+	  	charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', transfer_data: {destination: @seller_uid}
 		})
   		@order.update(status: @status)
   		@product.update(state:'sold')

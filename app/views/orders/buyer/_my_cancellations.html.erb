@@ -56,7 +56,7 @@
                 <tr>
                   <td><a class="navi-link" data-toggle="modal"><%=cancellation.id%></a></td>
                   <td class="product-image">  <% if cancellation.product.pictures.attached? %>
-                        <%= image_tag cancellation.product.pictures.first.variant(resize:'100x100'), alt:cancellations.product.title %>
+                        <%= image_tag cancellation.product.pictures.first.variant(resize:'100x100'), alt:cancellation.product.title %>
                         <% else %>
                         <%= image_tag("shoes.jpg", alt:cancellation.product.title,size: "50") %>
                         <% end %></td>
