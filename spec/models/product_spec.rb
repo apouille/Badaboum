@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
 
   before(:each) do 
     @product = FactoryBot.create(:product)
-    @message = " Ce champs est obligatoire!"  
+    @message = ": Ce champs est obligatoire!"  
   end
 
   it "has a valid factory" do
