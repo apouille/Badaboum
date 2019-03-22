@@ -136,7 +136,7 @@ before_action :mandatory_profile , only: [:new]
   end
 
   def mandatory_profile
-    unless !current_user.profile.first_name.present?
+    unless current_user.profile.first_name.present?
       flash[:danger] = "Vous devez compléter votre profil afin de proposer un produit à la vente."
       redirect_to edit_profile_path
     end
