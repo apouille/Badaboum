@@ -116,9 +116,11 @@ before_action :mandatory_profile , only: [:new]
     @product = Product.find(params[:id])
     @product.destroy
     @product.wishlist_products.destroy
-
+    @myproducts = current_user.uploaded_products.in_stock.order(created_at: :desc)
+    respond_to do |format|
+      format.js {render layout: false}
+    end
     flash[:notice] = "Vous avez supprimé un article avec succès"
-    redirect_to profile_path
   end
 
 

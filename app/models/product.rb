@@ -2,7 +2,7 @@ class Product < ApplicationRecord
 	belongs_to :seller, class_name:'User'
 	belongs_to :category
 	belongs_to :size
-	enum state: { in_stock:1, sold:2 }
+	enum state: { in_stock:1, sold:2, inactive:3 }
 	enum condition: { Neuf:1, Bon:2, Moyen:3, Mauvais:4, Dégradé:5 }
 
 

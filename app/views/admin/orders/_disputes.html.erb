@@ -24,8 +24,8 @@
                         <% end %>
                     </td>
                     <td> <%= dispute.id %> </td>
-                    <td> <%= dispute.user.profile.first_name%> </td>
-                    <td> <%= dispute.product.seller.profile.first_name%> </td>
+                    <td> <%= link_to dispute.user.profile.first_name, conversations_path(sender_id: current_user.id, recipient_id: dispute.user.id), method: 'post', class:"btn btn-base-1 btn-shadow btn-circle px-4 mt-2"%></td>
+                    <td> <%= link_to dispute.product.seller.profile.first_name, conversations_path(sender_id: current_user.id, recipient_id: dispute.product.seller.id), method: 'post', class:"btn btn-base-1 btn-shadow btn-circle px-4 mt-2"%></td>
                     <td> <%= dispute.updated_at.strftime("%d/%m/%y") %></br><%= dispute.updated_at.strftime("%H:%M")%></td>
                     <td> <%= dispute.product.title %> </td>
                     <td> <%= dispute.product.price %> € </td>
