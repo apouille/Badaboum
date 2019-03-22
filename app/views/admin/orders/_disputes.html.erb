@@ -1,15 +1,16 @@
-<table class="table">
+<div class="container-fluid">
+    <h4 class="text-primary">Litiges à régler</h4>  
+    <table class="table">
         <thead>
             <tr>
-              <th scope="col"> </th>
-              <th scope="col">ID</th>
-              <th scope="col">Acheteur</th>
-              <th scope="col">Vendeur</th>
-              <th scope="col">Réservation</th>
-              <th scope="col">Produit</th>
-              <th scope="col">Prix total</th>
-              <th scope="col">Statut</th>
-              <th scope="col", class="border-left"> Changer le status de la commande</th>
+                <th scope="col"> </th>
+                <th scope="col">ID</th>
+                <th scope="col">Contacter acheteur</th>
+                <th scope="col">Contacter vendeur</th>
+                <th scope="col">Dernière mise à jour</th>
+                <th scope="col">Produit</th>
+                <th scope="col">Prix total</th>
+                <th scope="col", class="border-left">Régler le litige</th>
             </tr>
         </thead>
         <tbody>
@@ -25,16 +26,15 @@
                     <td> <%= dispute.id %> </td>
                     <td> <%= dispute.user.profile.first_name%> </td>
                     <td> <%= dispute.product.seller.profile.first_name%> </td>
-                    <td> <%= dispute.updated_at.strftime("%d/%m/%Y à %H:%M")%> </td>
+                    <td> <%= dispute.updated_at.strftime("%d/%m/%y") %></br><%= dispute.updated_at.strftime("%H:%M")%></td>
                     <td> <%= dispute.product.title %> </td>
                     <td> <%= dispute.product.price %> € </td>
-                    <td> <span class="badge badge-danger"><%= dispute.status %> </td>
                     <%= form_tag admin_order_path(dispute.id), controler: :admin_order, method: :patch do %>
-                        <td class="border-left"><%= select_tag 'admin_status', options_for_select(Order.statuses.where('dispute')), prompt: dispute.status, class: "form-control" %></td>
+                        <td class="border-left"><%= select_tag 'admin_status', options_for_select([["confirmation", Order.statuses["confirmation"]], ["cancellation", Order.statuses["cancellation"]]]), prompt: dispute.status, class: "form-control" %></td>
                         <td><%= submit_tag "Changer", class:"btn btn-danger" %></td>
-                    <% end %>
-                    
+                    <% end %>  
                 </tr>
             <% end %>
         </tbody>
     </table>
+</div>
