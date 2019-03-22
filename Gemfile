@@ -25,9 +25,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'faker'
 #Permet de securiser les clefs
 gem 'dotenv-rails'
-#Permet de visualiser les bases de données
-gem 'rails_db', '2.0.4'
-
+gem 'simple_form'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

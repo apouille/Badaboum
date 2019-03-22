@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-
 	before_action :authenticate_user!
 
 	def show
@@ -35,4 +34,5 @@ class ProfilesController < ApplicationController
     def profile_params
       params.permit(:first_name, :last_name, :phone_number, :street, :city, :zip_code, :description)
     end
+
 end

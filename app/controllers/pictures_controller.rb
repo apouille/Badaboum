@@ -1,8 +1,7 @@
 class PicturesController < ApplicationController
+
 	def create
-		puts "*"*100
-		puts params
-		puts "*"*100
+
       @product = Product.find(params[:product_id])
       @product.pictures.attach(params[:pictures])
     respond_to do |format|

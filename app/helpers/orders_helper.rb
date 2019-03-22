@@ -8,9 +8,8 @@ module OrdersHelper
 		order.updated_at + 30.days
 	end
 
-
 	def blank_stars(order)
- 	5 - order.notation.to_i
+ 		5 - order.notation.to_i
 	end
 
 	def user_has_sold?
@@ -18,7 +17,7 @@ module OrdersHelper
 		@all_orders=Order.all
 		puts @all_orders
 		@all_orders.each do |order|
-			if (order.product.seller.id == current_user.id) 
+			if (order.product.seller.id == current_user.id)
 			result = true
 			end
 		end
