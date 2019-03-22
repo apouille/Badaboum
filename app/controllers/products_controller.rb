@@ -114,7 +114,7 @@ before_action :mandatory_profile , only: [:new]
 
   def destroy
     @product = Product.find(params[:id])
-    if @product.orders.exist?
+    if @product.orders.present?
        @product.update(state: 'inactive')
     else
        @product.destroy

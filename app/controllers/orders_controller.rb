@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
   	if params[:status] == 'confirmation'
 
   		#Je déclenche paiement stripe
-  		charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
+  		charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', transfer_data: {destination: @seller_uid}
 		})
 
   		#Je mets à jour mes status
