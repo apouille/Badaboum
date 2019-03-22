@@ -24,13 +24,13 @@ class Admin::OrdersController < AdminController
 		})
 	  		@order.update(status: @status)
 	  		@product.update(state:'sold')
-			redirect_to referrer.require
+			redirect_back fallback_location: admin_orders_path
 
 		#admin déclenche l'annulation de la vente
 		elsif @status == 5
 			@order.update(status: @status)
 			@product.update(state:'in_stock')
-			redirect_to referrer.require	
+			redirect_back fallback_location: admin_orders_path
 		end
 	end
 
