@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
       # redirect_to profile_path
       flash[:success] = "Votre profil a été mis à jour!"
     else
-      render 'edit'
+      redirect_back fallback_location: root_path
       flash[:error] = "Votre profil n'a pas pu être mis à jour!"
     end
   end

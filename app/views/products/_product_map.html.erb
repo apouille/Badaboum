@@ -22,18 +22,12 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 //var marker = L.marker([51.5, -0.09]).addTo(mymap);
 
-var LogoIcon = L.Icon.extend({
-    options: {
-       iconSize:     [50, 50],
-       iconAnchor:   [22, 94],
-       popupAnchor:  [-3, -76]
-    }
-});
+var myIcon = L.icon({
+            iconUrl: '<%= image_url("logo-elephant.png")%>',
+            iconSize: [32, 32],
+            iconAnchor: [16,32]
+        });
 
-var badaboumIcon = new LogoIcon({
-    iconUrl: '<%= image_url("logo-elephant.png")%>',
-})
-
-L.marker([latitude, longitude], {icon: badaboumIcon}).addTo(mymap); 
+L.marker([latitude, longitude], {icon: myIcon}).addTo(mymap);
 
 </script>
