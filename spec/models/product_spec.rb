@@ -46,7 +46,7 @@ RSpec.describe Product, type: :model do
 
     describe "#state" do
       it { expect(@product).to validate_presence_of(:state) }
-      it { should define_enum_for(:state).with_values(in_stock:1, sold:2) }
+      it { should define_enum_for(:state).with_values(in_stock: 1, sold: 2, inactive: 3) }
     end    
   end
 
