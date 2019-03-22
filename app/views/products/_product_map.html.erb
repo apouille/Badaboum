@@ -25,9 +25,8 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 var LogoIcon = L.Icon.extend({
     options: {
        iconSize:     [50, 50],
-       iconAnchor:   [22, 94],
-       popupAnchor:  [-3, -76]
-    }
+       iconAnchor:   [latitude, longitude],
+       }
 });
 
 var badaboumIcon = new LogoIcon({
