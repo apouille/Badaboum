@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
 	def welcome_email(user)
 		@user = user
 		@url  = 'http://badaboum-prod.herokuapp.com/users/sign_in'
-		mail(to: @user.email, subject: 'Inscription Badaboum.com')
+		mail(to: @user.email, subject: 'Inscription Badaboum')
 	end
 
 	def confirmation_buyer_reservation(user)
@@ -35,5 +35,10 @@ class UserMailer < ApplicationMailer
 		mail(to: @user.email, subject: 'Nouveau message sur Badaboum')
 	end
 
+	def buyer_dispute_message(user)
+		@user = user
+		@url = 'http://badaboum-prod.herokuapp.com/users/sign_in'
+		mail(to: @user.email, subject: 'Litige ouvert sur Badaboum')
+	end
 
 end

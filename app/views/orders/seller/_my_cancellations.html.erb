@@ -36,7 +36,7 @@
                   <td>
                     <%=link_to "Accepter", order_path(cancellation_request.id, status:'cancellation'), method: :patch, class:"btn btn-danger mb-2" %><br>
                     <div data-toggle="tooltip" data-placement="bottom" title="Envoyer un message à l'administrateur du site pour ouvrir un litige">
-                      <%= link_to 'Ouvrir un litige', conversations_path(sender_id: current_user.id, recipient_id: 6, status: 'dispute', order: cancellation_request.id), method: 'post', class:"" %>
+                      <%= link_to 'Ouvrir un litige', conversations_path(sender_id: current_user.id, recipient_id: 1, status: 'dispute', order: cancellation_request.id), method: 'post', class:"" %>
                     </div>
                   </td>
                 </tr>

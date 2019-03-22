@@ -72,15 +72,17 @@
                       <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="notation" id="inlineRadio5" value="5">
                       <label class="form-check-label" for="inlineRadio5">5</label>
-                    </div>        
-                  <%= submit_tag "Valider la commande", class: "btn btn-primary mt-3 mb-3" %>
+                    </div>   <div data-toggle="tooltip" data-placement="bottom" title="Noter le vendeur pour valider la commande">      
+                  <%= submit_tag "Valider la commande", class: "btn btn-primary mt-3 mb-3", id:'confirmation-notation',disabled: true%>
+                   </div>
                   <%end%>
                  </td>
                   <td>
                     <span class="badge badge-warning m-0">A récupérer avant le <%=(reservation.updated_at+30.days).strftime("%d-%m-%Y")%></span>
                   </td>
-                  <td>
+                  <td> 
                   <%=link_to "Annulation", order_path(reservation.id, status:'cancellation_request'), method: :patch, class:"btn btn-danger" %><br>
+               
                   </td>
                 </tr>
                <%end%>
@@ -90,4 +92,11 @@
         </div>	
 	</div>
 
+  <script>
+  let radio = $('.form-check')
+  let button = $('#confirmation-notation')
+   radio.click(function(){
+        button.removeAttr('disabled')
+    });
+  </script>
 
