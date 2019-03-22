@@ -41,39 +41,35 @@
                         <%= link_to 'Contacter le vendeur', conversations_path(sender_id: current_user.id, recipient_id: reservation.product.seller.id), method: 'post'%>
                       <% end %>
                     <% end %>
-
-
-                  
-
-
-
-
-                  	<%=reservation.product.seller.profile.phone_number%><br>
+                    <br>
+                  	<%=reservation.product.seller.profile.phone_number%>
                   </td>
                   <td>
 
                   <%= form_tag order_path(reservation.id, status:'confirmation'),  method: :put , multipart: true do %>
-                   <div class="form-check form-check-inline">
+                   <div class="form-check form-check-inline" id="<%=reservation.id%>">
                       <input class="form-check-input" type="radio" name="notation" id="inlineRadio1" value="1">
                       <label class="form-check-label" for="inlineRadio1">1</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline" id="<%=reservation.id%>">
                       <input class="form-check-input" type="radio" name="notation" id="inlineRadio2" value="2">
                       <label class="form-check-label" for="inlineRadio2">2</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline" id="<%=reservation.id%>">
                       <input class="form-check-input" type="radio" name="notation" id="inlineRadio3" value="3">
                       <label class="form-check-label" for="inlineRadio3">3</label>
                     </div>  
-                      <div class="form-check form-check-inline">
+                      <div class="form-check form-check-inline" id="<%=reservation.id%>">
                       <input class="form-check-input" type="radio" name="notation" id="inlineRadio4" value="4">
                       <label class="form-check-label" for="inlineRadio4">4</label>
                     </div>  
-                      <div class="form-check form-check-inline">
+                      <div class="form-check form-check-inline" id="<%=reservation.id%>">
                       <input class="form-check-input" type="radio" name="notation" id="inlineRadio5" value="5">
                       <label class="form-check-label" for="inlineRadio5">5</label>
-                    </div>   <div data-toggle="tooltip" data-placement="bottom" title="Noter le vendeur pour valider la commande">      
-                  <%= submit_tag "Valider la commande", class: "btn btn-primary mt-3 mb-3", id:'confirmation-notation',disabled: true%>
+                    </div>   
+                    <div  data-toggle="tooltip" data-placement="bottom" title="Noter le vendeur pour valider la commande">      
+                  <%= submit_tag "Valider la commande", class: "btn btn-primary mt-3 mb-3 confirmation-notation", id:"button-#{reservation.id}",disabled: true%>
+
                    </div>
                   <%end%>
                  </td>
@@ -93,10 +89,10 @@
 	</div>
 
   <script>
-  let radio = $('.form-check')
-  let button = $('#confirmation-notation')
-   radio.click(function(){
-        button.removeAttr('disabled')
+   $('.form-check').click(function(){
+      idc = $(this).attr('id')
+      button = $('#button-'+idc)
+      button.removeAttr('disabled')
     });
   </script>
 
