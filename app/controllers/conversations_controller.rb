@@ -8,6 +8,20 @@ class ConversationsController < ApplicationController
   end
 
   def create
+    if params[:status].present? && params[:status] == 'dispute'
+      
+      @order = Order.find(params[:order])
+      
+      #Je mets à jour mes status
+      @order.update(status: 'dispute')
+      @order.product.update(state: 'sold')
+
+      #Je déclenche les notifications mails
+      # à remplir
+
+      flash[:notice] = "Nous avons ouvert votre litige. Merci de cliquer sur la discussion avec l'admin pour spécifier votre demande."
+    end
+
     if Conversation.between(params[:sender_id],params[:recipient_id]).present?
       @conversation = Conversation.between(params[:sender_id],
       params[:recipient_id]).first

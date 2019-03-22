@@ -46,10 +46,10 @@
                         <% end %>
                       </td>
                       <td>
-                       <%=link_to "Annuler la réservation", order_path(reservation.id, status:'refunded'), method: :patch, class:"btn btn-danger" %>
+                       <%=link_to "Annuler la réservation", order_path(reservation.id, status:'cancellation'), method: :patch, class:"btn btn-danger" %>
                       </td>
                     </tr>
-                    <%end%>
+                    <% end %>
                 </tbody>
                 </table>
              </div>

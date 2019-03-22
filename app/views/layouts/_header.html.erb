@@ -39,9 +39,10 @@
                         </div>
                     </div>
             </li>
+
             <!-- proposer un produit -->
             <li class="nav-item">
-                <% if user_signed_in? & %>
+                <% if user_signed_in? %>
 
                     <% if current_user.stripe_uid.present? %>
                         <%= link_to 'Proposer un produit',  new_product_path, class:'nav-link' %>
@@ -51,6 +52,15 @@
                 <%else%>
                      <%= link_to 'Proposer un produit',  new_product_path, class:'nav-link' %>
                 <%end%>
+            </li>
+
+            <!-- accès dashboard pour admin -->
+            <li class="nav-item">
+                <% if user_signed_in? %> 
+                    <% if current_user.is_admin? %>
+                        <%= link_to 'Espace Admin', admin_root_path, class:'nav-link text-primary' %>
+                    <% end %>
+                <% end %>
             </li>
         </ul>
 

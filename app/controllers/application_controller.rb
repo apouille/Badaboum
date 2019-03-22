@@ -3,4 +3,5 @@ class ApplicationController < ActionController::Base
 	include HeaderHelper
   include ConversationsHelper
   include MessagesHelper
+  include AdminHelper
 end

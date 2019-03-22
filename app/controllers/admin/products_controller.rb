@@ -7,6 +7,9 @@ helper_method :sort_column, :sort_direction
 
 	def show
 		@product = Product.find(params[:id])
+		@seller = @product.seller
+		@seller_profile = @seller.profile
+		@seller_products = @seller.uploaded_products
 	end
 
 	private

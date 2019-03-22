@@ -1,7 +1,6 @@
 
 <br>
 	<h3 class="heading heading-6 strong-600 text-uppercase mb-0"> Mes commandes passées</h3>
-	
 	<div class="row mb-3 mt-3">
 		<div class="card col-12 ">
       <div class="table-responsive">
@@ -18,29 +17,29 @@
                 </tr>
               </thead>
               <tbody>
-              	<% @completed_orders.each do |completed_order|%>
+              	<% @buyer_confirmations.each do |confirmation|%>
                 <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=completed_order.id%></a></td>
-                  <td class="product-image">  <% if completed_order.product.pictures.attached? %>
-                        <%= image_tag completed_order.product.pictures.first.variant(resize:'100x100'), alt:completed_order.product.title %>
+                  <td><a class="navi-link" data-toggle="modal"><%=confirmation.id%></a></td>
+                  <td class="product-image">  <% if confirmation.product.pictures.attached? %>
+                        <%= image_tag confirmation.product.pictures.first.variant(resize:'100x100'), alt:confirmation.product.title %>
         								<% else %>
-        								<%= image_tag("shoes.jpg", alt:completed_order.product.title,size: "50") %>
+        								<%= image_tag("shoes.jpg", alt:confirmation.product.title,size: "50") %>
         								<% end %></td>
-                  <td><%=completed_order.product.title%></td>
-                  <td><%=completed_order.updated_at.strftime("%Y-%m-%d")%></td>
-                  <td><%=completed_order.product.seller.profile.first_name%>
+                  <td><%=confirmation.product.title%></td>
+                  <td><%=confirmation.updated_at.strftime("%Y-%m-%d")%></td>
+                  <td><%=confirmation.product.seller.profile.first_name%>
                     <div>
-                    <% completed_order.notation.to_i.times do  %>
+                    <% confirmation.notation.to_i.times do  %>
                    <span class="text-warning"><i class="fas fa-star"></i></span>
                     <% end %>
 
-                    <% blank_stars(completed_order).times do %>
+                    <% blank_stars(confirmation).times do %>
                   <span class="text-warning"><i class="far fa-star"></i></span>
                     <% end %>
                   </div>
                   </td>
-                    <td><span class="badge badge-success m-0">Livrée</span></td>
-                  <td><%=completed_order.product.price%> €</td>
+                    <td><span class="badge badge-success m-0">Commande livrée</span></td>
+                  <td><%=confirmation.product.price%> €</td>
                 </tr>
                 <%end%>
               </tbody>
