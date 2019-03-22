@@ -112,11 +112,11 @@ before_action :mandatory_profile , only: [:new]
 
   def destroy
     @product = Product.find(params[:id])
-    if @product.orders.present?
-       @product.update(state: 'inactive')
-    else
+     if @product.order.present?
+        @product.update(state: 'inactive')
+     else
        @product.destroy
-    end
+     end
     @product.wishlist_products.destroy
     @myproducts = current_user.uploaded_products.in_stock.order(created_at: :desc)
     respond_to do |format|
