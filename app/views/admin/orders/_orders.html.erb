@@ -1,11 +1,13 @@
-<table class="table">
+<div class="container-fluid mt-5">
+    <h4 class="text-primary">Ensembles des commandes</h4>
+    <table class="table">
         <thead>
             <tr>
               <th scope="col"> </th>
               <th scope="col">ID</th>
               <th scope="col">Acheteur</th>
               <th scope="col">Vendeur</th>
-              <th scope="col">Réservation</th>
+              <th scope="col">Dernière mise à jour</th>
               <th scope="col">Produit</th>
               <th scope="col">Prix total</th>
               <th scope="col">Statut</th>
@@ -24,23 +26,24 @@
                     <td> <%= order.id %> </td>
                     <td> <%= order.user.profile.first_name%> </td>
                     <td> <%= order.product.seller.profile.first_name%> </td>
-                    <td> <%= order.updated_at.strftime("%d/%m/%Y à %H:%M")%> </td>
+                    <td> <%= order.updated_at.strftime("%d/%m/%y à %H:%M")%> </td>
                     <td> <%= order.product.title %> </td>
                     <td> <%= order.product.price %> € </td>
                         <% if order.status == "cart" %>
-                            <td> <span class="badge badge-light"><%= order.status %> </td>
+                            <td><span class="badge badge-light"><%= order.status %></span> </td>
                         <% elsif order.status == "reservation" %>
-                            <td> <span class="badge badge-primary"><%= order.status %> </td>
+                            <td><span class="badge badge-primary"><%= order.status %></span> </td>
                         <% elsif order.status == "confirmation" %>
-                            <td> <span class="badge badge-success"><%= order.status %> </td>
+                            <td><span class="badge badge-success"><%= order.status %></span> </td>
                         <% elsif order.status == "cancellation_request" %>
-                            <td> <span class="badge badge-warning"><%= order.status %> </td>
+                            <td><span class="badge badge-warning"><%= order.status %></span> </td>
                         <% elsif order.status == "cancellation" %>
-                            <td> <span class="badge badge-warning"><%= order.status %> </td>
+                            <td><span class="badge badge-warning"><%= order.status %></span> </td>
                         <% elsif order.status == "dispute" %>
-                            <td> <span class="badge badge-danger"><%= order.status %> </td>
+                            <td><span class="badge badge-danger"><%= order.status %></span></td>
                         <% end %>
                 </tr>
             <%end%>
         </tbody>
     </table>
+</div>
