@@ -69,3 +69,9 @@ fr:
               taken: ": Cet email est déjà pris par un autre utilisateur, veuillez réessayer avec une autre adresse."
             password_confirmation:
               confirmation: ": Vos deux mots de passe ne correspondent pas, veuillez réessayer!"
+        product:
+          attributes:
+            pictures_attachments:
+              invalid: "Vous n'avez pas soumis de photos dans votre formulaire de vente."
+            size:
+              required: ""
