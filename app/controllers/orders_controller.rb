@@ -9,9 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-  	@order = Order.create(user_id: current_user.id, product_id: params[:product], status:1, notation:2)
-
-  	puts @order
+  	@order = Order.create(user_id: current_user.id, product_id: params[:product], status: 'cart', notation:2)
   	redirect_to order_path(@order)
   end
 
@@ -29,11 +27,15 @@ class OrdersController < ApplicationController
     customer = @order.stripe_customer_id
     
    	#Cas ou l'acheteur valide la vente et note le vendeur
-  	if params[:status] == 'completed'
+  	if params[:status] == 'confirmation'
+
+  		#Je déclenche paiement stripe
   		charge = Stripe::Charge.create({ currency: 'eur', customer: customer, amount: @amount, application_fee_amount: @application_fee_amount, description: 'Rails Stripe customer', currency: 'eur', transfer_data: {destination: @seller_uid}
-	})
+		})
+
+  		#Je mets à jour mes status
   		@order.update(notation: @notation, status: @status)
-  		@product.update(state:2)
+  		@product.update(state: 'sold')
 
   		#Je déclenche les notifications mails
   		confirmation_buyer_transaction(@order.user)
@@ -41,11 +43,27 @@ class OrdersController < ApplicationController
 
 		flash[:success] = "Merci. Votre commande est validée et le montant vient d'être débité de votre compte"
 		redirect_to orders_path
-	
-	#Cas ou le vendeur accepte l'annulation de la reservation
-	elsif params[:status] == 'refunded'
+
+	#cas où l'acheteur demande l'annulation de sa réservation
+	elsif params[:status] == 'cancellation_request'
+		
+		#Je mets à jour mes status
 		@order.update(status: @status)
-		@product.update(state:1)
+		@product.update(state: 'sold')
+
+		#Je déclenche les notifications mails
+		confirmation_buyer_cancellation(@order.user)
+  		confirmation_seller_cancellation(@order.product.seller)
+
+		flash[:success] = "Merci. Votre demande d'annulation a bien été prise en compte. "
+		redirect_to orders_path
+	
+	#Cas où le vendeur déclenche ou accepte l'annulation de la reservation
+	elsif params[:status] == 'cancellation'
+		
+		#Je mets à jour mes status
+		@order.update(status: @status)
+		@product.update(state: 'in_stock')
 
 		#Je déclenche les notifications mails
 		confirmation_buyer_refund(@order.user)
@@ -54,17 +72,8 @@ class OrdersController < ApplicationController
 		flash[:success] = "l'annulation de la réservation a bien été prise en compte. Votre produit est à nouveau disponible à la vente"
 		redirect_to orders_path
 
-	#cas ou l'acheteur demande l'annulation de sa réservation
-	else
-		@order.update(status: @status)
+	end	
 
-		#Je déclenche les notifications mails
-		confirmation_buyer_cancellation(@order.user)
-  		confirmation_seller_cancellation(@order.product.seller)
-
-		flash[:success] = "Merci. Votre demande d'annulation a bien été prise en compte. "
-		redirect_to orders_path
-	end
   end
 
   def show
@@ -79,16 +88,19 @@ class OrdersController < ApplicationController
   def index
   	#variables pour l'acheteur
   	@orders = Order.where(user: current_user)
-  	@paid_orders = Order.where(user: current_user, status: 2)
-  	@completed_orders = Order.where(user: current_user, status: 3)
-  	@disputed_orders = Order.where(user: current_user, status: 4).or(Order.where(user: current_user, status: 5))
-  	@refunded_orders = Order.where(user: current_user, status: 5)
+  	@buyer_reservations = Order.where(user: current_user, status: 2)
+  	@buyer_confirmations = Order.where(user: current_user, status: 3)
+  	@buyer_cancellation_requests = Order.where(user: current_user, status: 4)
+  	@buyer_cancellations = Order.where(user: current_user, status: 5)
+  	@buyer_disputes =Order.where(user: current_user, status: 6)
 
   	#Variables pour le vendeur
   	@seller_reservations = my_reservations(current_user)
- 	@seller_sales = my_sales(current_user)
-    @seller_cancelled_sales = my_cancelled_sales(current_user)
-  	@seller_refunded_sales = my_refunded_sales(current_user)
+ 	@seller_confirmations = my_confirmations(current_user)
+    @seller_cancellation_requests = my_cancellation_requests(current_user)
+  	@seller_cancellations = my_cancellations(current_user)
+  	@seller_disputes = my_disputes(current_user)
+
   end
 
 
@@ -106,37 +118,48 @@ class OrdersController < ApplicationController
 	end
 
 
-	def my_sales(user)
-		my_sales = []
-		selled_orders=Order.where(status: 3)
-		selled_orders.each do |order|
+	def my_confirmations(user)
+		my_confirmations = []
+		confirmed_orders=Order.where(status: 3)
+		confirmed_orders.each do |order|
 			if (order.product.seller.id == user.id) 
-				my_sales << order
+				my_confirmations << order
 			end
 		end
-		return my_sales	
+		return my_confirmations	
 	end
 
-	def my_cancelled_sales(user)
-		my_cancelled_sales = []
-		cancelled_orders=Order.where(status: 4)
+	def my_cancellation_requests(user)
+		my_cancellation_requests = []
+		cancelled_requests=Order.where(status: 4)
+		cancelled_requests.each do |order|
+			if (order.product.seller.id == user.id) 
+				my_cancellation_requests << order
+			end
+		end
+		return my_cancellation_requests	
+	end
+
+	def my_cancellations(user)
+		my_cancellations = []
+		cancelled_orders=Order.where(status: 5)
 		cancelled_orders.each do |order|
 			if (order.product.seller.id == user.id) 
-				my_cancelled_sales << order
+				my_cancellations << order
 			end
 		end
-		return my_cancelled_sales	
+		return my_cancellations
 	end
 
-	def my_refunded_sales(user)
-		my_refunded_sales = []
-		refunded_orders=Order.where(status: 5)
-		refunded_orders.each do |order|
+	def my_disputes(user)
+		my_disputes = []
+		disputes = Order.where(status: 6)
+		disputes.each do |order|
 			if (order.product.seller.id == user.id) 
-				my_refunded_sales << order
+				my_disputes << order
 			end
 		end
-		return my_refunded_sales
+		return my_disputes
 	end
 
 

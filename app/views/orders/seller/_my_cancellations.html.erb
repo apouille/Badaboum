@@ -17,46 +17,64 @@
                 </tr>
               </thead>
               <tbody>
-                <% @seller_cancelled_sales.each do |disputed_order|%>
+                <% @seller_cancellation_requests.each do |cancellation_request|%>
                 <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=disputed_order.id%></a></td>
-                  <td class="product-image">  <% if disputed_order.product.pictures.attached? %>
-                        <%= image_tag disputed_order.product.pictures.first.variant(resize:'100x100'), alt:disputed_order.product.title %>
+                  <td><a class="navi-link" data-toggle="modal"><%=cancellation_request.id%></a></td>
+                  <td class="product-image">  <% if cancellation_request.product.pictures.attached? %>
+                        <%= image_tag cancellation_request.product.pictures.first.variant(resize:'100x100'), alt:cancellation_request.product.title %>
                         <% else %>
-                        <%= image_tag("shoes.jpg", alt:disputed_order.product.title,size: "50") %>
+                        <%= image_tag("shoes.jpg", alt:cancellation_request.product.title,size: "50") %>
                         <% end %></td>
-                  <td><%=disputed_order.product.title%><br>
-                    <%=disputed_order.product.price%>€
+                  <td><%=cancellation_request.product.title%><br>
+                    <%=cancellation_request.product.price%>€
                   </td>
-                  <td><%=disputed_order.updated_at.strftime("%Y-%m-%d") %></td>
-                  <td><%=disputed_order.user.profile.first_name%></td>
+                  <td><%=cancellation_request.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=cancellation_request.user.profile.first_name%></td>
 
 
-                  <td><span class="badge badge-danger m-0">Demande d'annulation</span></td>
+                  <td><span class="badge badge-info m-0">Demande d'annulation</span></td>
                   <td>
-                    <%=link_to "Accepter", order_path(disputed_order.id, status:'refunded'), method: :patch, class:"btn btn-danger mb-2" %><br>
+                    <%=link_to "Accepter", order_path(cancellation_request.id, status:'cancellation'), method: :patch, class:"btn btn-danger mb-2" %><br>
                     <div data-toggle="tooltip" data-placement="bottom" title="Envoyer un message à l'administrateur du site pour ouvrir un litige">
-                      <%= link_to 'Ouvrir un litige', conversations_path(sender_id: current_user.id, recipient_id: 6), method: 'post', class:"" %>
+                      <%= link_to 'Ouvrir un litige', conversations_path(sender_id: current_user.id, recipient_id: 6, status: 'dispute', order: cancellation_request.id), method: 'post', class:"" %>
                     </div>
                   </td>
                 </tr>
                 <%end%>
                 
-                <% @seller_refunded_sales.each do |refunded_order|%>
+                 <% @seller_disputes.each do |dispute|%>
                 <tr>
-                  <td><a class="navi-link" data-toggle="modal"><%=refunded_order.id%></a></td>
-                  <td class="product-image">  <% if refunded_order.product.pictures.attached? %>
-                        <%= image_tag refunded_order.product.pictures.first.variant(resize:'100x100'), alt:refunded_order.product.title %>
+                  <td><a class="navi-link" data-toggle="modal"><%=dispute.id%></a></td>
+                  <td class="product-image">  <% if dispute.product.pictures.attached? %>
+                        <%= image_tag dispute.product.pictures.first.variant(resize:'100x100'), alt:dispute.product.title %>
                         <% else %>
-                        <%= image_tag("shoes.jpg", alt:refunded_order.product.title,size: "50") %>
+                        <%= image_tag("shoes.jpg", alt:dispute.product.title,size: "50") %>
                         <% end %></td>
-                  <td><%=refunded_order.product.title%></td>
-                  <td><%=refunded_order.updated_at.strftime("%Y-%m-%d") %></td>
-                  <td><%=refunded_order.product.seller.profile.first_name%></td>
-                  <td><span class="badge badge-success m-0"> Annnulée</span></td>
-                  <td><%=refunded_order.product.price%> €</td>
+                  <td><%=dispute.product.title%></td>
+                  <td><%=dispute.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=dispute.product.seller.profile.first_name%></td>
+                  <td><span class="badge badge-danger m-0"> Litige ouvert</span></td>
+                  <td><%=dispute.product.price%> €</td>
                 </tr>
                 <%end%>
+
+
+                <% @seller_cancellations.each do |cancellation|%>
+                <tr>
+                  <td><a class="navi-link" data-toggle="modal"><%=cancellation.id%></a></td>
+                  <td class="product-image">  <% if cancellation.product.pictures.attached? %>
+                        <%= image_tag cancellation.product.pictures.first.variant(resize:'100x100'), alt:cancellation.product.title %>
+                        <% else %>
+                        <%= image_tag("shoes.jpg", alt:cancellation.product.title,size: "50") %>
+                        <% end %></td>
+                  <td><%=cancellation.product.title%></td>
+                  <td><%=cancellation.updated_at.strftime("%Y-%m-%d") %></td>
+                  <td><%=cancellation.product.seller.profile.first_name%></td>
+                  <td><span class="badge badge-success m-0"> Commande annulée</span></td>
+                  <td><%=cancellation.product.price%> €</td>
+                </tr>
+                <%end%>
+                
               </tbody>
             </table>
           </div>
