@@ -5,13 +5,11 @@ class Product < ApplicationRecord
 	enum state: { in_stock:1, sold:2, inactive:3 }
 	enum condition: { Neuf:1, Bon:2, Moyen:3, Mauvais:4, Dégradé:5 }
 
-
 	has_many_attached :pictures
 
 	has_many :comments, dependent: :destroy
 	has_many :wishlist_products, dependent: :destroy
 	has_one :order
-
 
   validates :state, presence:true
   validates :title, :description, :price, :condition, :category, presence: { message: ": Ce champs est obligatoire!" };
@@ -30,5 +28,6 @@ class Product < ApplicationRecord
     end
     return brand_array.uniq
   end
+
 end
 

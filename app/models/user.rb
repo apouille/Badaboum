@@ -8,18 +8,19 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :uploaded_products, foreign_key: 'seller_id', class_name: "Product"
-  
+
   has_many :comments
   has_many :orders
   has_many :wishlist_products
- 
 
-  def welcome_send
-    UserMailer.welcome_email(self).deliver_now
-  end
+  private
 
-  def create_profile
-    self.create_profile!
-  end
+    def welcome_send
+      UserMailer.welcome_email(self).deliver_now
+    end
+
+    def create_profile
+      self.create_profile!
+    end
 
 end
